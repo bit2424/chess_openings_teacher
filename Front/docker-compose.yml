@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  cot-front:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    user: "${UID}:${GID}"
+    ports:
+      - "3000:3000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+
+    # Command to keep the container running
+    command: ["tail", "-f", "/dev/null"]
