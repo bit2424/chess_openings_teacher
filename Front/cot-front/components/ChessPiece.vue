@@ -37,8 +37,6 @@ export default {
             if(text_chessboard.includes('N')) icon_text+='fa-chess-knight';
             if(text_chessboard.includes('Q')) icon_text+='fa-chess-queen';
             if(text_chessboard.includes('K')) icon_text+='fa-chess-king';
-            
-            console.log(icon_text);
 
             return icon_text;
         },

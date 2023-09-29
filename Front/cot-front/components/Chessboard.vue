@@ -101,10 +101,11 @@
     },
 
     handlePieceMove() {
-      // Logic to move the piece here
-      if(this.whiteTurn && this.lastSelectedType.includes('b')) return
-      if(!this.whiteTurn && this.lastSelectedType.includes('w')) return
-
+      // Logic to handle turns
+      // if(this.whiteTurn && this.lastSelectedType.includes('b')) return
+      // if(!this.whiteTurn && this.lastSelectedType.includes('w')) return
+      
+      // Logic to handle each piece
       if (this.lastSelectedType.includes('P')) {
         const color = this.lastSelectedType.split('-')[1];
         console.log(this.checkValidPawnForwardMove(color) || this.checkValidPawnLateralMove(color));
@@ -118,13 +119,15 @@
 
       if (this.lastSelectedType.includes('R')) {
         const color = this.lastSelectedType.split('-')[1];
-        console.log(this.checkValidPawnForwardMove(color) || this.checkValidPawnLateralMove(color));
+        console.log(this.checkValidRookMove(color));
         
-        if(this.checkValidPawnForwardMove(color) || this.checkValidPawnLateralMove(color)){
+        if(this.checkValidRookMove(color)){
           this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
           this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `R-${color}`;
           this.whiteTurn = !this.whiteTurn;
         }
+
+        //Implement castling logic later
       }
     },
     checkValidPawnForwardMove(color){
@@ -167,24 +170,59 @@
       if(this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] == 't'){
         return false;
       }
-
       
       if(this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1].includes(color)) return false;
       
-      if (color === 'b') {
-        // White pawn moves forward
-        if (rowDiff === -1 && Math.abs(colDiff) === 1) {
-          return true;
-        }
+      let expectedRowDiff = 0;
+      if (color === 'b') expectedRowDiff = -1;
+      if (color === 'w') expectedRowDiff = 1;
 
-      } else if (color === 'w') {
-        // Black pawn moves forward
-        if (rowDiff === 1 && Math.abs(colDiff) === 1) {
-          return true;
-        }
+      if (rowDiff === expectedRowDiff && Math.abs(colDiff) === 1) {
+        return true;
       }
 
       return false;
+    },
+
+    checkValidRookMove(color){
+      if(this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1].includes(color)){
+        return false;
+      }
+
+      const rowDiff = Math.abs(this.selectedTile[0] - this.prevSelectedTile[0]);
+      const colDiff = Math.abs(this.selectedTile[1] - this.prevSelectedTile[1]);
+
+      // Rooks can only move either horizontally or vertically
+      if (rowDiff > 0 && colDiff > 0) {
+        return false;
+      }
+
+      // Check if there are no pieces in the rook's path
+      if (rowDiff > 0) {
+        const startRow = Math.min(this.selectedTile[0], this.prevSelectedTile[0])-1;
+        const endRow = Math.max(this.selectedTile[0], this.prevSelectedTile[0])-1;
+        
+        for (let i = startRow+1; i < endRow; i++) {
+          //console.log("Moves ",i);
+          if (this.chessboard[i][this.selectedTile[1] - 1] != 't') {
+            return false;
+          }
+        }
+      }
+
+      if (colDiff > 0) {
+        const startCol = Math.min(this.selectedTile[1], this.prevSelectedTile[1])-1;
+        const endCol = Math.max(this.selectedTile[1], this.prevSelectedTile[1])-1;
+        //console.log("Start,End ",startCol,endCol);
+        for (let j = startCol+1; j < endCol; j++) {
+          //console.log("Moves ",j);
+          if (this.chessboard[this.selectedTile[0] - 1][j] != 't') {
+            return false;
+          }
+        }
+      }
+
+      return true;
     },
 
   },
