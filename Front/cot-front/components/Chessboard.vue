@@ -51,14 +51,14 @@
     this.chessboard[7][0] = "R-b";
     this.chessboard[7][7] = "R-b";
 
-    // this.chessboard[0][1] = "N-w"; 
-    // this.chessboard[0][6] = "N-w"; 
+    this.chessboard[0][1] = "N-w"; 
+    this.chessboard[0][6] = "N-w"; 
      
-    // this.chessboard[7][1] = "N-b";
-    // this.chessboard[7][6] = "N-b";
+    this.chessboard[7][1] = "N-b";
+    this.chessboard[7][6] = "N-b";
 
-    // this.chessboard[0][2] = "N-w"; 
-    // this.chessboard[0][5] = "N-w"; 
+    this.chessboard[0][2] = "N-w"; 
+    this.chessboard[0][5] = "N-w"; 
      
     this.chessboard[7][2] = "B-b";
     this.chessboard[7][5] = "B-b";
@@ -66,11 +66,11 @@
     this.chessboard[0][2] = "B-w"; 
     this.chessboard[0][5] = "B-w"; 
      
-    // this.chessboard[0][3] = "Q-w"; 
-    // this.chessboard[0][4] = "K-w"; 
+    this.chessboard[0][3] = "Q-w"; 
+    this.chessboard[0][4] = "K-w";
 
-    // this.chessboard[7][3] = "Q-b"; 
-    // this.chessboard[7][4] = "K-b"; 
+    this.chessboard[7][3] = "Q-b";
+    this.chessboard[7][4] = "K-b"; 
      
   },
   methods: {
@@ -105,7 +105,7 @@
       // if(this.whiteTurn && this.lastSelectedType.includes('b')) return
       // if(!this.whiteTurn && this.lastSelectedType.includes('w')) return
       
-      // Logic to handle each piece
+      // Logic to handle the pawns
       if (this.lastSelectedType.includes('P')) {
         const color = this.lastSelectedType.split('-')[1];
         console.log(this.checkValidPawnForwardMove(color) || this.checkValidPawnLateralMove(color));
@@ -117,6 +117,7 @@
         }
       }
 
+      //Logic to move the rook
       if (this.lastSelectedType.includes('R')) {
         const color = this.lastSelectedType.split('-')[1];
         console.log(this.checkValidRookMove(color));
@@ -130,6 +131,7 @@
         //Implement castling logic later
       }
 
+      //Logic to move the Bishop
       if (this.lastSelectedType.includes('B')) {
         const color = this.lastSelectedType.split('-')[1];
         console.log(this.checkValidBishopMove(color));
@@ -139,9 +141,30 @@
           this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `B-${color}`;
           this.whiteTurn = !this.whiteTurn;
         }
+      }
+
+      //Logic to move the Knight
+      if (this.lastSelectedType.includes('N')) {
+        const color = this.lastSelectedType.split('-')[1];
+        console.log(this.checkValidKnightMove(color));
         
+        if(this.checkValidKnightMove(color)){
+          this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
+          this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `N-${color}`;
+          this.whiteTurn = !this.whiteTurn;
+        }
+      }
+
+      //Logic to move the Queen
+      if (this.lastSelectedType.includes('Q')) {
+        const color = this.lastSelectedType.split('-')[1];
+        console.log(this.checkValidQueenMove(color));
         
-        //Implement castling logic later
+        if(this.checkValidQueenMove(color)){
+          this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
+          this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `Q-${color}`;
+          this.whiteTurn = !this.whiteTurn;
+        }
       }
     },
     checkValidPawnForwardMove(color){
@@ -217,7 +240,6 @@
         const endRow = Math.max(this.selectedTile[0], this.prevSelectedTile[0])-1;
         
         for (let i = startRow+1; i < endRow; i++) {
-          //console.log("Moves ",i);
           if (this.chessboard[i][this.selectedTile[1] - 1] != 't') {
             return false;
           }
@@ -227,9 +249,7 @@
       if (colDiff > 0) {
         const startCol = Math.min(this.selectedTile[1], this.prevSelectedTile[1])-1;
         const endCol = Math.max(this.selectedTile[1], this.prevSelectedTile[1])-1;
-        //console.log("Start,End ",startCol,endCol);
         for (let j = startCol+1; j < endCol; j++) {
-          //console.log("Moves ",j);
           if (this.chessboard[this.selectedTile[0] - 1][j] != 't') {
             return false;
           }
@@ -281,9 +301,54 @@
       }
 
       return true;
-    }
+    },
+
+    checkValidKnightMove(color) {
+      if (this.chessboard[this.selectedTile[0] - 1][this.selectedTile[1] - 1].includes(color)) {
+        return false;
+      }
+  
+      const rowDiff = Math.abs(this.selectedTile[0] - this.prevSelectedTile[0]);
+      const colDiff = Math.abs(this.selectedTile[1] - this.prevSelectedTile[1]);
+  
+      console.log("Moves",rowDiff,colDiff);
+      // Check that the move is in an L shape
+      if((rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2)) {
+        return true; 
+      }
+  
+      return false;
+    },
+
+    checkValidQueenMove(color) {
+      if (this.chessboard[this.selectedTile[0] - 1][this.selectedTile[1] - 1].includes(color)) {
+        return false;
+      }
+  
+      if(this.checkValidRookMove(color) || this.checkValidBishopMove(color)){
+        return true;
+      }
+  
+      return false;
+    },
+    checkValidKingMove(color) {
+      if (this.chessboard[this.selectedTile[0]][this.selectedTile[1]].includes(color)) {
+        return false; 
+      }
+
+      const rowDiff = Math.abs(this.selectedTile[0] - this.prevSelectedTile[0]);
+      const colDiff = Math.abs(this.selectedTile[1] - this.prevSelectedTile[1]);
+
+      // Check that the move is only 1 square in any direction
+      if(rowDiff <= 1 && colDiff <= 1) { 
+        return true;
+      }
+
+      return false;
+  },
 
   },
+
 
   }
   </script>
