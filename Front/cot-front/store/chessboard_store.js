@@ -50,79 +50,60 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         // if(this.whiteTurn && this.lastSelectedType.includes('b')) return
         // if(!this.whiteTurn && this.lastSelectedType.includes('w')) return
         
+        let color = this.lastSelectedType.split('-')[1];
+        let pieceType = this.lastSelectedType.split('-')[0];
+
         // Logic to handle the pawns
         if (this.lastSelectedType.includes('P')) {
-          const color = this.lastSelectedType.split('-')[1];
-          console.log(this.checkValidPawnForwardMove(color) || this.checkValidPawnLateralMove(color));
           
           if(this.checkValidPawnForwardMove(color) || this.checkValidPawnLateralMove(color)){
-            this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
-            this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `P-${color}`;
-            this.whiteTurn = !this.whiteTurn;
+            this.movePiece(color,pieceType);
           }
         }
   
         //Logic to move the rook
         if (this.lastSelectedType.includes('R')) {
-          const color = this.lastSelectedType.split('-')[1];
-          console.log(this.checkValidRookMove(color));
           
           if(this.checkValidRookMove(color)){
-            this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
-            this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `R-${color}`;
-            this.whiteTurn = !this.whiteTurn;
+            this.movePiece(color,pieceType);
           }
-  
           //Implement castling logic later
         }
   
         //Logic to move the Bishop
         if (this.lastSelectedType.includes('B')) {
-          const color = this.lastSelectedType.split('-')[1];
-          console.log(this.checkValidBishopMove(color));
           
           if(this.checkValidBishopMove(color)){
-            this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
-            this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `B-${color}`;
-            this.whiteTurn = !this.whiteTurn;
+            this.movePiece(color,pieceType);
           }
         }
   
         //Logic to move the Knight
         if (this.lastSelectedType.includes('N')) {
-          const color = this.lastSelectedType.split('-')[1];
-          console.log(this.checkValidKnightMove(color));
           
           if(this.checkValidKnightMove(color)){
-            this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
-            this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `N-${color}`;
-            this.whiteTurn = !this.whiteTurn;
+            this.movePiece(color,pieceType);
           }
         }
   
         //Logic to move the Queen
         if (this.lastSelectedType.includes('Q')) {
-          const color = this.lastSelectedType.split('-')[1];
-          console.log(this.checkValidQueenMove(color));
-          
           if(this.checkValidQueenMove(color)){
-            this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
-            this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `Q-${color}`;
-            this.whiteTurn = !this.whiteTurn;
+            this.movePiece(color,pieceType);
           }
         }
   
         //Logic to move the King
         if (this.lastSelectedType.includes('K')) {
-          const color = this.lastSelectedType.split('-')[1];
-          console.log(this.checkValidKingMove(color));
-          
           if(this.checkValidKingMove(color)){
-            this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
-            this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `K-${color}`;
-            this.whiteTurn = !this.whiteTurn;
+            this.movePiece(color,pieceType);
           }
         }
+      },
+      movePiece(color, pieceType) {
+        this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
+        this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `${pieceType}-${color}`;
+        this.whiteTurn = !this.whiteTurn;
       },
       checkValidPawnForwardMove(color){
         const rowDiff = this.selectedTile[0] - this.prevSelectedTile[0];
