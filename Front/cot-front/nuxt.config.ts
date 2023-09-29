@@ -16,6 +16,9 @@ export default defineNuxtConfig({
         port: 24600
       }
     }
-  }
+  },
+  modules: [
+    '@pinia/nuxt',
+  ]
 
 })
