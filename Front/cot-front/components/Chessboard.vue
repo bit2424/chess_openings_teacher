@@ -166,6 +166,18 @@
           this.whiteTurn = !this.whiteTurn;
         }
       }
+
+      //Logic to move the King
+      if (this.lastSelectedType.includes('K')) {
+        const color = this.lastSelectedType.split('-')[1];
+        console.log(this.checkValidKingMove(color));
+        
+        if(this.checkValidKingMove(color)){
+          this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
+          this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `K-${color}`;
+          this.whiteTurn = !this.whiteTurn;
+        }
+      }
     },
     checkValidPawnForwardMove(color){
       const rowDiff = this.selectedTile[0] - this.prevSelectedTile[0];
@@ -331,14 +343,15 @@
   
       return false;
     },
+
     checkValidKingMove(color) {
-      if (this.chessboard[this.selectedTile[0]][this.selectedTile[1]].includes(color)) {
+      
+      if (this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1].includes(color)) {
         return false; 
       }
 
       const rowDiff = Math.abs(this.selectedTile[0] - this.prevSelectedTile[0]);
       const colDiff = Math.abs(this.selectedTile[1] - this.prevSelectedTile[1]);
-
       // Check that the move is only 1 square in any direction
       if(rowDiff <= 1 && colDiff <= 1) { 
         return true;
