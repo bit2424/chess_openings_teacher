@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Expose the port the app runs on
 EXPOSE 3000
+EXPOSE 24600
 
 
 # Define the command to start the app

@@ -9,6 +9,7 @@ services:
     user: "${UID}:${GID}"
     ports:
       - "3000:3000"
+      - "24600:24600"
     deploy:
       resources:
         reservations:

@@ -1,7 +1,15 @@
 <template>
   <div>
-    <div>Helloooo</div>
-    <div>Hellos</div>
-    <NuxtWelcome />
+    <Chessboard />
   </div>
 </template>
+
+<script>
+import Chessboard from '~/components/Chessboard.vue'
+
+export default {
+  components: {
+    Chessboard
+  }
+}
+</script>
