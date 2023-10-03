@@ -9,11 +9,11 @@
             <div
                 v-for="row in 8"
                 :key="`row-${row}`"
-                :class="`tile ${((row + col) % 2 === 0) ? 'light' : 'dark'} ${`${selectedTile.join('-')}` === `${row}-${col}` ? 'selected' : ''} row-${row} col-${col}`"
+                :class="`tile ${((row + col) % 2 === 0) ? 'light' : 'dark'} ${isSelected(row,col)} row-${row} col-${col}`"
                 @click="handleTileClick(row, col)"
             >
-                <!-- <ChessPiece :icon="['fas', 'chess-pawn']" /> -->
-                <div v-if="chessboard[row-1][col-1] != 't'" class="piece"> <ChessPiece :icon="chessboard[row-1][col-1]" /> </div>
+                <div v-if="chessboard[row-1][col-1] == 't' && chessboard_piece_projection[row-1][col-1] === 'm'" :class="`${isHighlighted(row,col,'tile')}`" ></div>
+                <div v-if="chessboard[row-1][col-1] != 't'"> <ChessPiece :class="`piece ${isHighlighted(row,col,'piece')}`" :icon="chessboard[row-1][col-1]" /> </div>
                 
             </div>
         </div>
@@ -35,13 +35,13 @@
     },
     setup(){
       const chessboardStore = useChessBoardStore();
-      const { chessboard,selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn } = storeToRefs(chessboardStore);
-      const { initialize, handlePieceMove} = (chessboardStore);
+      const { chessboard,chessboard_piece_projection ,selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn } = storeToRefs(chessboardStore);
+      const { initialize, handlePieceMove, highlightPossibleMoves} = (chessboardStore);
       // console.log(chessboard);
       initialize();
       //chessboardStore.initialize();
-      return{ chessboard,selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn,
-              initialize,handlePieceMove};
+      return{ chessboard, chessboard_piece_projection, selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn,
+              initialize,handlePieceMove,highlightPossibleMoves};
     },
     data() {
     return {
@@ -51,9 +51,14 @@
 
     handleTileClick(row, col) {
       // Toggle selected tile on click
+        if(this.chessboard[row-1][col-1]!='t'){
+          this.highlightPossibleMoves(row-1,col-1);
+        }
+
         if(this.selectedTile.join('-') == `${row}-${col}`){
           this.selectedTile = [-1,-1];
           this.prevSelectedTile = [-2,-2];
+          this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
         }
         else{
           if(this.selectedTile[0] < 0){
@@ -65,13 +70,34 @@
           this.selectedTile = [row,col];
           
           if(this.lastSelectedType != 't'){
-             this.handlePieceMove();
+             let moved = this.handlePieceMove();
+             if(moved){
+              this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
+             }
           }
 
         }
       
       console.log(["#####  ",this.lastSelectedType,this.prevSelectedTile.join('-'),this.selectedTile.join('-')]);
-    },    
+    },
+    isSelected(row,col){
+      if(this.selectedTile.join('-') === `${row}-${col}`){
+        return 'selected';
+      }else{
+        return '';
+      }
+    },
+    isHighlighted(row,col,type){
+      if(this.chessboard_piece_projection[row-1][col-1] == 'm'){
+        if(type == 'piece'){
+          return 'highlight-piece';
+        }else{
+          return 'highlight';
+        }
+      }else{
+        return '';
+      }
+    }    
 
   },
 
@@ -106,11 +132,39 @@
     }
 
     .selected {
-        border: 2px solid blue; /* Add a border to indicate selection */
+        /* border: 4px solid #99B2DD; Add a border to indicate selection */
+        background-color: #99B2DD;
     }
 
     .rotated-component {
       transform: rotate(180deg);
+    }
+
+    .highlight {
+      /* position: absolute; */
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      /* background: rgba(141,128,173,0.8); */
+      background: rgba(153,178,221,0.8);
+    }
+
+    .piece{
+      top: 50%; 
+      left: 50%;
+      width: 25px;
+      height: 25px;
+      border: 3px;
+      padding: 5px;
+    }
+
+    .highlight-piece{
+      /* position:absolute; */
+      width: 26px;
+      height: 26px;
+      border-radius: 100%;
+      border: 3px solid #99B2DD;
+      background: none;
     }
 
   </style>

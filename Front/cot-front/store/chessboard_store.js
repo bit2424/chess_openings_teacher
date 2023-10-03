@@ -55,52 +55,18 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         
         let color = this.lastSelectedType.split('-')[1];
         let pieceType = this.lastSelectedType.split('-')[0];
-        let projected_squares = [];
+        let projected_squares = this.projectSinglePieceMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
 
-        // Logic to move the pawns
-        if (this.lastSelectedType.includes('P')) {
-          projected_squares = this.projectPawnMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1);
-        
-        }
-  
-        //Logic to move the rook
-        if (this.lastSelectedType.includes('R')) {
-          projected_squares = this.projectRockMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
-        
-          //Implement castling logic later
-        }
-  
-        //Logic to move the Bishop
-        if (this.lastSelectedType.includes('B')) {
-          projected_squares = this.projectBishopMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
-        }
-  
-        //Logic to move the Knight
-        if (this.lastSelectedType.includes('N')) {
-          projected_squares = this.projectKnightMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
-        }
-  
-        //Logic to move the Queen
-        if (this.lastSelectedType.includes('Q')) {
-          const rockMoves = this.projectRockMove(this.prevSelectedTile[0]-1, this.prevSelectedTile[1]-1, color);
-          const bishopMoves = this.projectBishopMove(this.prevSelectedTile[0]-1, this.prevSelectedTile[1]-1, color);
-
-          projected_squares.push(...rockMoves, ...bishopMoves);
-        }
-  
-        //Logic to move the King
-        if (this.lastSelectedType.includes('K')) {
-          projected_squares = this.projectKingMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
-        }
+        //Implement logic to handle castling
+        //Implement logic to handle en passant
 
         console.log(projected_squares);
         for(let i = 0; i < projected_squares.length; i++){
           if(projected_squares[i][0]+1 == this.selectedTile[0] && projected_squares[i][1]+1 ==  this.selectedTile[1]){
-            this.movePiece(color,pieceType);
-            break;
+            return this.movePiece(color,pieceType);
           }
         }
-
+        return false;
       },
       movePiece(color, pieceType) {
         let prev_val = this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1];
@@ -116,8 +82,10 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
           if(checkMate){
             console.log("Checkmate!!!!");
           }
+          return false;
         }else{
           this.whiteTurn = !this.whiteTurn;
+          return true;
         }
       },
 
@@ -160,6 +128,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         for (let i = 0; i < 8; i++) {
           for (let j = 0; j < 8; j++) {
             if(this.chessboard[i][j].includes(color)){
+
               let moves_to_try = this.projectSinglePieceMove(i,j,color);
               for(let k = 0; k<moves_to_try.length; k++){
                 let next_prev_val = this.chessboard[moves_to_try[k][0]][moves_to_try[k][1]];
@@ -215,6 +184,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
       },
       projectSinglePieceMove(row,col,color){
         let projected_squares = [];
+        console.log("projecting: ",row,col);
         if(this.chessboard[row][col].includes('P')){
           projected_squares = this.projectPawnMove(row,col);
         }
@@ -427,6 +397,25 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         }
       
         return projected_squares;    
+      },
+      highlightPossibleMoves(row,col){
+        this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
+        if(this.whiteTurn){
+          if(this.chessboard[row][col].includes('w')){
+            let projected_squares = this.projectSinglePieceMove(row,col,'w');
+            for(let i = 0;i<projected_squares.length;i++){
+              this.chessboard_piece_projection[projected_squares[i][0]][projected_squares[i][1]] = 'm';
+            }
+          }
+        }else{
+          if(this.chessboard[row][col].includes('b')){
+            let projected_squares = this.projectSinglePieceMove(row,col,'b');
+            for(let i = 0;i<projected_squares.length;i++){
+              this.chessboard_piece_projection[projected_squares[i][0]][projected_squares[i][1]] = 'm';
+            }
+          }
+        }
+        this.printMatrix(this.chessboard_piece_projection);
       }
     }
   })
