@@ -72,10 +72,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
   
         //Logic to move the Bishop
         if (this.lastSelectedType.includes('B')) {
-          
-          if(this.checkValidBishopMove(color)){
-            this.movePiece(color,pieceType);
-          }
+          projected_squares = this.projectBishopMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
         }
   
         //Logic to move the Knight
@@ -114,44 +111,6 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         this.whiteTurn = !this.whiteTurn;
       },
       
-      checkValidRookMove(color){
-        if(this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1].includes(color)){
-          return false;
-        }
-  
-        const rowDiff = Math.abs(this.selectedTile[0] - this.prevSelectedTile[0]);
-        const colDiff = Math.abs(this.selectedTile[1] - this.prevSelectedTile[1]);
-  
-        // Rooks can only move either horizontally or vertically
-        if (rowDiff > 0 && colDiff > 0) {
-          return false;
-        }
-  
-        // Check if there are no pieces in the rook's path
-        if (rowDiff > 0) {
-          const startRow = Math.min(this.selectedTile[0], this.prevSelectedTile[0])-1;
-          const endRow = Math.max(this.selectedTile[0], this.prevSelectedTile[0])-1;
-          
-          for (let i = startRow+1; i < endRow; i++) {
-            if (this.chessboard[i][this.selectedTile[1] - 1] != 't') {
-              return false;
-            }
-          }
-        }
-  
-        if (colDiff > 0) {
-          const startCol = Math.min(this.selectedTile[1], this.prevSelectedTile[1])-1;
-          const endCol = Math.max(this.selectedTile[1], this.prevSelectedTile[1])-1;
-          for (let j = startCol+1; j < endCol; j++) {
-            if (this.chessboard[this.selectedTile[0] - 1][j] != 't') {
-              return false;
-            }
-          }
-        }
-  
-        return true;
-      },
-  
       checkValidBishopMove(color){
         if (this.chessboard[this.selectedTile[0] - 1][this.selectedTile[1] - 1].includes(color)) {
           return false;
@@ -362,9 +321,65 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         }
 
         return projected_squares;
-
        },
 
-  
+       projectBishopMove(row,col,color){
+        let projected_squares = [];
+        let opposing_color = 'w';
+        if(color === 'w') {
+          opposing_color = 'b';
+        }
+
+        // Check top left
+        for(let r = row - 1, c = col - 1; r >= 0 && c >= 0; r--, c--) {
+          if(this.chessboard[r][c] === 't') {
+            projected_squares.push([r, c]); 
+          } else if(this.chessboard[r][c].includes(opposing_color)) {
+            projected_squares.push([r, c]);
+            break;
+          } else {
+            break;
+          }
+        }
+
+        // Check top right
+        for(let r = row - 1, c = col + 1; r >= 0 && c < 8; r--, c++) {
+          if(this.chessboard[r][c] === 't') {
+            projected_squares.push([r, c]);
+          } else if(this.chessboard[r][c].includes(opposing_color)) {
+            projected_squares.push([r, c]);
+            break;
+          } else {
+            break;
+          }
+        }
+
+        // Check bottom left
+        for(let r = row + 1, c = col - 1; r < 8 && c >= 0; r++, c--) {
+          if(this.chessboard[r][c] === 't') {
+            projected_squares.push([r, c]);
+          } else if(this.chessboard[r][c].includes(opposing_color)) {
+            projected_squares.push([r, c]);
+            break;
+          } else {
+            break; 
+          }
+        }
+
+        // Check bottom right
+        for(let r = row + 1, c = col + 1; r < 8 && c < 8; r++, c++) {
+          if(this.chessboard[r][c] === 't') {
+            projected_squares.push([r, c]);
+          } else if(this.chessboard[r][c].includes(opposing_color)) {
+            projected_squares.push([r, c]);
+            break;
+          } else {
+            break;
+          }
+        }
+
+        return projected_squares;
+
+       },
     }
   })
