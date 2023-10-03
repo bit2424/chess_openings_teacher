@@ -77,10 +77,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
   
         //Logic to move the Knight
         if (this.lastSelectedType.includes('N')) {
-          
-          if(this.checkValidKnightMove(color)){
-            this.movePiece(color,pieceType);
-          }
+          projected_squares = this.projectKnightMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
         }
   
         //Logic to move the Queen
@@ -109,48 +106,6 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
         this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `${pieceType}-${color}`;
         this.whiteTurn = !this.whiteTurn;
-      },
-      
-      checkValidBishopMove(color){
-        if (this.chessboard[this.selectedTile[0] - 1][this.selectedTile[1] - 1].includes(color)) {
-          return false;
-        }
-        const rowDiff = this.selectedTile[0] - this.prevSelectedTile[0];
-        const colDiff = this.selectedTile[1] - this.prevSelectedTile[1];
-  
-        // Check if the move is diagonal
-        if (Math.abs(rowDiff) !== Math.abs(colDiff)) {
-          return false;
-        }
-  
-        let startRow = this.prevSelectedTile[0]-1;
-        let startCol = this.prevSelectedTile[1]-1;
-        let endRow = this.selectedTile[0]-1;
-        let endCol = this.selectedTile[1]-1;
-        if(startRow>endRow){
-          startRow = this.selectedTile[0]-1;
-          startCol = this.selectedTile[1]-1;
-          endRow = this.prevSelectedTile[0]-1;
-          endCol = this.prevSelectedTile[1]-1;
-        }
-        console.log("Start ",startRow,startCol,endRow,endCol);
-  
-        if(rowDiff*colDiff>0){
-          // Check if there are no pieces in the bishop's path
-          for (let i = startRow + 1, j = startCol + 1; i < endRow; i++, j++) {
-            if (this.chessboard[i][j] !== 't') {
-              return false;
-            }
-          }
-        }else{
-          for (let i = startRow + 1, j = startCol - 1; i < endRow; i++, j--) {
-            if (this.chessboard[i][j] !== 't') {
-              return false;
-            }
-          }
-        }
-  
-        return true;
       },
   
       checkValidKnightMove(color) {
@@ -379,7 +334,25 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         }
 
         return projected_squares;
-
        },
+       projectKnightMove(row,col,color){
+        let projected_squares = [];
+
+        let directions = [
+          [-2, -1], [-2, 1], [-1, -2], [-1, 2],
+          [1, -2], [1, 2], [2, -1], [2, 1] 
+        ];
+      
+        for (let d of directions) {
+          let r = row + d[0];
+          let c = col + d[1];
+      
+          if (r >= 0 && r < 8 && c >= 0 && c < 8 && !this.chessboard[r][c].includes(color)) {
+            projected_squares.push([r, c]);
+          }
+        }
+      
+        return projected_squares;      
+      }
     }
   })
