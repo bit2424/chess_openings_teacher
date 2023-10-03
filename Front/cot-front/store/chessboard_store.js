@@ -82,8 +82,6 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
   
         //Logic to move the Queen
         if (this.lastSelectedType.includes('Q')) {
-          // projected_squares.concat(this.projectRockMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color));
-          // projected_squares.concat(this.projectBishopMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color));
           const rockMoves = this.projectRockMove(this.prevSelectedTile[0]-1, this.prevSelectedTile[1]-1, color);
           const bishopMoves = this.projectBishopMove(this.prevSelectedTile[0]-1, this.prevSelectedTile[1]-1, color);
 
@@ -99,47 +97,107 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         for(let i = 0; i < projected_squares.length; i++){
           if(projected_squares[i][0]+1 == this.selectedTile[0] && projected_squares[i][1]+1 ==  this.selectedTile[1]){
             this.movePiece(color,pieceType);
+            break;
           }
         }
 
       },
       movePiece(color, pieceType) {
+        let opposing_color = 'w';
+        if(color === 'w'){
+          opposing_color = 'b';
+        }
+        //Make the move
         this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
         this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `${pieceType}-${color}`;
-        this.whiteTurn = !this.whiteTurn;
-      },
 
-      projectWholeBoardMoves(color){
+        //Check for check
+        this.projectWholeBoardMoves(opposing_color);
+        let valid_move = false;
         for (let i = 0; i < 8; i++) {
           for (let j = 0; j < 8; j++) {
-            if (this.chessboard[i][j].includes(color)) {
-              
+            if (this.chessboard[i][j].includes('K') && this.chessboard[i][j].includes(color)) {
+              if(color == 'w'){
+                if (this.chessboard_black_projection[i][j]  == 't') {
+                  valid_move = true;
+                }
+
+              }else{
+                if (this.chessboard_white_projection[i][j]  == 't') {
+                  valid_move = true;
+                }
+              }
+              break;
             }
           }
         }
-        return whiteSquares;
+        
+        if(valid_move){
+          this.whiteTurn = !this.whiteTurn;
+        }else{
+          this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = `${pieceType}-${color}`;
+          this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = 't';
+        }
       },
 
-      projectSinglePieceMove(row,col){
-      projected_squares = [];
-      if(this.chessboard[row][col].includes('P')){
-        projected_squares = this.projectPawnMove(row,col);
-      }
-      if(this.chessboard[row][col].includes('R')){
+      projectWholeBoardMoves(color){
+        
+        let projected_squares = [];
+        for (let i = 0; i < 8; i++) {
+          for (let j = 0; j < 8; j++) {
+            if (this.chessboard[i][j].includes(color)) {
+              projected_squares.push(...this.projectSinglePieceMove(i,j,color));
+            }
+          }
+        }
+        if(color == 'w'){
+          this.chessboard_white_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
+          for (let i = 0; i < projected_squares.length; i++) {
+            this.chessboard_white_projection[projected_squares[i][0]][projected_squares[i][1]] = 'a';
+          }
+          this.printMatrix(this.chessboard_white_projection);
+        }else{
+          this.chessboard_black_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
+          for (let i = 0; i < projected_squares.length; i++) {
+            this.chessboard_black_projection[projected_squares[i][0]][projected_squares[i][1]] = 'a';
+          }
+          this.printMatrix(this.chessboard_black_projection);
+        }
+      },
+      printMatrix(matrix) {
+        let str = '';
+        for (let i = 0; i < matrix.length; i++) {
+          for (let j = 0; j < matrix.length; j++) {
+            str += matrix[i][j] +'';
+          }
+          str += '\n';
+        }
+        console.log(str);
+      },
+      projectSinglePieceMove(row,col,color){
+        let projected_squares = [];
+        if(this.chessboard[row][col].includes('P')){
+          projected_squares = this.projectPawnMove(row,col);
+        }
+        if(this.chessboard[row][col].includes('R')){
+          projected_squares = this.projectRockMove(row,col,color);
+        }
+        if(this.chessboard[row][col].includes('B')){
+          projected_squares = this.projectBishopMove(row,col,color);
+        }
+        if(this.chessboard[row][col].includes('N')){
+          projected_squares = this.projectKnightMove(row,col,color);
+        }
+        if(this.chessboard[row][col].includes('Q')){
+          const rockMoves = this.projectRockMove(row, col, color);
+          const bishopMoves = this.projectBishopMove(row, col, color);
 
-      }
-      if(this.chessboard[row][col].includes('B')){
-
-      }
-      if(this.chessboard[row][col].includes('N')){
-
-      }
-      if(this.chessboard[row][col].includes('Q')){
-
-      }
-      if(this.chessboard[row][col].includes('K')){
-
-      }
+          projected_squares.push(...rockMoves, ...bishopMoves);
+        }
+        if(this.chessboard[row][col].includes('K')){
+          projected_squares = this.projectKingMove(row,col,color);
+        }
+        return projected_squares;
       },
       projectPawnMove(row,col){
       let projected_squares = [];
