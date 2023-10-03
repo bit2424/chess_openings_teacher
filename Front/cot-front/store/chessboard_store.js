@@ -103,41 +103,80 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
 
       },
       movePiece(color, pieceType) {
+        let prev_val = this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1];
+                
+        let check = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color,pieceType);
+        
+        console.log("Check ",check);
+        
+        if(check){
+          this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = `${pieceType}-${color}`;
+          this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = prev_val;
+          let checkMate = this.isCheckmate(color);
+          if(checkMate){
+            console.log("Checkmate!!!!");
+          }
+        }else{
+          this.whiteTurn = !this.whiteTurn;
+        }
+      },
+
+      isCheck(row,col,prevRow,prevCol,color,pieceType){
+        let check = true;
         let opposing_color = 'w';
         if(color === 'w'){
           opposing_color = 'b';
         }
+        
         //Make the move
-        this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
-        this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `${pieceType}-${color}`;
+        this.chessboard[row][col] = `${pieceType}-${color}`;
+        this.chessboard[prevRow][prevCol] = 't';
 
         //Check for check
         this.projectWholeBoardMoves(opposing_color);
-        let valid_move = false;
         for (let i = 0; i < 8; i++) {
           for (let j = 0; j < 8; j++) {
             if (this.chessboard[i][j].includes('K') && this.chessboard[i][j].includes(color)) {
               if(color == 'w'){
                 if (this.chessboard_black_projection[i][j]  == 't') {
-                  valid_move = true;
+                  check = false;
                 }
 
               }else{
                 if (this.chessboard_white_projection[i][j]  == 't') {
-                  valid_move = true;
+                  check = false;
                 }
               }
               break;
             }
           }
         }
-        
-        if(valid_move){
-          this.whiteTurn = !this.whiteTurn;
-        }else{
-          this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = `${pieceType}-${color}`;
-          this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = 't';
+        return check;
+      },
+
+      isCheckmate(color){
+        let checkmate = true;
+
+        for (let i = 0; i < 8; i++) {
+          for (let j = 0; j < 8; j++) {
+            if(this.chessboard[i][j].includes(color)){
+              let moves_to_try = this.projectSinglePieceMove(i,j,color);
+              for(let k = 0; k<moves_to_try.length; k++){
+                let next_prev_val = this.chessboard[moves_to_try[k][0]][moves_to_try[k][1]];
+                let curr_prev_val = this.chessboard[i][j];
+                let pieceType = curr_prev_val.split('-')[0];
+                let pieceColor = curr_prev_val.split('-')[1];
+                if(!this.isCheck(moves_to_try[k][0],moves_to_try[k][1],i,j,pieceColor,pieceType)){
+                  checkmate = false;
+                }
+                this.chessboard[i][j] = curr_prev_val;
+                this.chessboard[moves_to_try[k][0]][moves_to_try[k][1]] = next_prev_val;
+              }
+            }
+          }
         }
+
+        return checkmate;
       },
 
       projectWholeBoardMoves(color){
@@ -200,41 +239,41 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         return projected_squares;
       },
       projectPawnMove(row,col){
-      let projected_squares = [];
+        let projected_squares = [];
 
-      if(this.chessboard[row][col].includes('b')){
-        if(row-1==-1)return projected_squares;
+        if(this.chessboard[row][col].includes('b')){
+          if(row-1==-1)return projected_squares;
 
-        if(this.chessboard[row-1][col].includes('t')){
-          projected_squares.push([row-1,col]);
-        }
-        if(row == 6 && this.chessboard[row-2][col].includes('t')){
-          projected_squares.push([row-2,col]);
-        }
-        if(col != 0 && this.chessboard[row-1][col-1].includes('w')){
-          projected_squares.push([row-1, col-1]); 
-        }
-        if(col != 7 && this.chessboard[row-1][col+1].includes('w')){
-          projected_squares.push([row-1, col+1]);
-        }
-      }else{
-        if(row+1==8)return projected_squares;
+          if(this.chessboard[row-1][col].includes('t')){
+            projected_squares.push([row-1,col]);
+          }
+          if(row == 6 && this.chessboard[row-2][col].includes('t')){
+            projected_squares.push([row-2,col]);
+          }
+          if(col != 0 && this.chessboard[row-1][col-1].includes('w')){
+            projected_squares.push([row-1, col-1]); 
+          }
+          if(col != 7 && this.chessboard[row-1][col+1].includes('w')){
+            projected_squares.push([row-1, col+1]);
+          }
+        }else{
+          if(row+1==8)return projected_squares;
 
-        if(this.chessboard[row+1][col].includes('t')){
-          projected_squares.push([row+1,col]);
+          if(this.chessboard[row+1][col].includes('t')){
+            projected_squares.push([row+1,col]);
+          }
+          if(row == 1 && this.chessboard[row+2][col].includes('t')){
+            projected_squares.push([row+2,col]);
+          }
+          if(col != 7 && this.chessboard[row+1][col+1].includes('b')){
+            projected_squares.push([row+1, col+1]); 
+          }
+          if(col != 0 && this.chessboard[row+1][col-1].includes('b')){
+            projected_squares.push([row+1, col-1]);
+          }
         }
-        if(row == 1 && this.chessboard[row+2][col].includes('t')){
-          projected_squares.push([row+2,col]);
-        }
-        if(col != 7 && this.chessboard[row+1][col+1].includes('b')){
-          projected_squares.push([row+1, col+1]); 
-        }
-        if(col != 0 && this.chessboard[row+1][col-1].includes('b')){
-          projected_squares.push([row+1, col-1]);
-        }
-      }
-      
-      return projected_squares;
+        
+        return projected_squares;
       },
 
       projectRockMove(row,col,color){
