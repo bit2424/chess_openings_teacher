@@ -24,6 +24,7 @@
   <script>
   import ChessPiece from '../components/ChessPiece.vue';
   import { useChessBoardStore } from '@/store/chessboard_store';
+  import { useHistoryStore } from '@/store/history_store';
   import { storeToRefs } from 'pinia';
 
   
@@ -35,8 +36,10 @@
     },
     setup(){
       const chessboardStore = useChessBoardStore();
+      const historyStore = useHistoryStore();
       const { chessboard,chessboard_piece_projection ,selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn } = storeToRefs(chessboardStore);
       const { initialize, handlePieceMove, highlightPossibleMoves} = (chessboardStore);
+      const { addMove } = (historyStore);
       // console.log(chessboard);
       initialize();
       //chessboardStore.initialize();
@@ -160,8 +163,8 @@
 
     .highlight-piece{
       /* position:absolute; */
-      width: 26px;
-      height: 26px;
+      width: 25px;
+      height: 25px;
       border-radius: 100%;
       border: 3px solid #99B2DD;
       background: none;

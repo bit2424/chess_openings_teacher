@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia'
 
+import { useHistoryStore } from '@/store/history_store';
+
+
 
 export const useChessBoardStore = defineStore('chessBoardStore', {
     state: () => ({ 
@@ -59,8 +62,9 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
 
         //Implement logic to handle castling
         //Implement logic to handle en passant
+        //Implement logic to handle pawn promotion
 
-        console.log(projected_squares);
+        //console.log(projected_squares);
         for(let i = 0; i < projected_squares.length; i++){
           if(projected_squares[i][0]+1 == this.selectedTile[0] && projected_squares[i][1]+1 ==  this.selectedTile[1]){
             return this.movePiece(color,pieceType);
@@ -69,11 +73,12 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         return false;
       },
       movePiece(color, pieceType) {
+        const historyStore = useHistoryStore();
         let prev_val = this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1];
                 
         let check = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color,pieceType);
         
-        console.log("Check ",check);
+        //console.log("Check ",check);
         
         if(check){
           this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = `${pieceType}-${color}`;
@@ -84,6 +89,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
           }
           return false;
         }else{
+          historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1],prev_val);
           this.whiteTurn = !this.whiteTurn;
           return true;
         }
@@ -184,7 +190,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
       },
       projectSinglePieceMove(row,col,color){
         let projected_squares = [];
-        console.log("projecting: ",row,col);
+        //console.log("projecting: ",row,col);
         if(this.chessboard[row][col].includes('P')){
           projected_squares = this.projectPawnMove(row,col);
         }
