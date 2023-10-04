@@ -61,6 +61,10 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         let projected_squares = this.projectSinglePieceMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
 
         //Implement logic to handle castling
+        let cnt_sqrs = this.checkCastling(color, pieceType);
+        if(cnt_sqrs>0){
+          return this.castle(color,pieceType,cnt_sqrs);
+        }
         //Implement logic to handle en passant
         //Implement logic to handle pawn promotion
 
@@ -75,7 +79,11 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
       movePiece(color, pieceType) {
         const historyStore = useHistoryStore();
         let prev_val = this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1];
-                
+        
+        //Make the move
+        this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
+        this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `${pieceType}-${color}`;
+
         let check = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color,pieceType);
         
         //console.log("Check ",check);
@@ -89,7 +97,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
           }
           return false;
         }else{
-          historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1],prev_val);
+          historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1],prev_val,"normal");
           this.whiteTurn = !this.whiteTurn;
           return true;
         }
@@ -101,10 +109,6 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         if(color === 'w'){
           opposing_color = 'b';
         }
-        
-        //Make the move
-        this.chessboard[row][col] = `${pieceType}-${color}`;
-        this.chessboard[prevRow][prevCol] = 't';
 
         //Check for check
         this.projectWholeBoardMoves(opposing_color);
@@ -141,6 +145,9 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
                 let curr_prev_val = this.chessboard[i][j];
                 let pieceType = curr_prev_val.split('-')[0];
                 let pieceColor = curr_prev_val.split('-')[1];
+                //Make the move
+                this.chessboard[i][j] = 't';
+                this.chessboard[moves_to_try[k][0]][moves_to_try[k][1]] = `${pieceType}-${pieceColor}`;
                 if(!this.isCheck(moves_to_try[k][0],moves_to_try[k][1],i,j,pieceColor,pieceType)){
                   checkmate = false;
                 }
@@ -154,6 +161,108 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         return checkmate;
       },
 
+      checkCastling(color, pieceType){
+        let castling = true;
+        let cnt = 0;
+        let same_color = this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1].split('-')[1] == this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1].split('-')[1];
+        if(!this.checkKingMoved(color)){
+          if(pieceType == 'K' && this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1].includes('R') && same_color){
+            if(color == 'w'){
+              this.projectWholeBoardMoves("b");
+              if(this.chessboard_black_projection[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] != 't'){
+                castling = false;
+              }
+              for(let i = Math.min(this.selectedTile[1]-1,this.prevSelectedTile[1]-1)+1; i < Math.max(this.selectedTile[1]-1,this.prevSelectedTile[1]-1); i++){
+                console.log("castle",i);
+                cnt++;
+                if(this.chessboard[0][i] != 't' || this.chessboard_black_projection[0][i] != 't'){
+                  castling = false;
+                  break;
+                }
+              }
+            }else{
+              this.projectWholeBoardMoves("w");
+              if(this.chessboard_white_projection[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] != 't'){
+                castling = false;
+              }
+              for(let i = Math.min(this.selectedTile[1]-1,this.prevSelectedTile[1]-1)+1; i < Math.max(this.selectedTile[1]-1,this.prevSelectedTile[1]-1); i++){
+                console.log("castle",i);
+                cnt++;
+                if(this.chessboard[7][i] != 't' || this.chessboard_white_projection[7][i] != 't'){
+                  castling = false;
+                  break;
+                }
+              }
+            }
+          }else{
+            castling = false;
+          }
+        }else{
+          castling = false;
+        }
+        console.log("Did we castle? ",castling);
+        if(castling){
+          return cnt;
+        }else{
+          return 0;
+        }
+      },
+
+      checkKingMoved(color){
+        const historyStore = useHistoryStore();
+        let king_moved = false;
+        for(let i = 0; i < historyStore.moves_history.length; i++){
+          if(historyStore.moves_history[i].includes('K') || historyStore.moves_history[i].includes('O')){
+            if(color == 'w'){
+              if(i%2 == 0){
+                king_moved = true;
+              }
+            }else{
+              if(i%2 == 1){
+                king_moved = true;
+              }
+            }
+            break;
+          }
+        }
+        return king_moved;
+      },
+      castle(color,pieceType,cnt_sqrs){
+        const historyStore = useHistoryStore();
+
+        let prev_val = this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1];
+        let val = this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1];
+        
+        //Make the move
+        this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
+        this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = 't';
+        if(color == 'w'){
+          if(cnt_sqrs == 2){
+            this.chessboard[0][5] = prev_val;
+            this.chessboard[0][6] = `${pieceType}-${color}`;
+            historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,val,prev_val,"castle king side");
+          }else{
+            this.chessboard[0][3] = prev_val;
+            this.chessboard[0][2] = `${pieceType}-${color}`;
+            historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,val,prev_val,"castle queen side");
+          }
+        }else{
+          if(cnt_sqrs == 2){
+            this.chessboard[7][5] = prev_val;
+            this.chessboard[7][6] = `${pieceType}-${color}`;
+            historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,val,prev_val,"castle king side");
+
+          }else{
+            this.chessboard[7][3] = prev_val;
+            this.chessboard[7][2] = `${pieceType}-${color}`;
+            historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,val,prev_val,"castle queen side");
+          }
+        }
+
+        this.whiteTurn = !this.whiteTurn;
+        return true;
+        
+      },
       projectWholeBoardMoves(color){
         
         let projected_squares = [];
