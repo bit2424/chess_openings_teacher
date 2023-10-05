@@ -12,7 +12,6 @@ export const useHistoryStore = defineStore('historyStore', {
             let colNotation = notation[1];
             console.log(row,col,prevRow,prevCol,val,prev_val,move_type);
             if(prev_val.includes("t")){
-                //Move logic
                 if(val.split('-')[0] == 'P'){
                     this.moves_history.push(`${this.convertToChessNotation(row,col,'','move')}`);
                 }else{
@@ -20,7 +19,6 @@ export const useHistoryStore = defineStore('historyStore', {
                 }
             }else if(prev_val.split('-')[1] != val.split('-')[1]){
                 //Take logic
-                console.log(row,col,prevRow,prevCol,val,prev_val);
                 if(val.split('-')[0] == 'P'){
                     this.moves_history.push(`${this.convertToChessNotation(row,col,colNotation,'take')}`);
                 }else{
@@ -36,7 +34,7 @@ export const useHistoryStore = defineStore('historyStore', {
 
                 }
             }
-            console.log(this.moves_history);
+            console.log("History ",this.moves_history);
         },
         convertToChessNotation(row,col,piece,op_type){
         // Create arrays for mapping row and column to chess notation
@@ -52,6 +50,21 @@ export const useHistoryStore = defineStore('historyStore', {
         }
         },
         convertToMatrixNotation(notation){
+            // Split notation into piece, column, and row
+            const piece = notation.substring(0,1);
+            const colNotation = notation.substring(1,2);
+            const rowNotation = notation.substring(2,3);
+
+            // Get column index from cols array
+            const cols = ["a","b","c","d","e","f","g","h"];
+            const col = cols.indexOf(colNotation);
+
+            // Get row index from rows array 
+            const rows = ["1","2","3","4","5","6","7","8"];
+            const row = rows.indexOf(rowNotation);
+
+            // Return row and column
+            return [row,col];
 
         },
         getAlgebraicCoordinates(row,col){
