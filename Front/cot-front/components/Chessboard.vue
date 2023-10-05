@@ -12,6 +12,10 @@
                 :class="`tile ${((row + col) % 2 === 0) ? 'light' : 'dark'} ${isSelected(row,col)} row-${row} col-${col}`"
                 @click="handleTileClick(row, col)"
             >
+                <div v-if="row == 8" :class=" `col_ids ${((row + col) % 2 === 0) ? `light_txt` : `dark_txt`} ` ">{{ col_ids[col-1] }}</div>
+                
+                <div v-if="col == 1" :class="`row_ids ${((row + col) % 2 === 0) ? `light_txt` : `dark_txt`}`">{{ row_ids[row-1] }}</div>
+
                 <div v-if="chessboard[row-1][col-1] == 't' && chessboard_piece_projection[row-1][col-1] === 'm'" :class="`${isHighlighted(row,col,'tile')}`" ></div>
                 <div v-if="chessboard[row-1][col-1] != 't'">
                    <ChessPiece :class="`piece ${isHighlighted(row,col,'piece')}`" :icon="chessboard[row-1][col-1]" />
@@ -52,6 +56,8 @@
     },
     data() {
     return {
+      col_ids:['a','b','c','d','e','f','g','h','i'],
+      row_ids:[1,2,3,4,5,6,7,8,9],
     };
   },
   methods: {
@@ -122,6 +128,7 @@
   </script>
   
   <style scoped>
+  
     .chessboard {
         display: grid;
         grid-template-columns: repeat(8, 1fr);
@@ -146,6 +153,29 @@
 
     .dark {
         background-color: #b58863; /* Set a dark color */
+    }
+
+    .light_txt {
+        /* background-color: #f0d9b5; Set a light color */
+        color: #b58863;
+        font-size: 100%;
+    }
+
+    .dark_txt {
+        color: #f0d9b5; /* Set a dark color */
+        font-size: 100%;
+    }
+
+    .row_ids {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .col_ids {
+      position: absolute;
+      bottom: 0;
+      right: 0;
     }
 
     .selected {
