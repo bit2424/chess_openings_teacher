@@ -6,6 +6,9 @@ export const useHistoryStore = defineStore('historyStore', {
     }),
   
     actions: {
+        initialize_history(){
+            this.moves_history = [];
+        },
         addMove(row,col,prevRow,prevCol,val,prev_val,move_type){
             let notation = this.getAlgebraicCoordinates(prevRow,prevCol);
             let rowNotation = notation[0];

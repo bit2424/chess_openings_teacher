@@ -10,6 +10,7 @@ services:
     ports:
       - "3000:3000"
       - "24600:24600"
+      - "24678:24678"
     deploy:
       resources:
         reservations:

@@ -15,10 +15,13 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         lastSelectedType: "t",
         isRotated: true,
         whiteTurn: true,
+        promoting: false,
     }),
   
     actions: {
       initialize(){
+        this.whiteTurn = true;
+        this.chessboard = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
         for (let i = 0; i < 8; i++) {
             this.chessboard[1][i] = 'P-w';
             this.chessboard[6][i] = 'P-b';
@@ -66,12 +69,14 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
           return this.castle(color,pieceType,cnt_sqrs);
         }
         //Implement logic to handle en passant
-        if(pieceType == 'P' && this.checkEnPassant(color,pieceType)){
+        if(pieceType == 'P' && this.checkEnPassant(color,pieceType,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,this.selectedTile[0]-1,this.selectedTile[1]-1)){
           return this.enPassant(color,pieceType);
         }
-        //Implement logic to handle pawn promotion
+        //Implement logic to handle promotion
+        if(pieceType == 'P'){
+          this.checkPromotion(color,pieceType);
+        }
 
-        
         for(let i = 0; i < projected_squares.length; i++){
           if(projected_squares[i][0]+1 == this.selectedTile[0] && projected_squares[i][1]+1 ==  this.selectedTile[1]){
             return this.movePiece(color,pieceType);
@@ -161,22 +166,38 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
 
         return checkmate;
       },
+      checkPromotion(color,pieceType){
+        if(color == 'w'){
+          if(this.selectedTile[0] == 8){
+            this.promoting = true;
+          }
+        }else{
+          if(this.selectedTile[0] == 1){
+            this.promoting = true;
+          }
+        }
+        console.log("Promoting? ",color,this.selectedTile[0],this.promoting);
+      },
+      
+      promote(row,col,pieceType,color){
+        this.chessboard[row][col] = `${pieceType}-${color}`;
+      },
 
-      checkEnPassant(color,pieceType){
+      checkEnPassant(color,pieceType,row,col,next_row,next_col){
         const historyStore = useHistoryStore();
         let last_move = historyStore.moves_history[historyStore.moves_history.length-1];
         // let removed_piece = historyStore.convertToChessNotation();
-        let possible = false;
-        let row = this.prevSelectedTile[0]-1;
-        let col = this.prevSelectedTile[1]-1;
-        let next_row = this.selectedTile[0]-1;
-        let next_col = this.selectedTile[1]-1;
+        let possible = false
         let next_col_algebraic = historyStore.getAlgebraicCoordinates(next_row,next_col)[1];
         let check_not_moved = [];
-        
-        console.log(last_move,next_col_algebraic+String(this.prevSelectedTile[0]));
 
-        if(last_move == next_col_algebraic+String(this.prevSelectedTile[0])){
+        if(this.chessboard[next_row][next_col] != 't'){
+          return false;
+        }
+        
+        // console.log(last_move,next_col_algebraic+String(row+1));
+
+        if(last_move == next_col_algebraic+String(row+1)){
           if(color == 'w'){
             if(row == 4 && this.chessboard[6][next_col] != 'P-b'){
               check_not_moved.push(next_col_algebraic+'6');
@@ -186,19 +207,19 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
               check_not_moved.push(next_col_algebraic+'3');
             }
           }
-          console.log("Not moved",check_not_moved);
+          // console.log("Not moved",check_not_moved);
           if(check_not_moved.length>0){
             let i = 0;
             for(; i<historyStore.moves_history.length; i++){
               if(historyStore.moves_history[i] == check_not_moved[0]){
                 if(color == 'w'){
                   if(i%2==1){
-                    console.log("To sleep ",check_not_moved[0]);
+                    // console.log("To sleep ",check_not_moved[0]);
                     break;
                   }
                 }else{
                   if(i%2==0){
-                    console.log("To sleep ",check_not_moved[0]);
+                    // console.log("To sleep ",check_not_moved[0]);
                     break;
                   }
                 }
@@ -210,7 +231,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
           }
         }
         
-        console.log("Possible en passant",possible);
+        // console.log("Possible en passant",possible);
         return possible;
       },
       enPassant(color,pieceType){
@@ -222,7 +243,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
         this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `${pieceType}-${color}`;
         this.chessboard[this.prevSelectedTile[0]-1][this.selectedTile[1]-1] = `t`;
-
+        
 
         let check = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color,pieceType);
 
@@ -422,6 +443,12 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
           if(col != 7 && this.chessboard[row-1][col+1].includes('w')){
             projected_squares.push([row-1, col+1]);
           }
+          if(col!= 0 && this.checkEnPassant('b','P',row,col,row-1,col-1)){
+            projected_squares.push([row-1, col-1]);
+          }
+          if(col != 7 && this.checkEnPassant('b','P',row,col,row-1,col+1)){
+            projected_squares.push([row-1, col+1]);
+          }
         }else{
           if(row+1==8)return projected_squares;
 
@@ -435,6 +462,12 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
             projected_squares.push([row+1, col+1]); 
           }
           if(col != 0 && this.chessboard[row+1][col-1].includes('b')){
+            projected_squares.push([row+1, col-1]);
+          }
+          if(col != 7 && this.checkEnPassant('w','P',row,col,row+1,col+1)){
+            projected_squares.push([row+1, col+1]); 
+          }
+          if(col != 0 && this.checkEnPassant('w','P',row,col,row+1,col-1)){
             projected_squares.push([row+1, col-1]);
           }
         }
