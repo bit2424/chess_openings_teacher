@@ -17,9 +17,11 @@
                 <div v-if="col == 1" :class="`row_ids ${((row + col) % 2 === 0) ? `light_txt` : `dark_txt`}`">{{ row_ids[row-1] }}</div>
 
                 <div v-if="chessboard[row-1][col-1] == 't' && chessboard_piece_projection[row-1][col-1] === 'm'" :class="`${isHighlighted(row,col,'tile')}`" ></div>
+                
                 <div v-if="chessboard[row-1][col-1] != 't'">
-                   <ChessPiece :class="`piece ${isHighlighted(row,col,'piece')}`" :icon="chessboard[row-1][col-1]" />
+                   <ChessPiece :class="`piece ${isHighlighted(row,col,'piece')} ${isChecked(row,col)}`" :icon="chessboard[row-1][col-1]" />
                 </div>
+
                 <div v-if="promoting && isPromotedPawn(row,col)"><PromotionMenu/></div>
             </div>
         </div>
@@ -45,13 +47,13 @@
     setup(){
       const chessboardStore = useChessBoardStore();
       const historyStore = useHistoryStore();
-      const { chessboard,chessboard_piece_projection ,selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn,promoting } = storeToRefs(chessboardStore);
+      const { chessboard,chessboard_piece_projection ,selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn,promoting,inCheck,inCheckMate } = storeToRefs(chessboardStore);
       const { initialize, handlePieceMove, highlightPossibleMoves} = (chessboardStore);
       const { addMove,initialize_history } = (historyStore);
       initialize();
       initialize_history();
       //chessboardStore.initialize();
-      return{ chessboard, chessboard_piece_projection, selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn,promoting,
+      return{ chessboard, chessboard_piece_projection, selectedTile,prevSelectedTile,lastSelectedType,isRotated,whiteTurn,promoting,inCheck,inCheckMate,
               initialize,handlePieceMove,highlightPossibleMoves};
     },
     data() {
@@ -114,6 +116,19 @@
       }else{
         return '';
       }
+    },
+    isChecked(row,col){
+      
+      if(this.inCheckMate == this.chessboard[row-1][col-1]){
+        console.log("in check mate",this.inCheck,this.chessboard[row-1][col-1]);
+        return 'checkMated';
+      }
+      if(this.inCheck == this.chessboard[row-1][col-1]){
+        console.log("in check",this.inCheck,this.chessboard[row-1][col-1]);
+        return 'checked';
+      }
+
+      return '';
     },
     isPromotedPawn(row,col){
       if((row == 8 || row == 1) && this.chessboard[row-1][col-1].includes('P')){
@@ -181,6 +196,21 @@
     .selected {
         /* border: 4px solid #99B2DD; Add a border to indicate selection */
         background-color: #99B2DD;
+    }
+
+    .checked {
+      width: 25px;
+      height: 25px;
+      border-radius: 100%;
+      background-color: #573280;
+
+    }
+
+    .checkMated {
+      width: 25px;
+      height: 25px;
+      border-radius: 100%;
+      background-color: red;
     }
 
     .rotated-component {

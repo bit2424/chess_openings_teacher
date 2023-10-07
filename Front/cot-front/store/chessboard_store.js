@@ -16,6 +16,8 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         isRotated: true,
         whiteTurn: true,
         promoting: false,
+        inCheck: 'n',
+        inCheckMate: 'n',
     }),
   
     actions: {
@@ -56,8 +58,8 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
       },
       handlePieceMove() {
         // Logic to handle turns
-        // if(this.whiteTurn && this.lastSelectedType.includes('b')) return
-        // if(!this.whiteTurn && this.lastSelectedType.includes('w')) return
+        if(this.whiteTurn && this.lastSelectedType.includes('b')) return
+        if(!this.whiteTurn && this.lastSelectedType.includes('w')) return
         
         let color = this.lastSelectedType.split('-')[1];
         let pieceType = this.lastSelectedType.split('-')[0];
@@ -92,24 +94,37 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
         this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `${pieceType}-${color}`;
 
-        let check = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color,pieceType);
+        let check = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
         
         if(check){
           this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = `${pieceType}-${color}`;
           this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = prev_val;
-          let checkMate = this.isCheckmate(color);
-          if(checkMate){
-            console.log("Checkmate!!!!");
-          }
+          
           return false;
         }else{
           historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1],prev_val,"normal");
+          this.checkOrMate(color);
           this.whiteTurn = !this.whiteTurn;
-          return true;
+        }
+        return true;
+      },
+      checkOrMate(color){
+        let isTheOpponentChecked = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color=='w'?'b':'w');
+        if(isTheOpponentChecked){
+          console.log("Opponent is checked");
+          this.inCheck = `K-${color=='w'?'b':'w'}`;
+          let checkMate = this.isCheckmate(color=='w'?'b':'w');
+          if(checkMate){
+            this.inCheckMate = `K-${color=='w'?'b':'w'}`;
+            console.log("Opponent is Checkmate!!!!");
+          }
+        }else{
+          this.inCheck = 'n';
+          this.inCheckMate = 'n';
         }
       },
-
-      isCheck(row,col,prevRow,prevCol,color,pieceType){
+      isCheck(row,col,prevRow,prevCol,color
+        ){
         let check = true;
         let opposing_color = 'w';
         if(color === 'w'){
@@ -154,7 +169,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
                 //Make the move
                 this.chessboard[i][j] = 't';
                 this.chessboard[moves_to_try[k][0]][moves_to_try[k][1]] = `${pieceType}-${pieceColor}`;
-                if(!this.isCheck(moves_to_try[k][0],moves_to_try[k][1],i,j,pieceColor,pieceType)){
+                if(!this.isCheck(moves_to_try[k][0],moves_to_try[k][1],i,j,pieceColor)){
                   checkmate = false;
                 }
                 this.chessboard[i][j] = curr_prev_val;
@@ -179,8 +194,10 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         console.log("Promoting? ",color,this.selectedTile[0],this.promoting);
       },
       
-      promote(row,col,pieceType,color){
-        this.chessboard[row][col] = `${pieceType}-${color}`;
+      promote(row,col,new_piece){
+        this.chessboard[row][col] = new_piece;
+        let color = this.chessboard[row][col].split('-')[1];
+        this.checkOrMate(color);
       },
 
       checkEnPassant(color,pieceType,row,col,next_row,next_col){
@@ -245,7 +262,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         this.chessboard[this.prevSelectedTile[0]-1][this.selectedTile[1]-1] = `t`;
         
 
-        let check = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color,pieceType);
+        let check = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
 
         if(check){
           this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = `${pieceType}-${color}`;
@@ -258,6 +275,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
           return false;
         }else{
           historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1],prev_val,"enPassant");
+          this.checkOrMate(color);
           this.whiteTurn = !this.whiteTurn;
           return true;
         }
@@ -361,7 +379,7 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
             historyStore.addMove(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,val,prev_val,"castle queen side");
           }
         }
-
+        this.checkOrMate(color);
         this.whiteTurn = !this.whiteTurn;
         return true;
         
@@ -647,4 +665,5 @@ export const useChessBoardStore = defineStore('chessBoardStore', {
         this.printMatrix(this.chessboard_piece_projection);
       }
     }
-  })
+  }
+  )
