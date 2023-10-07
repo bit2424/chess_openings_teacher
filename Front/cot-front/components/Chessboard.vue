@@ -202,7 +202,7 @@
       width: 25px;
       height: 25px;
       border-radius: 100%;
-      background-color: #573280;
+      background-color: #99B2DD;
 
     }
 
@@ -210,7 +210,7 @@
       width: 25px;
       height: 25px;
       border-radius: 100%;
-      background-color: red;
+      background-color: #573280;
     }
 
     .rotated-component {
