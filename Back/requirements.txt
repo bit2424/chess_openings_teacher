@@ -1,0 +1,4 @@
+rdflib
+python-chess
+datasets
+pandas

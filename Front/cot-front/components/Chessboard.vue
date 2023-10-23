@@ -203,7 +203,6 @@
       height: 25px;
       border-radius: 100%;
       background-color: #99B2DD;
-
     }
 
     .checkMated {

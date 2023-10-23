@@ -1,0 +1,9 @@
+version: '3'
+services:
+  cot-kg:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    command: ["tail", "-f", "/dev/null"]
