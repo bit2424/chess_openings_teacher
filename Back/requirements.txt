@@ -1,4 +1,12 @@
 rdflib
 python-chess
-datasets
 pandas
+transformers
+datasets
+sklearn
+huggingface_hub
+jsonlines
+peft
+wandb 
+onnx
+wandb

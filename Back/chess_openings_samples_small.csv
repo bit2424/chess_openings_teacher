@@ -1,0 +1,6174 @@
+opening_type,context,move_type_pred,move_pred
+French Defense: Normal Variation,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e7e6 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R d2d4 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R b7b6 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R a2a3 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . . . . . . .
+. P P . . P P P
+R N B Q K B N R c8b7 0
+r n . q k b n r
+p b p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . . . . . . .
+. P P . . P P P
+R N B Q K B N R b1c3 0
+r n . q k b n r
+p b p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . B Q K B N R g8h6 0
+r n . q k b . r
+p b p p . p p p
+. p . . p . . n
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . B Q K B N R c1h6 1
+r n . q k b . r
+p b p p . p p p
+. p . . p . . B
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . . Q K B N R g7h6 1
+r n . q k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . . Q K B N R f1e2 0
+r n . q k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . B P P P
+R . . Q K . N R d8g5 0
+r n . . k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . q .
+. . . P P . . .
+P . N . . . . .
+. P P . B P P P
+R . . Q K . N R e2g4 0
+r n . . k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . q .
+. . . P P . B .
+P . N . . . . .
+. P P . . P P P
+R . . Q K . N R
+",0,h6h5
+French Defense: Normal Variation,"r n . q k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . B P P P
+R . . Q K . N R d8g5 0
+r n . . k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . q .
+. . . P P . . .
+P . N . . . . .
+. P P . B P P P
+R . . Q K . N R e2g4 0
+r n . . k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . q .
+. . . P P . B .
+P . N . . . . .
+. P P . . P P P
+R . . Q K . N R
+",0,h6h5
+French Defense: Normal Variation,"r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R b7b6 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R a2a3 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . . . . . . .
+. P P . . P P P
+R N B Q K B N R c8b7 0
+r n . q k b n r
+p b p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . . . . . . .
+. P P . . P P P
+R N B Q K B N R b1c3 0
+r n . q k b n r
+p b p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . B Q K B N R g8h6 0
+r n . q k b . r
+p b p p . p p p
+. p . . p . . n
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . B Q K B N R c1h6 1
+r n . q k b . r
+p b p p . p p p
+. p . . p . . B
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . . Q K B N R
+",1,g7h6
+French Defense: Normal Variation,"r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R d2d4 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R b7b6 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R a2a3 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . . . . . . .
+. P P . . P P P
+R N B Q K B N R c8b7 0
+r n . q k b n r
+p b p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . . . . . . .
+. P P . . P P P
+R N B Q K B N R b1c3 0
+r n . q k b n r
+p b p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . B Q K B N R
+",0,g8h6
+French Defense: Normal Variation,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e7e6 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R d2d4 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R b7b6 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R a2a3 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . . . . . . .
+. P P . . P P P
+R N B Q K B N R c8b7 0
+r n . q k b n r
+p b p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . . . . . . .
+. P P . . P P P
+R N B Q K B N R b1c3 0
+r n . q k b n r
+p b p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . B Q K B N R g8h6 0
+r n . q k b . r
+p b p p . p p p
+. p . . p . . n
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . B Q K B N R c1h6 1
+r n . q k b . r
+p b p p . p p p
+. p . . p . . B
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . . Q K B N R g7h6 1
+r n . q k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . . P P P
+R . . Q K B N R f1e2 0
+r n . q k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . . .
+. . . P P . . .
+P . N . . . . .
+. P P . B P P P
+R . . Q K . N R d8g5 0
+r n . . k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . q .
+. . . P P . . .
+P . N . . . . .
+. P P . B P P P
+R . . Q K . N R e2g4 0
+r n . . k b . r
+p b p p . p . p
+. p . . p . . p
+. . . . . . q .
+. . . P P . B .
+P . N . . . . .
+. P P . . P P P
+R . . Q K . N R h6h5 0
+r n . . k b . r
+p b p p . p . p
+. p . . p . . .
+. . . . . . q p
+. . . P P . B .
+P . N . . . . .
+. P P . . P P P
+R . . Q K . N R
+",0,g1f3
+"Queen's Pawn Game: Colle System, Anti-Colle","r n . q k b . r
+p p p . p p p .
+. . . . . n p .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P N . P P P
+R . B Q K B . R e7e6 0
+r n . q k b . r
+p p p . . p p .
+. . . . p n p .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P N . P P P
+R . B Q K B . R f1d3 0
+r n . q k b . r
+p p p . . p p .
+. . . . p n p .
+. . . p . . . .
+. . . P . . . .
+. . . B P . . .
+P P P N . P P P
+R . B Q K . . R f8d6 0
+r n . q k . . r
+p p p . . p p .
+. . . b p n p .
+. . . p . . . .
+. . . P . . . .
+. . . B P . . .
+P P P N . P P P
+R . B Q K . . R e3e4 0
+r n . q k . . r
+p p p . . p p .
+. . . b p n p .
+. . . p . . . .
+. . . P P . . .
+. . . B . . . .
+P P P N . P P P
+R . B Q K . . R d5e4 1
+r n . q k . . r
+p p p . . p p .
+. . . b p n p .
+. . . . . . . .
+. . . P p . . .
+. . . B . . . .
+P P P N . P P P
+R . B Q K . . R d2e4 1
+r n . q k . . r
+p p p . . p p .
+. . . b p n p .
+. . . . . . . .
+. . . P N . . .
+. . . B . . . .
+P P P . . P P P
+R . B Q K . . R h8h2 1
+r n . q k . . .
+p p p . . p p .
+. . . b p n p .
+. . . . . . . .
+. . . P N . . .
+. . . B . . . .
+P P P . . P P r
+R . B Q K . . R e1e2 0
+r n . q k . . .
+p p p . . p p .
+. . . b p n p .
+. . . . . . . .
+. . . P N . . .
+. . . B . . . .
+P P P . K P P r
+R . B Q . . . R h2h1 1
+r n . q k . . .
+p p p . . p p .
+. . . b p n p .
+. . . . . . . .
+. . . P N . . .
+. . . B . . . .
+P P P . K P P .
+R . B Q . . . r d1h1 1
+r n . q k . . .
+p p p . . p p .
+. . . b p n p .
+. . . . . . . .
+. . . P N . . .
+. . . B . . . .
+P P P . K P P .
+R . B . . . . Q b8c6 0
+r . . q k . . .
+p p p . . p p .
+. . n b p n p .
+. . . . . . . .
+. . . P N . . .
+. . . B . . . .
+P P P . K P P .
+R . B . . . . Q c1g5 0
+r . . q k . . .
+p p p . . p p .
+. . n b p n p .
+. . . . . . B .
+. . . P N . . .
+. . . B . . . .
+P P P . K P P .
+R . . . . . . Q
+",0,e8e7
+"Queen's Pawn Game: Colle System, Anti-Colle","r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . P . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R d7d5 0
+r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . p . . . .
+. . . P . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . p . . . .
+. . . P . . . .
+. . . . . N . .
+P P P . P P P P
+R N B Q K B . R g8f6 0
+r n b q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . . . .
+. . . P . . . .
+. . . . . N . .
+P P P . P P P P
+R N B Q K B . R e2e3 0
+r n b q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . . . .
+. . . P . . . .
+. . . . P N . .
+P P P . . P P P
+R N B Q K B . R c8f5 0
+r n . q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . b . .
+. . . P . . . .
+. . . . P N . .
+P P P . . P P P
+R N B Q K B . R f3h4 0
+r n . q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . b . .
+. . . P . . . N
+. . . . P . . .
+P P P . . P P P
+R N B Q K B . R f5g6 0
+r n . q k b . r
+p p p . p p p p
+. . . . . n b .
+. . . p . . . .
+. . . P . . . N
+. . . . P . . .
+P P P . . P P P
+R N B Q K B . R h4g6 1
+r n . q k b . r
+p p p . p p p p
+. . . . . n N .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P . . P P P
+R N B Q K B . R h7g6 1
+r n . q k b . r
+p p p . p p p .
+. . . . . n p .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P . . P P P
+R N B Q K B . R b1d2 0
+r n . q k b . r
+p p p . p p p .
+. . . . . n p .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P N . P P P
+R . B Q K B . R
+",0,e7e6
+"Queen's Pawn Game: Colle System, Anti-Colle","r n . q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . b . .
+. . . P . . . .
+. . . . P N . .
+P P P . . P P P
+R N B Q K B . R f3h4 0
+r n . q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . b . .
+. . . P . . . N
+. . . . P . . .
+P P P . . P P P
+R N B Q K B . R f5g6 0
+r n . q k b . r
+p p p . p p p p
+. . . . . n b .
+. . . p . . . .
+. . . P . . . N
+. . . . P . . .
+P P P . . P P P
+R N B Q K B . R h4g6 1
+r n . q k b . r
+p p p . p p p p
+. . . . . n N .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P . . P P P
+R N B Q K B . R h7g6 1
+r n . q k b . r
+p p p . p p p .
+. . . . . n p .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P . . P P P
+R N B Q K B . R b1d2 0
+r n . q k b . r
+p p p . p p p .
+. . . . . n p .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P N . P P P
+R . B Q K B . R e7e6 0
+r n . q k b . r
+p p p . . p p .
+. . . . p n p .
+. . . p . . . .
+. . . P . . . .
+. . . . P . . .
+P P P N . P P P
+R . B Q K B . R f1d3 0
+r n . q k b . r
+p p p . . p p .
+. . . . p n p .
+. . . p . . . .
+. . . P . . . .
+. . . B P . . .
+P P P N . P P P
+R . B Q K . . R f8d6 0
+r n . q k . . r
+p p p . . p p .
+. . . b p n p .
+. . . p . . . .
+. . . P . . . .
+. . . B P . . .
+P P P N . P P P
+R . B Q K . . R e3e4 0
+r n . q k . . r
+p p p . . p p .
+. . . b p n p .
+. . . p . . . .
+. . . P P . . .
+. . . B . . . .
+P P P N . P P P
+R . B Q K . . R d5e4 1
+r n . q k . . r
+p p p . . p p .
+. . . b p n p .
+. . . . . . . .
+. . . P p . . .
+. . . B . . . .
+P P P N . P P P
+R . B Q K . . R d2e4 1
+r n . q k . . r
+p p p . . p p .
+. . . b p n p .
+. . . . . . . .
+. . . P N . . .
+. . . B . . . .
+P P P . . P P P
+R . B Q K . . R
+",1,h8h2
+"Queen's Pawn Game: Colle System, Anti-Colle","r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+P P P P P P P P
+R N B Q K B N R d2d4 0
+r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . P . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R d7d5 0
+r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . p . . . .
+. . . P . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R
+",0,g1f3
+"Queen's Pawn Game: Colle System, Anti-Colle","r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . p . . . .
+. . . P . . . .
+. . . . . N . .
+P P P . P P P P
+R N B Q K B . R g8f6 0
+r n b q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . . . .
+. . . P . . . .
+. . . . . N . .
+P P P . P P P P
+R N B Q K B . R e2e3 0
+r n b q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . . . .
+. . . P . . . .
+. . . . P N . .
+P P P . . P P P
+R N B Q K B . R c8f5 0
+r n . q k b . r
+p p p . p p p p
+. . . . . n . .
+. . . p . b . .
+. . . P . . . .
+. . . . P N . .
+P P P . . P P P
+R N B Q K B . R
+",0,f3h4
+Four Knights Game: Italian Variation,"r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R a2a3 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . P P P
+R . B Q K . . R c5f2 1
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . b P P
+R . B Q K . . R e1f2 1,2
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . K P P
+R . B Q . . . R c6d4 0
+r . b q k . . r
+p p p p . p p p
+. . . . . n . .
+. . . . p . . .
+. . B n P . . .
+P . N . . N . .
+. P P P . K P P
+R . B Q . . . R d2d3 0
+r . b q k . . r
+p p p p . p p p
+. . . . . n . .
+. . . . p . . .
+. . B n P . . .
+P . N P . N . .
+. P P . . K P P
+R . B Q . . . R
+",0,f6g4
+Four Knights Game: Italian Variation,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+P P P P P P P P
+R N B Q K B N R e2e4 0
+r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e7e5 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R b8c6 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R f1c4 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R g8f6 0
+r . b q k b . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R b1c3 0
+r . b q k b . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R f8c5 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R a2a3 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . P P P
+R . B Q K . . R c5f2 1
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . b P P
+R . B Q K . . R e1f2 1,2
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . K P P
+R . B Q . . . R
+",0,c6d4
+Four Knights Game: Italian Variation,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R b8c6 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R f1c4 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R g8f6 0
+r . b q k b . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R b1c3 0
+r . b q k b . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R f8c5 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R a2a3 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . P P P
+R . B Q K . . R c5f2 1
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . b P P
+R . B Q K . . R e1f2 1,2
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . K P P
+R . B Q . . . R c6d4 0
+r . b q k . . r
+p p p p . p p p
+. . . . . n . .
+. . . . p . . .
+. . B n P . . .
+P . N . . N . .
+. P P P . K P P
+R . B Q . . . R d2d3 0
+r . b q k . . r
+p p p p . p p p
+. . . . . n . .
+. . . . p . . .
+. . B n P . . .
+P . N P . N . .
+. P P . . K P P
+R . B Q . . . R
+",0,f6g4
+Four Knights Game: Italian Variation,"r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R a2a3 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . P P P
+R . B Q K . . R c5f2 1
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . b P P
+R . B Q K . . R e1f2 1,2
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . K P P
+R . B Q . . . R c6d4 0
+r . b q k . . r
+p p p p . p p p
+. . . . . n . .
+. . . . p . . .
+. . B n P . . .
+P . N . . N . .
+. P P P . K P P
+R . B Q . . . R d2d3 0
+r . b q k . . r
+p p p p . p p p
+. . . . . n . .
+. . . . p . . .
+. . B n P . . .
+P . N P . N . .
+. P P . . K P P
+R . B Q . . . R f6g4 0
+r . b q k . . r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . B n P . n .
+P . N P . N . .
+. P P . . K P P
+R . B Q . . . R f2f1 0,2
+r . b q k . . r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . B n P . n .
+P . N P . N . .
+. P P . . . P P
+R . B Q . K . R d8f6 0
+r . b . k . . r
+p p p p . p p p
+. . . . . q . .
+. . . . p . . .
+. . B n P . n .
+P . N P . N . .
+. P P . . . P P
+R . B Q . K . R h2h3 0
+r . b . k . . r
+p p p p . p p p
+. . . . . q . .
+. . . . p . . .
+. . B n P . n .
+P . N P . N . P
+. P P . . . P .
+R . B Q . K . R d7d5 0
+r . b . k . . r
+p p p . . p p p
+. . . . . q . .
+. . . p p . . .
+. . B n P . n .
+P . N P . N . P
+. P P . . . P .
+R . B Q . K . R c3d5 1
+r . b . k . . r
+p p p . . p p p
+. . . . . q . .
+. . . N p . . .
+. . B n P . n .
+P . . P . N . P
+. P P . . . P .
+R . B Q . K . R f6e6 0
+r . b . k . . r
+p p p . . p p p
+. . . . q . . .
+. . . N p . . .
+. . B n P . n .
+P . . P . N . P
+. P P . . . P .
+R . B Q . K . R d5c7 1
+r . b . k . . r
+p p N . . p p p
+. . . . q . . .
+. . . . p . . .
+. . B n P . n .
+P . . P . N . P
+. P P . . . P .
+R . B Q . K . R
+","1,2",d5c7
+Four Knights Game: Italian Variation,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R b8c6 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R f1c4 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R g8f6 0
+r . b q k b . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R b1c3 0
+r . b q k b . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R f8c5 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R a2a3 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . P P P
+R . B Q K . . R c5f2 1
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . b P P
+R . B Q K . . R e1f2 1,2
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . . . p . . .
+. . B . P . . .
+P . N . . N . .
+. P P P . K P P
+R . B Q . . . R
+",0,c6d4
+Caro-Kann Defense: Goldman Variation,"r . b q k b n r
+p p . n p p p p
+. . p . . . . .
+. . . . . . . .
+. . B . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R g8f6 0
+r . b q k b . r
+p p . n p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R e4f6 1
+r . b q k b . r
+p p . n p p p p
+. . p . . N . .
+. . . . . . . .
+. . B . . . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R d7f6 1,2
+r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R f3g3 0
+r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R c8f5 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R d2d3 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . P . . Q .
+P P P . . P P P
+R . B . K . N R f5g6 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . . P P P
+R . B . K . N R g1e2 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . N P P P
+R . B . K . . R e7e6 0
+r . . q k b . r
+p p . . . p p p
+. . p . p n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . N P P P
+R . B . K . . R
+",0,c1f4
+Caro-Kann Defense: Goldman Variation,"r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R f3g3 0
+r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R c8f5 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R d2d3 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . P . . Q .
+P P P . . P P P
+R . B . K . N R f5g6 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . . P P P
+R . B . K . N R g1e2 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . N P P P
+R . B . K . . R e7e6 0
+r . . q k b . r
+p p . . . p p p
+. . p . p n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . N P P P
+R . B . K . . R
+",0,c1f4
+Caro-Kann Defense: Goldman Variation,"r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R f3g3 0
+r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R c8f5 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R
+",0,d2d3
+Caro-Kann Defense: Goldman Variation,"r n b q k b n r
+p p . p p p p p
+. . p . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R b1c3 0
+r n b q k b n r
+p p . p p p p p
+. . p . . . . .
+. . . . . . . .
+. . . . P . . .
+. . N . . . . .
+P P P P . P P P
+R . B Q K B N R d7d5 0
+r n b q k b n r
+p p . . p p p p
+. . p . . . . .
+. . . p . . . .
+. . . . P . . .
+. . N . . . . .
+P P P P . P P P
+R . B Q K B N R d1f3 0
+r n b q k b n r
+p p . . p p p p
+. . p . . . . .
+. . . p . . . .
+. . . . P . . .
+. . N . . Q . .
+P P P P . P P P
+R . B . K B N R d5e4 1
+r n b q k b n r
+p p . . p p p p
+. . p . . . . .
+. . . . . . . .
+. . . . p . . .
+. . N . . Q . .
+P P P P . P P P
+R . B . K B N R c3e4 1
+r n b q k b n r
+p p . . p p p p
+. . p . . . . .
+. . . . . . . .
+. . . . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K B N R b8d7 0
+r . b q k b n r
+p p . n p p p p
+. . p . . . . .
+. . . . . . . .
+. . . . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K B N R f1c4 0
+r . b q k b n r
+p p . n p p p p
+. . p . . . . .
+. . . . . . . .
+. . B . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R g8f6 0
+r . b q k b . r
+p p . n p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R e4f6 1
+r . b q k b . r
+p p . n p p p p
+. . p . . N . .
+. . . . . . . .
+. . B . . . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R d7f6 1,2
+r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R f3g3 0
+r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R c8f5 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R d2d3 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . P . . Q .
+P P P . . P P P
+R . B . K . N R f5g6 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . . P P P
+R . B . K . N R
+",0,g1e2
+Caro-Kann Defense: Goldman Variation,"r n b q k b n r
+p p . . p p p p
+. . p . . . . .
+. . . . . . . .
+. . . . p . . .
+. . N . . Q . .
+P P P P . P P P
+R . B . K B N R c3e4 1
+r n b q k b n r
+p p . . p p p p
+. . p . . . . .
+. . . . . . . .
+. . . . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K B N R b8d7 0
+r . b q k b n r
+p p . n p p p p
+. . p . . . . .
+. . . . . . . .
+. . . . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K B N R f1c4 0
+r . b q k b n r
+p p . n p p p p
+. . p . . . . .
+. . . . . . . .
+. . B . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R g8f6 0
+r . b q k b . r
+p p . n p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . N . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R e4f6 1
+r . b q k b . r
+p p . n p p p p
+. . p . . N . .
+. . . . . . . .
+. . B . . . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R d7f6 1,2
+r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . Q . .
+P P P P . P P P
+R . B . K . N R f3g3 0
+r . b q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . . . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R c8f5 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . . . . Q .
+P P P P . P P P
+R . B . K . N R d2d3 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n . .
+. . . . . b . .
+. . B . . . . .
+. . . P . . Q .
+P P P . . P P P
+R . B . K . N R f5g6 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . . P P P
+R . B . K . N R g1e2 0
+r . . q k b . r
+p p . . p p p p
+. . p . . n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . N P P P
+R . B . K . . R e7e6 0
+r . . q k b . r
+p p . . . p p p
+. . p . p n b .
+. . . . . . . .
+. . B . . . . .
+. . . P . . Q .
+P P P . N P P P
+R . B . K . . R c1f4 0
+r . . q k b . r
+p p . . . p p p
+. . p . p n b .
+. . . . . . . .
+. . B . . B . .
+. . . P . . Q .
+P P P . N P P P
+R . . . K . . R
+",0,f6h5
+French Defense: La Bourdonnais Variation,"r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R e4e5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p P . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R c7c5 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . N . .
+P P P P . . P P
+R N B Q K B . R d8b6 0
+r n b . k b n r
+p p . . . p p p
+. q . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . N . .
+P P P P . . P P
+R N B Q K B . R c2c3 0
+r n b . k b n r
+p p . . . p p p
+. q . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P . . N . .
+P P . P . . P P
+R N B Q K B . R b8c6 0
+r . b . k b n r
+p p . . . p p p
+. q n . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P . . N . .
+P P . P . . P P
+R N B Q K B . R d2d3 0
+r . b . k b n r
+p p . . . p p p
+. q n . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P P . N . .
+P P . . . . P P
+R N B Q K B . R
+",0,c8d7
+French Defense: La Bourdonnais Variation,"r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R d7d5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R e4e5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p P . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R c7c5 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . N . .
+P P P P . . P P
+R N B Q K B . R
+",0,d8b6
+French Defense: La Bourdonnais Variation,"r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p P . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R c7c5 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . N . .
+P P P P . . P P
+R N B Q K B . R d8b6 0
+r n b . k b n r
+p p . . . p p p
+. q . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . N . .
+P P P P . . P P
+R N B Q K B . R c2c3 0
+r n b . k b n r
+p p . . . p p p
+. q . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P . . N . .
+P P . P . . P P
+R N B Q K B . R b8c6 0
+r . b . k b n r
+p p . . . p p p
+. q n . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P . . N . .
+P P . P . . P P
+R N B Q K B . R d2d3 0
+r . b . k b n r
+p p . . . p p p
+. q n . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P P . N . .
+P P . . . . P P
+R N B Q K B . R c8d7 0
+r . . . k b n r
+p p . b . p p p
+. q n . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P P . N . .
+P P . . . . P P
+R N B Q K B . R f1e2 0
+r . . . k b n r
+p p . b . p p p
+. q n . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P P . N . .
+P P . . B . P P
+R N B Q K . . R g8h6 0
+r . . . k b . r
+p p . b . p p p
+. q n . p . . n
+. . p p P . . .
+. . . . . P . .
+. . P P . N . .
+P P . . B . P P
+R N B Q K . . R e1g1 0,5
+r . . . k b . r
+p p . b . p p p
+. q n . p . . n
+. . p p P . . .
+. . . . . P . .
+. . P P . N . .
+P P . . B . P P
+R N B Q . R K . h6f5 0
+r . . . k b . r
+p p . b . p p p
+. q n . p . . .
+. . p p P n . .
+. . . . . P . .
+. . P P . N . .
+P P . . B . P P
+R N B Q . R K . g2g4 0
+r . . . k b . r
+p p . b . p p p
+. q n . p . . .
+. . p p P n . .
+. . . . . P P .
+. . P P . N . .
+P P . . B . . P
+R N B Q . R K . f5h6 0
+r . . . k b . r
+p p . b . p p p
+. q n . p . . n
+. . p p P . . .
+. . . . . P P .
+. . P P . N . .
+P P . . B . . P
+R N B Q . R K . g1g2 0
+r . . . k b . r
+p p . b . p p p
+. q n . p . . n
+. . p p P . . .
+. . . . . P P .
+. . P P . N . .
+P P . . B . K P
+R N B Q . R . .
+",1,h6g4
+French Defense: La Bourdonnais Variation,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e7e6 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R f2f4 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R d7d5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R
+",0,e4e5
+French Defense: La Bourdonnais Variation,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e7e6 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R f2f4 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R d7d5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R e4e5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p P . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R c7c5 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . N . .
+P P P P . . P P
+R N B Q K B . R d8b6 0
+r n b . k b n r
+p p . . . p p p
+. q . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . . . . N . .
+P P P P . . P P
+R N B Q K B . R c2c3 0
+r n b . k b n r
+p p . . . p p p
+. q . . p . . .
+. . p p P . . .
+. . . . . P . .
+. . P . . N . .
+P P . P . . P P
+R N B Q K B . R
+",0,b8c6
+"Italian Game: Classical Variation, Giuoco Pianissimo","r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K . c6a5 0
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+n . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K . c4b3 0
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+n . b . p . B .
+. . . . P . . .
+. B P P . N . .
+P P . . . P P P
+R N . Q . R K . a5b3 1
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+. . b . p . B .
+. . . . P . . .
+. n P P . N . .
+P P . . . P P P
+R N . Q . R K . d1b3 1
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+. . b . p . B .
+. . . . P . . .
+. Q P P . N . .
+P P . . . P P P
+R N . . . R K . c8e6 0
+r . . q . r k .
+p p p . . p p p
+. . . p b n . .
+. . b . p . B .
+. . . . P . . .
+. Q P P . N . .
+P P . . . P P P
+R N . . . R K . b3b7 1
+r . . q . r k .
+p Q p . . p p p
+. . . p b n . .
+. . b . p . B .
+. . . . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . . . R K . a8b8 0
+. r . q . r k .
+p Q p . . p p p
+. . . p b n . .
+. . b . p . B .
+. . . . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . . . R K .
+",0,b7a6
+"Italian Game: Classical Variation, Giuoco Pianissimo","r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q K . . R e8g8 0,5
+r . b q . r k .
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q K . . R e1g1 0,5
+r . b q . r k .
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q . R K . d7d6 0
+r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q . R K . c1g5 0
+r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K . c6a5 0
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+n . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K . c4b3 0
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+n . b . p . B .
+. . . . P . . .
+. B P P . N . .
+P P . . . P P P
+R N . Q . R K . a5b3 1
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+. . b . p . B .
+. . . . P . . .
+. n P P . N . .
+P P . . . P P P
+R N . Q . R K .
+",1,d1b3
+"Italian Game: Classical Variation, Giuoco Pianissimo","r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q . R K . c1g5 0
+r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K . c6a5 0
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+n . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K . c4b3 0
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+n . b . p . B .
+. . . . P . . .
+. B P P . N . .
+P P . . . P P P
+R N . Q . R K . a5b3 1
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+. . b . p . B .
+. . . . P . . .
+. n P P . N . .
+P P . . . P P P
+R N . Q . R K . d1b3 1
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+. . b . p . B .
+. . . . P . . .
+. Q P P . N . .
+P P . . . P P P
+R N . . . R K . c8e6 0
+r . . q . r k .
+p p p . . p p p
+. . . p b n . .
+. . b . p . B .
+. . . . P . . .
+. Q P P . N . .
+P P . . . P P P
+R N . . . R K .
+",1,b3b7
+"Italian Game: Classical Variation, Giuoco Pianissimo","r . b q . r k .
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q . R K . d7d6 0
+r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q . R K . c1g5 0
+r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K .
+",0,c6a5
+"Italian Game: Classical Variation, Giuoco Pianissimo","r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . . P . N . .
+P P P . . P P P
+R N B Q K . . R c2c3 0
+r . b q k . . r
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q K . . R e8g8 0,5
+r . b q . r k .
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q K . . R e1g1 0,5
+r . b q . r k .
+p p p p . p p p
+. . n . . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q . R K . d7d6 0
+r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . . .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N B Q . R K . c1g5 0
+r . b q . r k .
+p p p . . p p p
+. . n p . n . .
+. . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K . c6a5 0
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+n . b . p . B .
+. . B . P . . .
+. . P P . N . .
+P P . . . P P P
+R N . Q . R K . c4b3 0
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+n . b . p . B .
+. . . . P . . .
+. B P P . N . .
+P P . . . P P P
+R N . Q . R K . a5b3 1
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+. . b . p . B .
+. . . . P . . .
+. n P P . N . .
+P P . . . P P P
+R N . Q . R K . d1b3 1
+r . b q . r k .
+p p p . . p p p
+. . . p . n . .
+. . b . p . B .
+. . . . P . . .
+. Q P P . N . .
+P P . . . P P P
+R N . . . R K .
+",0,c8e6
+English Opening: The Whale,"r n . . k . n r
+. p p . . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . . P P .
+R N B . K B . R f1e2 0
+r n . . k . n r
+. p p . . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . B P P .
+R N B . K . . R b8d7 0
+r . . . k . n r
+. p p n . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . B P P .
+R N B . K . . R b1c3 0
+r . . . k . n r
+. p p n . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . N P . Q . P
+. P . . B P P .
+R . B . K . . R
+",0,g8e7
+English Opening: The Whale,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e7e5 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R c2c4 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . P . P . . .
+. . . . . . . .
+P P . P . P P P
+R N B Q K B N R f8c5 0
+r n b q k . n r
+p p p p . p p p
+. . . . . . . .
+. . b . p . . .
+. . P . P . . .
+. . . . . . . .
+P P . P . P P P
+R N B Q K B N R g1f3 0
+r n b q k . n r
+p p p p . p p p
+. . . . . . . .
+. . b . p . . .
+. . P . P . . .
+. . . . . N . .
+P P . P . P P P
+R N B Q K B . R d7d6 0
+r n b q k . n r
+p p p . . p p p
+. . . p . . . .
+. . b . p . . .
+. . P . P . . .
+. . . . . N . .
+P P . P . P P P
+R N B Q K B . R d2d3 0
+r n b q k . n r
+p p p . . p p p
+. . . p . . . .
+. . b . p . . .
+. . P . P . . .
+. . . P . N . .
+P P . . . P P P
+R N B Q K B . R a7a6 0
+r n b q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+. . . P . N . .
+P P . . . P P P
+R N B Q K B . R a2a3 0
+r n b q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . N . .
+. P . . . P P P
+R N B Q K B . R
+",0,c8g4
+English Opening: The Whale,"r n b q k . n r
+p p p p . p p p
+. . . . . . . .
+. . b . p . . .
+. . P . P . . .
+. . . . . . . .
+P P . P . P P P
+R N B Q K B N R g1f3 0
+r n b q k . n r
+p p p p . p p p
+. . . . . . . .
+. . b . p . . .
+. . P . P . . .
+. . . . . N . .
+P P . P . P P P
+R N B Q K B . R d7d6 0
+r n b q k . n r
+p p p . . p p p
+. . . p . . . .
+. . b . p . . .
+. . P . P . . .
+. . . . . N . .
+P P . P . P P P
+R N B Q K B . R d2d3 0
+r n b q k . n r
+p p p . . p p p
+. . . p . . . .
+. . b . p . . .
+. . P . P . . .
+. . . P . N . .
+P P . . . P P P
+R N B Q K B . R a7a6 0
+r n b q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+. . . P . N . .
+P P . . . P P P
+R N B Q K B . R a2a3 0
+r n b q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . N . .
+. P . . . P P P
+R N B Q K B . R c8g4 0
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . b .
+P . . P . N . .
+. P . . . P P P
+R N B Q K B . R h2h3 0
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . b .
+P . . P . N . P
+. P . . . P P .
+R N B Q K B . R g4f3 1
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . b . P
+. P . . . P P .
+R N B Q K B . R d1f3 1
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . . P P .
+R N B . K B . R d8f6 0
+r n . . k . n r
+. p p . . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . . P P .
+R N B . K B . R
+",0,f1e2
+English Opening: The Whale,"r n b q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . N . .
+. P . . . P P P
+R N B Q K B . R c8g4 0
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . b .
+P . . P . N . .
+. P . . . P P P
+R N B Q K B . R h2h3 0
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . b .
+P . . P . N . P
+. P . . . P P .
+R N B Q K B . R g4f3 1
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . b . P
+. P . . . P P .
+R N B Q K B . R d1f3 1
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . . P P .
+R N B . K B . R d8f6 0
+r n . . k . n r
+. p p . . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . . P P .
+R N B . K B . R f1e2 0
+r n . . k . n r
+. p p . . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . B P P .
+R N B . K . . R b8d7 0
+r . . . k . n r
+. p p n . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . B P P .
+R N B . K . . R b1c3 0
+r . . . k . n r
+. p p n . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . N P . Q . P
+. P . . B P P .
+R . B . K . . R g8e7 0
+r . . . k . . r
+. p p n n p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . N P . Q . P
+. P . . B P P .
+R . B . K . . R e1g1 0,5
+r . . . k . . r
+. p p n n p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . N P . Q . P
+. P . . B P P .
+R . B . . R K . c5d4 0
+r . . . k . . r
+. p p n n p p p
+p . . p . q . .
+. . . . p . . .
+. . P b P . . .
+P . N P . Q . P
+. P . . B P P .
+R . B . . R K . c1d2 0
+r . . . k . . r
+. p p n n p p p
+p . . p . q . .
+. . . . p . . .
+. . P b P . . .
+P . N P . Q . P
+. P . B B P P .
+R . . . . R K .
+",0,h7h6
+English Opening: The Whale,"r n b q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . N . .
+. P . . . P P P
+R N B Q K B . R c8g4 0
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . b .
+P . . P . N . .
+. P . . . P P P
+R N B Q K B . R h2h3 0
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . b .
+P . . P . N . P
+. P . . . P P .
+R N B Q K B . R g4f3 1
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . b . P
+. P . . . P P .
+R N B Q K B . R d1f3 1
+r n . q k . n r
+. p p . . p p p
+p . . p . . . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . . P P .
+R N B . K B . R d8f6 0
+r n . . k . n r
+. p p . . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . . P P .
+R N B . K B . R f1e2 0
+r n . . k . n r
+. p p . . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . B P P .
+R N B . K . . R b8d7 0
+r . . . k . n r
+. p p n . p p p
+p . . p . q . .
+. . b . p . . .
+. . P . P . . .
+P . . P . Q . P
+. P . . B P P .
+R N B . K . . R
+",0,b1c3
+Englund Gambit Complex: Hartlaub-Charlick Gambit,"r n b q . r k .
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . . N . .
+. P P . P P P P
+R . B Q K B . R b8c6 0
+r . b q . r k .
+p p p . . p p p
+. . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . . N . .
+. P P . P P P P
+R . B Q K B . R e2e3 0
+r . b q . r k .
+p p p . . p p p
+. . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . . P P P
+R . B Q K B . R a7a6 0
+r . b q . r k .
+. p p . . p p p
+p . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . . P P P
+R . B Q K B . R f1e2 0
+r . b q . r k .
+. p p . . p p p
+p . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q K . . R h7h6 0
+r . b q . r k .
+. p p . . p p .
+p . n b . n . p
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q K . . R
+","0,5",e1g1
+Englund Gambit Complex: Hartlaub-Charlick Gambit,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+P P P P P P P P
+R N B Q K B N R d2d4 0
+r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . P . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R e7e5 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . P . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R d4e5 1
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R
+",0,d7d6
+Englund Gambit Complex: Hartlaub-Charlick Gambit,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R d7d6 0
+r n b q k b n r
+p p p . . p p p
+. . . p . . . .
+. . . . P . . .
+. . . . . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R e5d6 1
+r n b q k b n r
+p p p . . p p p
+. . . P . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R f8d6 1
+r n b q k . n r
+p p p . . p p p
+. . . b . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R g1f3 0
+r n b q k . n r
+p p p . . p p p
+. . . b . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . N . .
+P P P . P P P P
+R N B Q K B . R g8f6 0
+r n b q k . . r
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+. . . . . N . .
+P P P . P P P P
+R N B Q K B . R b1c3 0
+r n b q k . . r
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+. . N . . N . .
+P P P . P P P P
+R . B Q K B . R e8g8 0,5
+r n b q . r k .
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+. . N . . N . .
+P P P . P P P P
+R . B Q K B . R a2a3 0
+r n b q . r k .
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . . N . .
+. P P . P P P P
+R . B Q K B . R b8c6 0
+r . b q . r k .
+p p p . . p p p
+. . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . . N . .
+. P P . P P P P
+R . B Q K B . R e2e3 0
+r . b q . r k .
+p p p . . p p p
+. . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . . P P P
+R . B Q K B . R a7a6 0
+r . b q . r k .
+. p p . . p p p
+p . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . . P P P
+R . B Q K B . R f1e2 0
+r . b q . r k .
+. p p . . p p p
+p . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q K . . R
+",0,h7h6
+Englund Gambit Complex: Hartlaub-Charlick Gambit,"r n b q k b n r
+p p p . . p p p
+. . . p . . . .
+. . . . P . . .
+. . . . . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R e5d6 1
+r n b q k b n r
+p p p . . p p p
+. . . P . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R f8d6 1
+r n b q k . n r
+p p p . . p p p
+. . . b . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+P P P . P P P P
+R N B Q K B N R g1f3 0
+r n b q k . n r
+p p p . . p p p
+. . . b . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . N . .
+P P P . P P P P
+R N B Q K B . R g8f6 0
+r n b q k . . r
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+. . . . . N . .
+P P P . P P P P
+R N B Q K B . R b1c3 0
+r n b q k . . r
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+. . N . . N . .
+P P P . P P P P
+R . B Q K B . R e8g8 0,5
+r n b q . r k .
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+. . N . . N . .
+P P P . P P P P
+R . B Q K B . R a2a3 0
+r n b q . r k .
+p p p . . p p p
+. . . b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . . N . .
+. P P . P P P P
+R . B Q K B . R b8c6 0
+r . b q . r k .
+p p p . . p p p
+. . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . . N . .
+. P P . P P P P
+R . B Q K B . R e2e3 0
+r . b q . r k .
+p p p . . p p p
+. . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . . P P P
+R . B Q K B . R a7a6 0
+r . b q . r k .
+. p p . . p p p
+p . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . . P P P
+R . B Q K B . R f1e2 0
+r . b q . r k .
+. p p . . p p p
+p . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q K . . R h7h6 0
+r . b q . r k .
+. p p . . p p .
+p . n b . n . p
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q K . . R e1g1 0,5
+r . b q . r k .
+. p p . . p p .
+p . n b . n . p
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q . R K . c6e5 0
+r . b q . r k .
+. p p . . p p .
+p . . b . n . p
+. . . . n . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q . R K .
+",0,c1d2
+Englund Gambit Complex: Hartlaub-Charlick Gambit,"r . b q . r k .
+p p p . . p p p
+. . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . . P P P
+R . B Q K B . R a7a6 0
+r . b q . r k .
+. p p . . p p p
+p . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . . P P P
+R . B Q K B . R f1e2 0
+r . b q . r k .
+. p p . . p p p
+p . n b . n . .
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q K . . R h7h6 0
+r . b q . r k .
+. p p . . p p .
+p . n b . n . p
+. . . . . . . .
+. . . . . . . .
+P . N . P N . .
+. P P . B P P P
+R . B Q K . . R
+","0,5",e1g1
+Modern Defense,"r n . q k b . r
+p p . . p p . p
+. . p p . . p .
+. . . . . b B .
+. . . P n . . .
+. . . . . N . P
+P P P N Q P P .
+R . . . K B . R d8a5 0
+r n . . k b . r
+p p . . p p . p
+. . p p . . p .
+q . . . . b B .
+. . . P n . . .
+. . . . . N . P
+P P P N Q P P .
+R . . . K B . R c2c3 0
+r n . . k b . r
+p p . . p p . p
+. . p p . . p .
+q . . . . b B .
+. . . P n . . .
+. . P . . N . P
+P P . N Q P P .
+R . . . K B . R e4d2 1
+r n . . k b . r
+p p . . p p . p
+. . p p . . p .
+q . . . . b B .
+. . . P . . . .
+. . P . . N . P
+P P . n Q P P .
+R . . . K B . R g5d2 1
+r n . . k b . r
+p p . . p p . p
+. . p p . . p .
+q . . . . b . .
+. . . P . . . .
+. . P . . N . P
+P P . B Q P P .
+R . . . K B . R b8d7 0
+r . . . k b . r
+p p . n p p . p
+. . p p . . p .
+q . . . . b . .
+. . . P . . . .
+. . P . . N . P
+P P . B Q P P .
+R . . . K B . R
+",0,b2b4
+Modern Defense,"r n b q k b n r
+p p . . p p . p
+. . p p . . p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . .
+P P P . . P P P
+R N B Q K B . R h2h3 0
+r n b q k b n r
+p p . . p p . p
+. . p p . . p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N B Q K B . R g8f6 0
+r n b q k b . r
+p p . . p p . p
+. . p p . n p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N B Q K B . R c1g5 0
+r n b q k b . r
+p p . . p p . p
+. . p p . n p .
+. . . . . . B .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N . Q K B . R
+",1,f6e4
+Modern Defense,"r n b q k b n r
+p p . . p p . p
+. . p p . . p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N B Q K B . R g8f6 0
+r n b q k b . r
+p p . . p p . p
+. . p p . n p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N B Q K B . R c1g5 0
+r n b q k b . r
+p p . . p p . p
+. . p p . n p .
+. . . . . . B .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N . Q K B . R f6e4 1
+r n b q k b . r
+p p . . p p . p
+. . p p . . p .
+. . . . . . B .
+. . . P n . . .
+. . . . . N . P
+P P P . . P P .
+R N . Q K B . R d1e2 0
+r n b q k b . r
+p p . . p p . p
+. . p p . . p .
+. . . . . . B .
+. . . P n . . .
+. . . . . N . P
+P P P . Q P P .
+R N . . K B . R c8f5 0
+r n . q k b . r
+p p . . p p . p
+. . p p . . p .
+. . . . . b B .
+. . . P n . . .
+. . . . . N . P
+P P P . Q P P .
+R N . . K B . R b1d2 0
+r n . q k b . r
+p p . . p p . p
+. . p p . . p .
+. . . . . b B .
+. . . P n . . .
+. . . . . N . P
+P P P N Q P P .
+R . . . K B . R
+",0,d8a5
+Modern Defense,"r n . q k b . r
+p p . . p p . p
+. . p p . . p .
+. . . . . b B .
+. . . P n . . .
+. . . . . N . P
+P P P N Q P P .
+R . . . K B . R d8a5 0
+r n . . k b . r
+p p . . p p . p
+. . p p . . p .
+q . . . . b B .
+. . . P n . . .
+. . . . . N . P
+P P P N Q P P .
+R . . . K B . R c2c3 0
+r n . . k b . r
+p p . . p p . p
+. . p p . . p .
+q . . . . b B .
+. . . P n . . .
+. . P . . N . P
+P P . N Q P P .
+R . . . K B . R e4d2 1
+r n . . k b . r
+p p . . p p . p
+. . p p . . p .
+q . . . . b B .
+. . . P . . . .
+. . P . . N . P
+P P . n Q P P .
+R . . . K B . R g5d2 1
+r n . . k b . r
+p p . . p p . p
+. . p p . . p .
+q . . . . b . .
+. . . P . . . .
+. . P . . N . P
+P P . B Q P P .
+R . . . K B . R b8d7 0
+r . . . k b . r
+p p . n p p . p
+. . p p . . p .
+q . . . . b . .
+. . . P . . . .
+. . P . . N . P
+P P . B Q P P .
+R . . . K B . R b2b4 0
+r . . . k b . r
+p p . n p p . p
+. . p p . . p .
+q . . . . b . .
+. P . P . . . .
+. . P . . N . P
+P . . B Q P P .
+R . . . K B . R a5a3 0
+r . . . k b . r
+p p . n p p . p
+. . p p . . p .
+. . . . . b . .
+. P . P . . . .
+q . P . . N . P
+P . . B Q P P .
+R . . . K B . R f3g5 0
+r . . . k b . r
+p p . n p p . p
+. . p p . . p .
+. . . . . b N .
+. P . P . . . .
+q . P . . . . P
+P . . B Q P P .
+R . . . K B . R h7h5 0
+r . . . k b . r
+p p . n p p . .
+. . p p . . p .
+. . . . . b N p
+. P . P . . . .
+q . P . . . . P
+P . . B Q P P .
+R . . . K B . R e2c4 0
+r . . . k b . r
+p p . n p p . .
+. . p p . . p .
+. . . . . b N p
+. P Q P . . . .
+q . P . . . . P
+P . . B . P P .
+R . . . K B . R d6d5 0
+r . . . k b . r
+p p . n p p . .
+. . p . . . p .
+. . . p . b N p
+. P Q P . . . .
+q . P . . . . P
+P . . B . P P .
+R . . . K B . R c4e2 0
+r . . . k b . r
+p p . n p p . .
+. . p . . . p .
+. . . p . b N p
+. P . P . . . .
+q . P . . . . P
+P . . B Q P P .
+R . . . K B . R
+",0,a3b2
+Modern Defense,"r n b q k b n r
+p p p p p p . p
+. . . . . . p .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R d2d4 0
+r n b q k b n r
+p p p p p p . p
+. . . . . . p .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R d7d6 0
+r n b q k b n r
+p p p . p p . p
+. . . p . . p .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p p . p p . p
+. . . p . . p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . .
+P P P . . P P P
+R N B Q K B . R c7c6 0
+r n b q k b n r
+p p . . p p . p
+. . p p . . p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . .
+P P P . . P P P
+R N B Q K B . R h2h3 0
+r n b q k b n r
+p p . . p p . p
+. . p p . . p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N B Q K B . R g8f6 0
+r n b q k b . r
+p p . . p p . p
+. . p p . n p .
+. . . . . . . .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N B Q K B . R c1g5 0
+r n b q k b . r
+p p . . p p . p
+. . p p . n p .
+. . . . . . B .
+. . . P P . . .
+. . . . . N . P
+P P P . . P P .
+R N . Q K B . R
+",1,f6e4
+"French Defense: Classical Variation, Richter Attack","r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p . . . .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . B Q K B N R g8f6 0
+r n b q k b . r
+p p p . . p p p
+. . . . p n . .
+. . . p . . . .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . B Q K B N R c1g5 0
+r n b q k b . r
+p p p . . p p p
+. . . . p n . .
+. . . p . . B .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R f8e7 0
+r n b q k . . r
+p p p . b p p p
+. . . . p n . .
+. . . p . . B .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R g5f6 1
+r n b q k . . r
+p p p . b p p p
+. . . . p B . .
+. . . p . . . .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R e7f6 1
+r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p . . . .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R e4e5 0
+r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R f6e7 0
+r n b q k . . r
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R
+",0,d1g4
+"French Defense: Classical Variation, Richter Attack","r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p . . . .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R e4e5 0
+r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R f6e7 0
+r n b q k . . r
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R d1g4 0
+r n b q k . . r
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N . . . . .
+P P P . . P P P
+R . . . K B N R e8g8 0,5
+r n b q . r k .
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N . . . . .
+P P P . . P P P
+R . . . K B N R f1d3 0
+r n b q . r k .
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N B . . . .
+P P P . . P P P
+R . . . K . N R
+",0,f7f5
+"French Defense: Classical Variation, Richter Attack","r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R f6e7 0
+r n b q k . . r
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R d1g4 0
+r n b q k . . r
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N . . . . .
+P P P . . P P P
+R . . . K B N R e8g8 0,5
+r n b q . r k .
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N . . . . .
+P P P . . P P P
+R . . . K B N R f1d3 0
+r n b q . r k .
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N B . . . .
+P P P . . P P P
+R . . . K . N R f7f5 0
+r n b q . r k .
+p p p . b . p p
+. . . . p . . .
+. . . p P p . .
+. . . P . . Q .
+. . N B . . . .
+P P P . . P P P
+R . . . K . N R g4g3 0
+r n b q . r k .
+p p p . b . p p
+. . . . p . . .
+. . . p P p . .
+. . . P . . . .
+. . N B . . Q .
+P P P . . P P P
+R . . . K . N R
+",0,c7c5
+"French Defense: Classical Variation, Richter Attack","r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p . . . .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R e4e5 0
+r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R f6e7 0
+r n b q k . . r
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R d1g4 0
+r n b q k . . r
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N . . . . .
+P P P . . P P P
+R . . . K B N R e8g8 0,5
+r n b q . r k .
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N . . . . .
+P P P . . P P P
+R . . . K B N R f1d3 0
+r n b q . r k .
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . Q .
+. . N B . . . .
+P P P . . P P P
+R . . . K . N R f7f5 0
+r n b q . r k .
+p p p . b . p p
+. . . . p . . .
+. . . p P p . .
+. . . P . . Q .
+. . N B . . . .
+P P P . . P P P
+R . . . K . N R g4g3 0
+r n b q . r k .
+p p p . b . p p
+. . . . p . . .
+. . . p P p . .
+. . . P . . . .
+. . N B . . Q .
+P P P . . P P P
+R . . . K . N R c7c5 0
+r n b q . r k .
+p p . . b . p p
+. . . . p . . .
+. . p p P p . .
+. . . P . . . .
+. . N B . . Q .
+P P P . . P P P
+R . . . K . N R g1f3 0
+r n b q . r k .
+p p . . b . p p
+. . . . p . . .
+. . p p P p . .
+. . . P . . . .
+. . N B . N Q .
+P P P . . P P P
+R . . . K . . R d8b6 0
+r n b . . r k .
+p p . . b . p p
+. q . . p . . .
+. . p p P p . .
+. . . P . . . .
+. . N B . N Q .
+P P P . . P P P
+R . . . K . . R c3a4 0
+r n b . . r k .
+p p . . b . p p
+. q . . p . . .
+. . p p P p . .
+N . . P . . . .
+. . . B . N Q .
+P P P . . P P P
+R . . . K . . R b6b4 0
+r n b . . r k .
+p p . . b . p p
+. . . . p . . .
+. . p p P p . .
+N q . P . . . .
+. . . B . N Q .
+P P P . . P P P
+R . . . K . . R
+","0,2",a4c3
+"French Defense: Classical Variation, Richter Attack","r n b q k . . r
+p p p . b p p p
+. . . . p B . .
+. . . p . . . .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R e7f6 1
+r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p . . . .
+. . . P P . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R e4e5 0
+r n b q k . . r
+p p p . . p p p
+. . . . p b . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R f6e7 0
+r n b q k . . r
+p p p . b p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . . .
+. . N . . . . .
+P P P . . P P P
+R . . Q K B N R
+",0,d1g4
+Giuoco Piano,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R b8c6 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R f1c4 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R f8c5 0
+r . b q k . n r
+p p p p . p p p
+. . n . . . . .
+. . b . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R a2a3 0
+r . b q k . n r
+p p p p . p p p
+. . n . . . . .
+. . b . p . . .
+. . B . P . . .
+P . . . . N . .
+. P P P . P P P
+R N B Q K . . R d8f6 0
+r . b . k . n r
+p p p p . p p p
+. . n . . q . .
+. . b . p . . .
+. . B . P . . .
+P . . . . N . .
+. P P P . P P P
+R N B Q K . . R b2b4 0
+r . b . k . n r
+p p p p . p p p
+. . n . . q . .
+. . b . p . . .
+. P B . P . . .
+P . . . . N . .
+. . P P . P P P
+R N B Q K . . R c5b6 0
+r . b . k . n r
+p p p p . p p p
+. b n . . q . .
+. . . . p . . .
+. P B . P . . .
+P . . . . N . .
+. . P P . P P P
+R N B Q K . . R d2d3 0
+r . b . k . n r
+p p p p . p p p
+. b n . . q . .
+. . . . p . . .
+. P B . P . . .
+P . . P . N . .
+. . P . . P P P
+R N B Q K . . R h7h6 0
+r . b . k . n r
+p p p p . p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . . P . N . .
+. . P . . P P P
+R N B Q K . . R b1c3 0
+r . b . k . n r
+p p p p . p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q K . . R g8e7 0
+r . b . k . . r
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q K . . R
+","0,5",e1g1
+Giuoco Piano,"r . b . k . n r
+p p p p . p p p
+. b n . . q . .
+. . . . p . . .
+. P B . P . . .
+P . . P . N . .
+. . P . . P P P
+R N B Q K . . R h7h6 0
+r . b . k . n r
+p p p p . p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . . P . N . .
+. . P . . P P P
+R N B Q K . . R b1c3 0
+r . b . k . n r
+p p p p . p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q K . . R g8e7 0
+r . b . k . . r
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q K . . R e1g1 0,5
+r . b . k . . r
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q . R K . e8g8 0,5
+r . b . . r k .
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q . R K . f1e1 0
+r . b . . r k .
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q R . K . a7a6 0
+r . b . . r k .
+. p p p n p p .
+p b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q R . K . c1e3 0
+r . b . . r k .
+. p p p n p p .
+p b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P B N . .
+. . P . . P P P
+R . . Q R . K . c6d4 0
+r . b . . r k .
+. p p p n p p .
+p b . . . q . p
+. . . . p . . .
+. P B n P . . .
+P . N P B N . .
+. . P . . P P P
+R . . Q R . K . e3d4 1
+r . b . . r k .
+. p p p n p p .
+p b . . . q . p
+. . . . p . . .
+. P B B P . . .
+P . N P . N . .
+. . P . . P P P
+R . . Q R . K .
+",1,e5d4
+Giuoco Piano,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R g1f3 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R b8c6 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R f1c4 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R f8c5 0
+r . b q k . n r
+p p p p . p p p
+. . n . . . . .
+. . b . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R a2a3 0
+r . b q k . n r
+p p p p . p p p
+. . n . . . . .
+. . b . p . . .
+. . B . P . . .
+P . . . . N . .
+. P P P . P P P
+R N B Q K . . R
+",0,d8f6
+Giuoco Piano,"r . b q k . n r
+p p p p . p p p
+. . n . . . . .
+. . b . p . . .
+. . B . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R a2a3 0
+r . b q k . n r
+p p p p . p p p
+. . n . . . . .
+. . b . p . . .
+. . B . P . . .
+P . . . . N . .
+. P P P . P P P
+R N B Q K . . R d8f6 0
+r . b . k . n r
+p p p p . p p p
+. . n . . q . .
+. . b . p . . .
+. . B . P . . .
+P . . . . N . .
+. P P P . P P P
+R N B Q K . . R b2b4 0
+r . b . k . n r
+p p p p . p p p
+. . n . . q . .
+. . b . p . . .
+. P B . P . . .
+P . . . . N . .
+. . P P . P P P
+R N B Q K . . R c5b6 0
+r . b . k . n r
+p p p p . p p p
+. b n . . q . .
+. . . . p . . .
+. P B . P . . .
+P . . . . N . .
+. . P P . P P P
+R N B Q K . . R d2d3 0
+r . b . k . n r
+p p p p . p p p
+. b n . . q . .
+. . . . p . . .
+. P B . P . . .
+P . . P . N . .
+. . P . . P P P
+R N B Q K . . R h7h6 0
+r . b . k . n r
+p p p p . p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . . P . N . .
+. . P . . P P P
+R N B Q K . . R b1c3 0
+r . b . k . n r
+p p p p . p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q K . . R g8e7 0
+r . b . k . . r
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q K . . R e1g1 0,5
+r . b . k . . r
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q . R K .
+","0,5",e8g8
+Giuoco Piano,"r . b . k . . r
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q K . . R e1g1 0,5
+r . b . k . . r
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q . R K . e8g8 0,5
+r . b . . r k .
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q . R K . f1e1 0
+r . b . . r k .
+p p p p n p p .
+. b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q R . K . a7a6 0
+r . b . . r k .
+. p p p n p p .
+p b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P . N . .
+. . P . . P P P
+R . B Q R . K . c1e3 0
+r . b . . r k .
+. p p p n p p .
+p b n . . q . p
+. . . . p . . .
+. P B . P . . .
+P . N P B N . .
+. . P . . P P P
+R . . Q R . K . c6d4 0
+r . b . . r k .
+. p p p n p p .
+p b . . . q . p
+. . . . p . . .
+. P B n P . . .
+P . N P B N . .
+. . P . . P P P
+R . . Q R . K .
+",1,e3d4
+Ruy Lopez: Cozio Defense,"r . b q k b . r
+. p p p n p p .
+p . n . . . . p
+. . . N p . . .
+B . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R b7b5 0
+r . b q k b . r
+. . p p n p p .
+p . n . . . . p
+. p . N p . . .
+B . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R a4b3 0
+r . b q k b . r
+. . p p n p p .
+p . n . . . . p
+. p . N p . . .
+. . . . P . . .
+. B . . . N . .
+P P P P . P P P
+R . B Q K . . R e7g6 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. p . N p . . .
+. . . . P . . .
+. B . . . N . .
+P P P P . P P P
+R . B Q K . . R c2c4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. p . N p . . .
+. . P . P . . .
+. B . . . N . .
+P P . P . P P P
+R . B Q K . . R b5b4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. . . N p . . .
+. p P . P . . .
+. B . . . N . .
+P P . P . P P P
+R . B Q K . . R b3a4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. . . N p . . .
+B p P . P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q K . . R c6d4 0
+r . b q k b . r
+. . p p . p p .
+p . . . . . n p
+. . . N p . . .
+B p P n P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q K . . R e1g1 0,5
+r . b q k b . r
+. . p p . p p .
+p . . . . . n p
+. . . N p . . .
+B p P n P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q . R K . c7c6 0
+r . b q k b . r
+. . . p . p p .
+p . p . . . n p
+. . . N p . . .
+B p P n P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q . R K . d5e3 0
+r . b q k b . r
+. . . p . p p .
+p . p . . . n p
+. . . . p . . .
+B p P n P . . .
+. . . . N N . .
+P P . P . P P P
+R . B Q . R K . a6a5 0
+r . b q k b . r
+. . . p . p p .
+. . p . . . n p
+p . . . p . . .
+B p P n P . . .
+. . . . N N . .
+P P . P . P P P
+R . B Q . R K . f3d4 1
+r . b q k b . r
+. . . p . p p .
+. . p . . . n p
+p . . . p . . .
+B p P N P . . .
+. . . . N . . .
+P P . P . P P P
+R . B Q . R K .
+",1,e5d4
+Ruy Lopez: Cozio Defense,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R b8c6 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R f1b5 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. B . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R g8e7 0
+r . b q k b . r
+p p p p n p p p
+. . n . . . . .
+. B . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R b1c3 0
+r . b q k b . r
+p p p p n p p p
+. . n . . . . .
+. B . . p . . .
+. . . . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R h7h6 0
+r . b q k b . r
+p p p p n p p .
+. . n . . . . p
+. B . . p . . .
+. . . . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R c3d5 0
+r . b q k b . r
+p p p p n p p .
+. . n . . . . p
+. B . N p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R a7a6 0
+r . b q k b . r
+. p p p n p p .
+p . n . . . . p
+. B . N p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R b5a4 0
+r . b q k b . r
+. p p p n p p .
+p . n . . . . p
+. . . N p . . .
+B . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R b7b5 0
+r . b q k b . r
+. . p p n p p .
+p . n . . . . p
+. p . N p . . .
+B . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R a4b3 0
+r . b q k b . r
+. . p p n p p .
+p . n . . . . p
+. p . N p . . .
+. . . . P . . .
+. B . . . N . .
+P P P P . P P P
+R . B Q K . . R
+",0,e7g6
+Ruy Lopez: Cozio Defense,"r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. B . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R g8e7 0
+r . b q k b . r
+p p p p n p p p
+. . n . . . . .
+. B . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R b1c3 0
+r . b q k b . r
+p p p p n p p p
+. . n . . . . .
+. B . . p . . .
+. . . . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R h7h6 0
+r . b q k b . r
+p p p p n p p .
+. . n . . . . p
+. B . . p . . .
+. . . . P . . .
+. . N . . N . .
+P P P P . P P P
+R . B Q K . . R c3d5 0
+r . b q k b . r
+p p p p n p p .
+. . n . . . . p
+. B . N p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R a7a6 0
+r . b q k b . r
+. p p p n p p .
+p . n . . . . p
+. B . N p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R b5a4 0
+r . b q k b . r
+. p p p n p p .
+p . n . . . . p
+. . . N p . . .
+B . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R b7b5 0
+r . b q k b . r
+. . p p n p p .
+p . n . . . . p
+. p . N p . . .
+B . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R a4b3 0
+r . b q k b . r
+. . p p n p p .
+p . n . . . . p
+. p . N p . . .
+. . . . P . . .
+. B . . . N . .
+P P P P . P P P
+R . B Q K . . R e7g6 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. p . N p . . .
+. . . . P . . .
+. B . . . N . .
+P P P P . P P P
+R . B Q K . . R c2c4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. p . N p . . .
+. . P . P . . .
+. B . . . N . .
+P P . P . P P P
+R . B Q K . . R b5b4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. . . N p . . .
+. p P . P . . .
+. B . . . N . .
+P P . P . P P P
+R . B Q K . . R b3a4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. . . N p . . .
+B p P . P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q K . . R
+",0,c6d4
+Ruy Lopez: Cozio Defense,"r . b q k b . r
+. . p p n p p .
+p . n . . . . p
+. p . N p . . .
+B . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R . B Q K . . R a4b3 0
+r . b q k b . r
+. . p p n p p .
+p . n . . . . p
+. p . N p . . .
+. . . . P . . .
+. B . . . N . .
+P P P P . P P P
+R . B Q K . . R e7g6 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. p . N p . . .
+. . . . P . . .
+. B . . . N . .
+P P P P . P P P
+R . B Q K . . R c2c4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. p . N p . . .
+. . P . P . . .
+. B . . . N . .
+P P . P . P P P
+R . B Q K . . R b5b4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. . . N p . . .
+. p P . P . . .
+. B . . . N . .
+P P . P . P P P
+R . B Q K . . R b3a4 0
+r . b q k b . r
+. . p p . p p .
+p . n . . . n p
+. . . N p . . .
+B p P . P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q K . . R c6d4 0
+r . b q k b . r
+. . p p . p p .
+p . . . . . n p
+. . . N p . . .
+B p P n P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q K . . R e1g1 0,5
+r . b q k b . r
+. . p p . p p .
+p . . . . . n p
+. . . N p . . .
+B p P n P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q . R K . c7c6 0
+r . b q k b . r
+. . . p . p p .
+p . p . . . n p
+. . . N p . . .
+B p P n P . . .
+. . . . . N . .
+P P . P . P P P
+R . B Q . R K . d5e3 0
+r . b q k b . r
+. . . p . p p .
+p . p . . . n p
+. . . . p . . .
+B p P n P . . .
+. . . . N N . .
+P P . P . P P P
+R . B Q . R K . a6a5 0
+r . b q k b . r
+. . . p . p p .
+. . p . . . n p
+p . . . p . . .
+B p P n P . . .
+. . . . N N . .
+P P . P . P P P
+R . B Q . R K . f3d4 1
+r . b q k b . r
+. . . p . p p .
+. . p . . . n p
+p . . . p . . .
+B p P N P . . .
+. . . . N . . .
+P P . P . P P P
+R . B Q . R K . e5d4 1
+r . b q k b . r
+. . . p . p p .
+. . p . . . n p
+p . . . . . . .
+B p P p P . . .
+. . . . N . . .
+P P . P . P P P
+R . B Q . R K . e3f5 0
+r . b q k b . r
+. . . p . p p .
+. . p . . . n p
+p . . . . N . .
+B p P p P . . .
+. . . . . . . .
+P P . P . P P P
+R . B Q . R K . c8a6 0
+r . . q k b . r
+. . . p . p p .
+b . p . . . n p
+p . . . . N . .
+B p P p P . . .
+. . . . . . . .
+P P . P . P P P
+R . B Q . R K .
+",1,f5d4
+Ruy Lopez: Cozio Defense,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R b8c6 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K B . R f1b5 0
+r . b q k b n r
+p p p p . p p p
+. . n . . . . .
+. B . . p . . .
+. . . . P . . .
+. . . . . N . .
+P P P P . P P P
+R N B Q K . . R
+",0,g8e7
+Sicilian Defense: McDonnell Attack,"r n . q k b n r
+. p . . p p p p
+p . . . . . . .
+. . p . . b . .
+. . B . . P . .
+. . N P . . . .
+P P P . . . P P
+R . B Q K . N R g2g4 0
+r n . q k b n r
+. p . . p p p p
+p . . . . . . .
+. . p . . b . .
+. . B . . P P .
+. . N P . . . .
+P P P . . . . P
+R . B Q K . N R f5d7 0
+r n . q k b n r
+. p . b p p p p
+p . . . . . . .
+. . p . . . . .
+. . B . . P P .
+. . N P . . . .
+P P P . . . . P
+R . B Q K . N R
+",0,a2a4
+Sicilian Defense: McDonnell Attack,"r n b . k b n r
+p p . . p p p p
+. . . . . . . .
+. . p q . . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R b1c3 0
+r n b . k b n r
+p p . . p p p p
+. . . . . . . .
+. . p q . . . .
+. . . . . P . .
+. . N . . . . .
+P P P P . . P P
+R . B Q K B N R d5d8 0
+r n b q k b n r
+p p . . p p p p
+. . . . . . . .
+. . p . . . . .
+. . . . . P . .
+. . N . . . . .
+P P P P . . P P
+R . B Q K B N R f1c4 0
+r n b q k b n r
+p p . . p p p p
+. . . . . . . .
+. . p . . . . .
+. . B . . P . .
+. . N . . . . .
+P P P P . . P P
+R . B Q K . N R c8f5 0
+r n . q k b n r
+p p . . p p p p
+. . . . . . . .
+. . p . . b . .
+. . B . . P . .
+. . N . . . . .
+P P P P . . P P
+R . B Q K . N R d2d3 0
+r n . q k b n r
+p p . . p p p p
+. . . . . . . .
+. . p . . b . .
+. . B . . P . .
+. . N P . . . .
+P P P . . . P P
+R . B Q K . N R a7a6 0
+r n . q k b n r
+. p . . p p p p
+p . . . . . . .
+. . p . . b . .
+. . B . . P . .
+. . N P . . . .
+P P P . . . P P
+R . B Q K . N R g2g4 0
+r n . q k b n r
+. p . . p p p p
+p . . . . . . .
+. . p . . b . .
+. . B . . P P .
+. . N P . . . .
+P P P . . . . P
+R . B Q K . N R
+",0,f5d7
+Sicilian Defense: McDonnell Attack,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R c7c5 0
+r n b q k b n r
+p p . p p p p p
+. . . . . . . .
+. . p . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R f2f4 0
+r n b q k b n r
+p p . p p p p p
+. . . . . . . .
+. . p . . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R d7d5 0
+r n b q k b n r
+p p . . p p p p
+. . . . . . . .
+. . p p . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R e4d5 1
+r n b q k b n r
+p p . . p p p p
+. . . . . . . .
+. . p P . . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R d8d5 1
+r n b . k b n r
+p p . . p p p p
+. . . . . . . .
+. . p q . . . .
+. . . . . P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B N R b1c3 0
+r n b . k b n r
+p p . . p p p p
+. . . . . . . .
+. . p q . . . .
+. . . . . P . .
+. . N . . . . .
+P P P P . . P P
+R . B Q K B N R
+",0,d5d8
+Sicilian Defense: McDonnell Attack,"r n . q k b n r
+. p . b p p p p
+p . . . . . . .
+. . p . . . . .
+. . B . . P P .
+. . N P . . . .
+P P P . . . . P
+R . B Q K . N R a2a4 0
+r n . q k b n r
+. p . b p p p p
+p . . . . . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . . .
+. P P . . . . P
+R . B Q K . N R e7e6 0
+r n . q k b n r
+. p . b . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . . .
+. P P . . . . P
+R . B Q K . N R c1d2 0
+r n . q k b n r
+. p . b . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . . .
+. P P B . . . P
+R . . Q K . N R d7c6 0
+r n . q k b n r
+. p . . . p p p
+p . b . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . . .
+. P P B . . . P
+R . . Q K . N R g1f3 0
+r n . q k b n r
+. p . . . p p p
+p . b . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . N . .
+. P P B . . . P
+R . . Q K . . R
+",1,c6f3
+Sicilian Defense: McDonnell Attack,"r n . q k b n r
+. p . b p p p p
+p . . . . . . .
+. . p . . . . .
+. . B . . P P .
+. . N P . . . .
+P P P . . . . P
+R . B Q K . N R a2a4 0
+r n . q k b n r
+. p . b p p p p
+p . . . . . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . . .
+. P P . . . . P
+R . B Q K . N R e7e6 0
+r n . q k b n r
+. p . b . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . . .
+. P P . . . . P
+R . B Q K . N R c1d2 0
+r n . q k b n r
+. p . b . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . . .
+. P P B . . . P
+R . . Q K . N R d7c6 0
+r n . q k b n r
+. p . . . p p p
+p . b . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . . .
+. P P B . . . P
+R . . Q K . N R g1f3 0
+r n . q k b n r
+. p . . . p p p
+p . b . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . N . .
+. P P B . . . P
+R . . Q K . . R c6f3 1
+r n . q k b n r
+. p . . . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . b . .
+. P P B . . . P
+R . . Q K . . R d1f3 1
+r n . q k b n r
+. p . . . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . Q . .
+. P P B . . . P
+R . . . K . . R d8h4 0
+r n . . k b n r
+. p . . . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P q
+. . N P . Q . .
+. P P B . . . P
+R . . . K . . R f3g3 0,2
+r n . . k b n r
+. p . . . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P q
+. . N P . . Q .
+. P P B . . . P
+R . . . K . . R h4g3 1
+r n . . k b n r
+. p . . . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . q .
+. P P B . . . P
+R . . . K . . R h2g3 1,2
+r n . . k b n r
+. p . . . p p p
+p . . . p . . .
+. . p . . . . .
+P . B . . P P .
+. . N P . . P .
+. P P B . . . .
+R . . . K . . R
+",0,b8c6
+Nimzo-Larsen Attack: Modern Variation #2,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . . . . .
+. P . . . . . .
+P . P P P P P P
+R N B Q K B N R c1b2 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . . . . .
+. P . . . . . .
+P B P P P P P P
+R N . Q K B N R e5e4 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . . . . .
+. . . . p . . .
+. P . . . . . .
+P B P P P P P P
+R N . Q K B N R d2d3 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . .
+P B P . P P P P
+R N . Q K B N R g8f6 0
+r n b q k b . r
+p p p p . p p p
+. . . . . n . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . .
+P B P . P P P P
+R N . Q K B N R g1h3 0
+r n b q k b . r
+p p p p . p p p
+. . . . . n . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . N
+P B P . P P P P
+R N . Q K B . R d7d5 0
+r n b q k b . r
+p p p . . p p p
+. . . . . n . .
+. . . p . . . .
+. . . . p . . .
+. P . P . . . N
+P B P . P P P P
+R N . Q K B . R d3e4 1
+r n b q k b . r
+p p p . . p p p
+. . . . . n . .
+. . . p . . . .
+. . . . P . . .
+. P . . . . . N
+P B P . P P P P
+R N . Q K B . R f6e4 1
+r n b q k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n . . .
+. P . . . . . N
+P B P . P P P P
+R N . Q K B . R h3f4 0
+r n b q k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . .
+. P . . . . . .
+P B P . P P P P
+R N . Q K B . R d8h4 0
+r n b . k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . q
+. P . . . . . .
+P B P . P P P P
+R N . Q K B . R g2g3 0
+r n b . k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . q
+. P . . . . P .
+P B P . P P . P
+R N . Q K B . R f8c5 0
+r n b . k . . r
+p p p . . p p p
+. . . . . . . .
+. . b p . . . .
+. . . . n N . q
+. P . . . . P .
+P B P . P P . P
+R N . Q K B . R f2f3 0
+r n b . k . . r
+p p p . . p p p
+. . . . . . . .
+. . b p . . . .
+. . . . n N . q
+. P . . . P P .
+P B P . P . . P
+R N . Q K B . R
+",0,c5f2
+Nimzo-Larsen Attack: Modern Variation #2,"r n b q k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n . . .
+. P . . . . . N
+P B P . P P P P
+R N . Q K B . R h3f4 0
+r n b q k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . .
+. P . . . . . .
+P B P . P P P P
+R N . Q K B . R d8h4 0
+r n b . k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . q
+. P . . . . . .
+P B P . P P P P
+R N . Q K B . R g2g3 0
+r n b . k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . q
+. P . . . . P .
+P B P . P P . P
+R N . Q K B . R f8c5 0
+r n b . k . . r
+p p p . . p p p
+. . . . . . . .
+. . b p . . . .
+. . . . n N . q
+. P . . . . P .
+P B P . P P . P
+R N . Q K B . R f2f3 0
+r n b . k . . r
+p p p . . p p p
+. . . . . . . .
+. . b p . . . .
+. . . . n N . q
+. P . . . P P .
+P B P . P . . P
+R N . Q K B . R
+",0,c5f2
+Nimzo-Larsen Attack: Modern Variation #2,"r n b q k b . r
+p p p p . p p p
+. . . . . n . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . .
+P B P . P P P P
+R N . Q K B N R g1h3 0
+r n b q k b . r
+p p p p . p p p
+. . . . . n . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . N
+P B P . P P P P
+R N . Q K B . R d7d5 0
+r n b q k b . r
+p p p . . p p p
+. . . . . n . .
+. . . p . . . .
+. . . . p . . .
+. P . P . . . N
+P B P . P P P P
+R N . Q K B . R d3e4 1
+r n b q k b . r
+p p p . . p p p
+. . . . . n . .
+. . . p . . . .
+. . . . P . . .
+. P . . . . . N
+P B P . P P P P
+R N . Q K B . R f6e4 1
+r n b q k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n . . .
+. P . . . . . N
+P B P . P P P P
+R N . Q K B . R h3f4 0
+r n b q k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . .
+. P . . . . . .
+P B P . P P P P
+R N . Q K B . R d8h4 0
+r n b . k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . q
+. P . . . . . .
+P B P . P P P P
+R N . Q K B . R g2g3 0
+r n b . k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . q
+. P . . . . P .
+P B P . P P . P
+R N . Q K B . R f8c5 0
+r n b . k . . r
+p p p . . p p p
+. . . . . . . .
+. . b p . . . .
+. . . . n N . q
+. P . . . . P .
+P B P . P P . P
+R N . Q K B . R f2f3 0
+r n b . k . . r
+p p p . . p p p
+. . . . . . . .
+. . b p . . . .
+. . . . n N . q
+. P . . . P P .
+P B P . P . . P
+R N . Q K B . R
+",0,c5f2
+Nimzo-Larsen Attack: Modern Variation #2,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . p . . .
+. . . . . . . .
+. P . . . . . .
+P B P P P P P P
+R N . Q K B N R e5e4 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . . . . .
+. . . . p . . .
+. P . . . . . .
+P B P P P P P P
+R N . Q K B N R d2d3 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . .
+P B P . P P P P
+R N . Q K B N R g8f6 0
+r n b q k b . r
+p p p p . p p p
+. . . . . n . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . .
+P B P . P P P P
+R N . Q K B N R g1h3 0
+r n b q k b . r
+p p p p . p p p
+. . . . . n . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . N
+P B P . P P P P
+R N . Q K B . R d7d5 0
+r n b q k b . r
+p p p . . p p p
+. . . . . n . .
+. . . p . . . .
+. . . . p . . .
+. P . P . . . N
+P B P . P P P P
+R N . Q K B . R d3e4 1
+r n b q k b . r
+p p p . . p p p
+. . . . . n . .
+. . . p . . . .
+. . . . P . . .
+. P . . . . . N
+P B P . P P P P
+R N . Q K B . R f6e4 1
+r n b q k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n . . .
+. P . . . . . N
+P B P . P P P P
+R N . Q K B . R h3f4 0
+r n b q k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . .
+. P . . . . . .
+P B P . P P P P
+R N . Q K B . R d8h4 0
+r n b . k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . q
+. P . . . . . .
+P B P . P P P P
+R N . Q K B . R g2g3 0
+r n b . k b . r
+p p p . . p p p
+. . . . . . . .
+. . . p . . . .
+. . . . n N . q
+. P . . . . P .
+P B P . P P . P
+R N . Q K B . R f8c5 0
+r n b . k . . r
+p p p . . p p p
+. . . . . . . .
+. . b p . . . .
+. . . . n N . q
+. P . . . . P .
+P B P . P P . P
+R N . Q K B . R f2f3 0
+r n b . k . . r
+p p p . . p p p
+. . . . . . . .
+. . b p . . . .
+. . . . n N . q
+. P . . . P P .
+P B P . P . . P
+R N . Q K B . R
+",0,c5f2
+Nimzo-Larsen Attack: Modern Variation #2,"r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . . . . .
+. . . . p . . .
+. P . . . . . .
+P B P P P P P P
+R N . Q K B N R d2d3 0
+r n b q k b n r
+p p p p . p p p
+. . . . . . . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . .
+P B P . P P P P
+R N . Q K B N R g8f6 0
+r n b q k b . r
+p p p p . p p p
+. . . . . n . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . .
+P B P . P P P P
+R N . Q K B N R g1h3 0
+r n b q k b . r
+p p p p . p p p
+. . . . . n . .
+. . . . . . . .
+. . . . p . . .
+. P . P . . . N
+P B P . P P P P
+R N . Q K B . R d7d5 0
+r n b q k b . r
+p p p . . p p p
+. . . . . n . .
+. . . p . . . .
+. . . . p . . .
+. P . P . . . N
+P B P . P P P P
+R N . Q K B . R
+",1,d3e4
+French Defense: Advance Variation #2,"r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R d7d5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R e4e5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R c7c5 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R c2c3 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R
+",0,g8e7
+French Defense: Advance Variation #2,"r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R f2f4 0
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . P . .
+. . P . . . . .
+P P . . . . P P
+R N B Q K B N R c5d4 1
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . . p P . . .
+. . . p . P . .
+. . P . . . . .
+P P . . . . P P
+R N B Q K B N R c3d4 1
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . P . .
+. . . . . . . .
+P P . . . . P P
+R N B Q K B N R e7f5 0
+r n b q k b . r
+p p . . . p p p
+. . . . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . . . .
+P P . . . . P P
+R N B Q K B N R g1f3 0
+r n b q k b . r
+p p . . . p p p
+. . . . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K B . R b8c6 0
+r . b q k b . r
+p p . . . p p p
+. . n . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K B . R f1b5 0
+r . b q k b . r
+p p . . . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K . . R c8d7 0
+r . . q k b . r
+p p . b . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K . . R e1g1 0,5
+r . . q k b . r
+p p . b . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . d8b6 0
+r . . . k b . r
+p p . b . p p p
+. q n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . b5c6 1
+r . . . k b . r
+p p . b . p p p
+. q B . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . d7c6 1
+r . . . k b . r
+p p . . . p p p
+. q b . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . b1c3 0
+r . . . k b . r
+p p . . . p p p
+. q b . p . . .
+. . . p P n . .
+. . . P . P . .
+. . N . . N . .
+P P . . . . P P
+R . B Q . R K .
+",0,f8e7
+French Defense: Advance Variation #2,"r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R e4e5 0
+r n b q k b n r
+p p p . . p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R c7c5 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R c2c3 0
+r n b q k b n r
+p p . . . p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R g8e7 0
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R f2f4 0
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . P . .
+. . P . . . . .
+P P . . . . P P
+R N B Q K B N R c5d4 1
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . . p P . . .
+. . . p . P . .
+. . P . . . . .
+P P . . . . P P
+R N B Q K B N R c3d4 1
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . P . .
+. . . . . . . .
+P P . . . . P P
+R N B Q K B N R e7f5 0
+r n b q k b . r
+p p . . . p p p
+. . . . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . . . .
+P P . . . . P P
+R N B Q K B N R g1f3 0
+r n b q k b . r
+p p . . . p p p
+. . . . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K B . R b8c6 0
+r . b q k b . r
+p p . . . p p p
+. . n . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K B . R
+",0,f1b5
+French Defense: Advance Variation #2,"r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . p p P . . .
+. . . P . P . .
+. . P . . . . .
+P P . . . . P P
+R N B Q K B N R c5d4 1
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . . p P . . .
+. . . p . P . .
+. . P . . . . .
+P P . . . . P P
+R N B Q K B N R c3d4 1
+r n b q k b . r
+p p . . n p p p
+. . . . p . . .
+. . . p P . . .
+. . . P . P . .
+. . . . . . . .
+P P . . . . P P
+R N B Q K B N R e7f5 0
+r n b q k b . r
+p p . . . p p p
+. . . . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . . . .
+P P . . . . P P
+R N B Q K B N R g1f3 0
+r n b q k b . r
+p p . . . p p p
+. . . . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K B . R b8c6 0
+r . b q k b . r
+p p . . . p p p
+. . n . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K B . R f1b5 0
+r . b q k b . r
+p p . . . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K . . R c8d7 0
+r . . q k b . r
+p p . b . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K . . R e1g1 0,5
+r . . q k b . r
+p p . b . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . d8b6 0
+r . . . k b . r
+p p . b . p p p
+. q n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . b5c6 1
+r . . . k b . r
+p p . b . p p p
+. q B . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . d7c6 1
+r . . . k b . r
+p p . . . p p p
+. q b . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . b1c3 0
+r . . . k b . r
+p p . . . p p p
+. q b . p . . .
+. . . p P n . .
+. . . P . P . .
+. . N . . N . .
+P P . . . . P P
+R . B Q . R K . f8e7 0
+r . . . k . . r
+p p . . b p p p
+. q b . p . . .
+. . . p P n . .
+. . . P . P . .
+. . N . . N . .
+P P . . . . P P
+R . B Q . R K .
+",0,a2a3
+French Defense: Advance Variation #2,"r . b q k b . r
+p p . . . p p p
+. . n . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K B . R f1b5 0
+r . b q k b . r
+p p . . . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K . . R c8d7 0
+r . . q k b . r
+p p . b . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q K . . R e1g1 0,5
+r . . q k b . r
+p p . b . p p p
+. . n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . d8b6 0
+r . . . k b . r
+p p . b . p p p
+. q n . p . . .
+. B . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . b5c6 1
+r . . . k b . r
+p p . b . p p p
+. q B . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . d7c6 1
+r . . . k b . r
+p p . . . p p p
+. q b . p . . .
+. . . p P n . .
+. . . P . P . .
+. . . . . N . .
+P P . . . . P P
+R N B Q . R K . b1c3 0
+r . . . k b . r
+p p . . . p p p
+. q b . p . . .
+. . . p P n . .
+. . . P . P . .
+. . N . . N . .
+P P . . . . P P
+R . B Q . R K . f8e7 0
+r . . . k . . r
+p p . . b p p p
+. q b . p . . .
+. . . p P n . .
+. . . P . P . .
+. . N . . N . .
+P P . . . . P P
+R . B Q . R K .
+",0,a2a3
+French Defense: Normal Variation,"r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. b . . P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R c2c3 0,2
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. b . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b4c5 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. . . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b2b4 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R c5d6 0
+r n b q k . n r
+p . p p . p p p
+. p . b p . . .
+. . . P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R g1f3 0
+r n b q k . n r
+p . p p . p p p
+. p . b p . . .
+. . . P . . . .
+. P . . P . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R e6d5 1
+r n b q k . n r
+p . p p . p p p
+. p . b . . . .
+. . . p . . . .
+. P . . P . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R e4e5 0
+r n b q k . n r
+p . p p . p p p
+. p . b . . . .
+. . . p P . . .
+. P . . . . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R d8e7 0
+r n b . k . n r
+p . p p q p p p
+. p . b . . . .
+. . . p P . . .
+. P . . . . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R d1d5 1
+r n b . k . n r
+p . p p q p p p
+. p . b . . . .
+. . . Q P . . .
+. P . . . . . .
+. . P . . N . .
+P . . . . P P P
+R N B . K B . R d6e5 1
+r n b . k . n r
+p . p p q p p p
+. p . . . . . .
+. . . Q b . . .
+. P . . . . . .
+. . P . . N . .
+P . . . . P P P
+R N B . K B . R f3e5 1
+r n b . k . n r
+p . p p q p p p
+. p . . . . . .
+. . . Q N . . .
+. P . . . . . .
+. . P . . . . .
+P . . . . P P P
+R N B . K B . R
+",0,c7c6
+French Defense: Normal Variation,"r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R b7b6 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R d4d5 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. . . . P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R f8b4 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. b . . P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R c2c3 0,2
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. b . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b4c5 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. . . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b2b4 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R c5d6 0
+r n b q k . n r
+p . p p . p p p
+. p . b p . . .
+. . . P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R
+",0,g1f3
+French Defense: Normal Variation,"r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. . . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b2b4 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R c5d6 0
+r n b q k . n r
+p . p p . p p p
+. p . b p . . .
+. . . P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R g1f3 0
+r n b q k . n r
+p . p p . p p p
+. p . b p . . .
+. . . P . . . .
+. P . . P . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R e6d5 1
+r n b q k . n r
+p . p p . p p p
+. p . b . . . .
+. . . p . . . .
+. P . . P . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R
+",0,e4e5
+French Defense: Normal Variation,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e7e6 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R d2d4 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R b7b6 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R d4d5 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. . . . P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R f8b4 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. b . . P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R c2c3 0,2
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. b . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b4c5 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. . . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b2b4 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R c5d6 0
+r n b q k . n r
+p . p p . p p p
+. p . b p . . .
+. . . P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R
+",0,g1f3
+French Defense: Normal Variation,"r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+P P P P P P P P
+R N B Q K B N R e2e4 0
+r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e7e6 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R d2d4 0
+r n b q k b n r
+p p p p . p p p
+. . . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R b7b6 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . . . . . .
+. . . P P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R d4d5 0
+r n b q k b n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. . . . P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R f8b4 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. b . . P . . .
+. . . . . . . .
+P P P . . P P P
+R N B Q K B N R c2c3 0,2
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . . P . . . .
+. b . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b4c5 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. . . . P . . .
+. . P . . . . .
+P P . . . P P P
+R N B Q K B N R b2b4 0
+r n b q k . n r
+p . p p . p p p
+. p . . p . . .
+. . b P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R c5d6 0
+r n b q k . n r
+p . p p . p p p
+. p . b p . . .
+. . . P . . . .
+. P . . P . . .
+. . P . . . . .
+P . . . . P P P
+R N B Q K B N R g1f3 0
+r n b q k . n r
+p . p p . p p p
+. p . b p . . .
+. . . P . . . .
+. P . . P . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R e6d5 1
+r n b q k . n r
+p . p p . p p p
+. p . b . . . .
+. . . p . . . .
+. P . . P . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R e4e5 0
+r n b q k . n r
+p . p p . p p p
+. p . b . . . .
+. . . p P . . .
+. P . . . . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R d8e7 0
+r n b . k . n r
+p . p p q p p p
+. p . b . . . .
+. . . p P . . .
+. P . . . . . .
+. . P . . N . .
+P . . . . P P P
+R N B Q K B . R
+",1,d1d5
+Scandinavian Defense: Mieses-Kotroc Variation,"r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . p . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e4d5 1
+r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . P . . . .
+. . . . . . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R d8d5 1
+r n b . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . q . . . .
+. . . . . . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R b1c3 0
+r n b . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . q . . . .
+. . . . . . . .
+. . N . . . . .
+P P P P . P P P
+R . B Q K B N R
+",0,d5e5
+Scandinavian Defense: Mieses-Kotroc Variation,"r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . p . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R e4d5 1
+r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . P . . . .
+. . . . . . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R d8d5 1
+r n b . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . q . . . .
+. . . . . . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R b1c3 0
+r n b . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . q . . . .
+. . . . . . . .
+. . N . . . . .
+P P P P . P P P
+R . B Q K B N R d5e5 0
+r n b . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . . . . . .
+. . N . . . . .
+P P P P . P P P
+R . B Q K B N R f1e2 0,2
+r n b . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . . . . . .
+. . N . . . . .
+P P P P B P P P
+R . B Q K . N R c8g4 0
+r n . . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . . . . b .
+. . N . . . . .
+P P P P B P P P
+R . B Q K . N R d2d4 0
+r n . . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . P . . b .
+. . N . . . . .
+P P P . B P P P
+R . B Q K . N R e5e6 0
+r n . . k b n r
+p p p . p p p p
+. . . . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . . . . .
+P P P . B P P P
+R . B Q K . N R c1e3 0
+r n . . k b n r
+p p p . p p p p
+. . . . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . B . . .
+P P P . B P P P
+R . . Q K . N R b8c6 0
+r . . . k b n r
+p p p . p p p p
+. . n . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . B . . .
+P P P . B P P P
+R . . Q K . N R e2g4 1
+r . . . k b n r
+p p p . p p p p
+. . n . q . . .
+. . . . . . . .
+. . . P . . B .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R e6g6 0
+r . . . k b n r
+p p p . p p p p
+. . n . . . q .
+. . . . . . . .
+. . . P . . B .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R
+",0,g4f3
+Scandinavian Defense: Mieses-Kotroc Variation,"r n . . k b n r
+p p p . p p p p
+. . . . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . . . . .
+P P P . B P P P
+R . B Q K . N R c1e3 0
+r n . . k b n r
+p p p . p p p p
+. . . . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . B . . .
+P P P . B P P P
+R . . Q K . N R b8c6 0
+r . . . k b n r
+p p p . p p p p
+. . n . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . B . . .
+P P P . B P P P
+R . . Q K . N R e2g4 1
+r . . . k b n r
+p p p . p p p p
+. . n . q . . .
+. . . . . . . .
+. . . P . . B .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R e6g6 0
+r . . . k b n r
+p p p . p p p p
+. . n . . . q .
+. . . . . . . .
+. . . P . . B .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R g4f3 0
+r . . . k b n r
+p p p . p p p p
+. . n . . . q .
+. . . . . . . .
+. . . P . . . .
+. . N . B B . .
+P P P . . P P P
+R . . Q K . N R c6b4 0
+r . . . k b n r
+p p p . p p p p
+. . . . . . q .
+. . . . . . . .
+. n . P . . . .
+. . N . B B . .
+P P P . . P P P
+R . . Q K . N R f3e4 0
+r . . . k b n r
+p p p . p p p p
+. . . . . . q .
+. . . . . . . .
+. n . P B . . .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R g6a6 0
+r . . . k b n r
+p p p . p p p p
+q . . . . . . .
+. . . . . . . .
+. n . P B . . .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R c3b5 0
+r . . . k b n r
+p p p . p p p p
+q . . . . . . .
+. N . . . . . .
+. n . P B . . .
+. . . . B . . .
+P P P . . P P P
+R . . Q K . N R a6b5 1
+r . . . k b n r
+p p p . p p p p
+. . . . . . . .
+. q . . . . . .
+. n . P B . . .
+. . . . B . . .
+P P P . . P P P
+R . . Q K . N R c2c3 0
+r . . . k b n r
+p p p . p p p p
+. . . . . . . .
+. q . . . . . .
+. n . P B . . .
+. . P . B . . .
+P P . . . P P P
+R . . Q K . N R b4d5 0
+r . . . k b n r
+p p p . p p p p
+. . . . . . . .
+. q . n . . . .
+. . . P B . . .
+. . P . B . . .
+P P . . . P P P
+R . . Q K . N R e4d3 0
+r . . . k b n r
+p p p . p p p p
+. . . . . . . .
+. q . n . . . .
+. . . P . . . .
+. . P B B . . .
+P P . . . P P P
+R . . Q K . N R b5b2 1
+r . . . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . n . . . .
+. . . P . . . .
+. . P B B . . .
+P q . . . P P P
+R . . Q K . N R
+",0,g1e2
+Scandinavian Defense: Mieses-Kotroc Variation,"r n . . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . P . . b .
+. . N . . . . .
+P P P . B P P P
+R . B Q K . N R e5e6 0
+r n . . k b n r
+p p p . p p p p
+. . . . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . . . . .
+P P P . B P P P
+R . B Q K . N R c1e3 0
+r n . . k b n r
+p p p . p p p p
+. . . . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . B . . .
+P P P . B P P P
+R . . Q K . N R b8c6 0
+r . . . k b n r
+p p p . p p p p
+. . n . q . . .
+. . . . . . . .
+. . . P . . b .
+. . N . B . . .
+P P P . B P P P
+R . . Q K . N R e2g4 1
+r . . . k b n r
+p p p . p p p p
+. . n . q . . .
+. . . . . . . .
+. . . P . . B .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R e6g6 0
+r . . . k b n r
+p p p . p p p p
+. . n . . . q .
+. . . . . . . .
+. . . P . . B .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R g4f3 0
+r . . . k b n r
+p p p . p p p p
+. . n . . . q .
+. . . . . . . .
+. . . P . . . .
+. . N . B B . .
+P P P . . P P P
+R . . Q K . N R c6b4 0
+r . . . k b n r
+p p p . p p p p
+. . . . . . q .
+. . . . . . . .
+. n . P . . . .
+. . N . B B . .
+P P P . . P P P
+R . . Q K . N R f3e4 0
+r . . . k b n r
+p p p . p p p p
+. . . . . . q .
+. . . . . . . .
+. n . P B . . .
+. . N . B . . .
+P P P . . P P P
+R . . Q K . N R
+",0,g6a6
+Scandinavian Defense: Mieses-Kotroc Variation,"r n b . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . . . . . .
+. . N . . . . .
+P P P P . P P P
+R . B Q K B N R f1e2 0,2
+r n b . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . . . . . .
+. . N . . . . .
+P P P P B P P P
+R . B Q K . N R c8g4 0
+r n . . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . . . . b .
+. . N . . . . .
+P P P P B P P P
+R . B Q K . N R d2d4 0
+r n . . k b n r
+p p p . p p p p
+. . . . . . . .
+. . . . q . . .
+. . . P . . b .
+. . N . . . . .
+P P P . B P P P
+R . B Q K . N R
+",0,e5e6
