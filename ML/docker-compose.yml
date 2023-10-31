@@ -1,0 +1,15 @@
+version: '3'
+services:
+  cot_ml:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+    command: ["tail", "-f", "/dev/null"]

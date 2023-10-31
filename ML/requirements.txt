@@ -1,0 +1,12 @@
+rdflib
+python-chess
+pandas
+transformers
+datasets
+scikit-learn
+huggingface_hub
+jsonlines
+peft
+wandb 
+onnx
+wandb
