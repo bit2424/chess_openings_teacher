@@ -107,13 +107,15 @@ config = wandb.config
 config.epochs = 6
 config.batch_size = 10 # Adjust as needed
 config.chunk_size = 256
+config.lr = 1e-5
 config.approach = 'Masked Language Modeling'
 config.dataset = 'V1_small'
 config.model_base = "distilroberta-base"
 config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
-config.train_size = 10
-config.test_size = 10
+config.train_size = 300
+config.test_size = 300
+
 
 
 tokenizer = AutoTokenizer.from_pretrained(config.model_base, use_fast=True)
@@ -186,7 +188,7 @@ eval_dataloader = DataLoader(
 )
 
 model = AutoModelForMaskedLM.from_pretrained(config.model_base)
-optimizer = AdamW(model.parameters(), lr=2e-5)
+optimizer = AdamW(model.parameters(), lr=config.lr)
 
 num_update_steps_per_epoch = len(train_dataloader)
 num_training_steps = config.epochs * num_update_steps_per_epoch
