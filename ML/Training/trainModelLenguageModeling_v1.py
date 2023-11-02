@@ -104,20 +104,23 @@ config = wandb.config
 
 
 
-config.epochs = 5
-config.batch_size = 2 # Adjust as needed
-config.chunk_size = 32
+config.epochs = 6
+config.batch_size = 10 # Adjust as needed
+config.chunk_size = 256
 config.approach = 'Masked Language Modeling'
 config.dataset = 'V1_small'
 config.model_base = "distilroberta-base"
 config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
+config.train_size = 10
+config.test_size = 10
+
 
 tokenizer = AutoTokenizer.from_pretrained(config.model_base, use_fast=True)
 cot_small = load_dataset("nelson2424/Chess_openings_dataset", config.dataset)
 
 cot_small_trim = cot_small["train"].train_test_split(
-    train_size=10, test_size=10, seed=42
+    train_size=config.train_size, test_size=config.test_size, seed=42
 )
 
 concatenated_cot_small = cot_small_trim.map(
@@ -183,7 +186,7 @@ eval_dataloader = DataLoader(
 )
 
 model = AutoModelForMaskedLM.from_pretrained(config.model_base)
-optimizer = AdamW(model.parameters(), lr=5e-5)
+optimizer = AdamW(model.parameters(), lr=2e-5)
 
 num_update_steps_per_epoch = len(train_dataloader)
 num_training_steps = config.epochs * num_update_steps_per_epoch
@@ -191,7 +194,7 @@ num_training_steps = config.epochs * num_update_steps_per_epoch
 lr_scheduler = get_scheduler(
     "linear",
     optimizer=optimizer,
-    num_warmup_steps=0,
+    num_warmup_steps=int(0.1 * num_training_steps),
     num_training_steps=num_training_steps,
 )
 
@@ -246,8 +249,7 @@ for epoch in range(config.epochs):
     for batch in train_dataloader:
         outputs = model(**batch)
         loss = outputs.loss
-        # losses.append(accelerator.gather(loss.repeat(config.batch_size)))
-        losses.append(loss)
+        losses.append(loss.item())
         loss.backward()
 
         optimizer.step()
@@ -255,7 +257,7 @@ for epoch in range(config.epochs):
         optimizer.zero_grad()
         progress_bar.update(1)
 
-    loss_train = torch.mean(torch.stack(losses))
+    loss_train = torch.tensor(losses).mean().item()
     try:
         perplexity_train = math.exp(torch.mean(torch.tensor(losses)))
     except OverflowError:
@@ -270,9 +272,16 @@ for epoch in range(config.epochs):
             outputs = model(**batch)
 
         loss = outputs.loss
-        losses.append(loss)
+        losses.append(loss.item())
 
-    loss_test = torch.mean(torch.stack(losses))
+    print(losses)
+    nan_count = 0
+    for loss in losses:
+        if math.isnan(loss):
+            nan_count += 1
+
+    print(f"Number of nan values: {nan_count}")
+    loss_test = torch.tensor(losses).mean().item()
     try:
         perplexity_test = math.exp(torch.mean(torch.tensor(losses)))
     except OverflowError:
@@ -281,7 +290,7 @@ for epoch in range(config.epochs):
     print(loss_train, perplexity_train, loss_test, perplexity_test)
     print(f">>> Epoch {epoch}: loss_train: {loss_train} perplexity_train: {perplexity_train} loss_test: {loss_test} perplexity_test: {perplexity_test}")
 
-    wandb.log({"Epoch": str(epoch), "loss_train": str(loss_train), "perplexity_train":str(perplexity_train), "loss_test": str(loss_test), "perplexity_test": str(perplexity_test)})
+    wandb.log({"Epoch": epoch, "loss_train": loss_train, "perplexity_train":perplexity_train, "loss_test": loss_test, "perplexity_test": perplexity_test})
     
 #     if epoch == config.epochs - 1:
 #         tokenizer.save_pretrained(output_dir)
@@ -291,7 +300,9 @@ for epoch in range(config.epochs):
 #         )
 
 model.save_pretrained(config.repo_name)
+model.push_to_hub(config.repo_name ,commit_message="Trained the first version of the cot_small model")
 tokenizer.save_pretrained(config.repo_name)
+tokenizer.push_to_hub(config.repo_name, commit_message="Trained the first version of the cot_small")
 
 wandb.finish()
 
