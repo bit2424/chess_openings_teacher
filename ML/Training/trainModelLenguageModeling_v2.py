@@ -82,37 +82,6 @@ def insert_random_mask(batch):
     masked_inputs = data_collator(features)
     return {"masked_" + k: v.numpy() for k, v in masked_inputs.items()}
 
-# def whole_word_masking_data_collator(features):
-#     for feature in features:
-#         print("LOOK",feature)
-#         word_ids = feature.pop("word_ids")
-#         print("LOOOOOK",word_ids)
-        
-#         # Create a map between words and corresponding token indices
-#         mapping = collections.defaultdict(list)
-#         current_word_index = -1
-#         current_word = None
-#         for idx, word_id in enumerate(word_ids):
-#             if word_id is not None:
-#                 if word_id != current_word:
-#                     current_word = word_id
-#                     current_word_index += 1
-#                 mapping[current_word_index].append(idx)
-
-#         # Randomly mask words
-#         mask = np.random.binomial(1, wwm_probability, (len(mapping),))
-#         input_ids = feature["input_ids"]
-#         labels = feature["labels"]
-#         new_labels = [-100] * len(labels)
-#         for word_id in np.where(mask)[0]:
-#             word_id = word_id.item()
-#             for idx in mapping[word_id]:
-#                 new_labels[idx] = labels[idx]
-#                 input_ids[idx] = tokenizer.mask_token_id
-#         feature["labels"] = new_labels
-
-#     return default_data_collator(features)
-
 wandb.init(project="Chess Openings Tutor",sync_tensorboard=False)
 # wandb.init(project="Chess Openings Tutor")
 config = wandb.config
@@ -129,25 +98,17 @@ config.model_base = "distilbert-base-uncased"
 config.model_name = "distilbert-base-uncased-finetuned-cot-accelerate"
 config.repo_name = get_full_repo_name(config.model_name)
 
-# concatenated_cot_small_train = cot_small['train'].select(range(10)).map(
-#     concat_function, 
-#     remove_columns=["opening_type", "context", "move_pred", "move_type_pred"])
-
-# tokenized_cot_small_train = concatenated_cot_small_train.map(
-#     tokenize_function, batched=True
-# )
-
 imdb_dataset = load_dataset("imdb")
 
 imdb_dataset = imdb_dataset["train"].train_test_split(
     train_size=10, test_size=5, seed=42
 )
 
-tokenized_datasets = imdb_dataset.map(
+lm_datasets = imdb_dataset.map(
     tokenize_function, batched=True, remove_columns=["text", "label"]
 )
 
-lm_datasets = tokenized_datasets.map(group_texts_2, batched=True)
+# lm_datasets = tokenized_datasets.map(group_texts_2, batched=True)
 
 
 print(lm_datasets['train'][0])
@@ -164,27 +125,36 @@ for sample in samples:
 batch = data_collator(samples)
 print(batch)
 
-for chunk in batch["input_ids"]:
-    print(f"\n'>>>>>>> {tokenizer.decode(chunk)}'")
-    
-# eval_dataset = lm_datasets_test.map(
-#     insert_random_mask,
-#     batched = True,
-#     remove_columns= lm_datasets_test.column_names,
-# )
+lm_train = lm_datasets['train'].remove_columns(["word_ids"])
 
-# train_dataloader = DataLoader(
-#     lm_datasets_train,
-#     shuffle=True,
-#     batch_size= config.batch_size,
-#     collate_fn= whole_word_masking_data_collator,
-# )
+train_dataloader = DataLoader(
+    lm_train,
+    shuffle=True,
+    batch_size= config.batch_size,
+    collate_fn= data_collator,
+)
 
-# eval_dataloader = DataLoader(
-#     eval_dataset, 
-#     batch_size=config.batch_size,
-#     collate_fn=default_data_collator
-# )
+for i, batch in enumerate(train_dataloader):
+    if i == 0:
+        # print(batch)
+        
+        input_ids = batch['input_ids'][0].tolist()
+        labels = batch['labels'][0].tolist()
+
+        # Identify masked positions
+        masked_positions = [i for i, token_id in enumerate(labels) if token_id != -100]
+
+        # Extract masked token IDs
+        input_masked_token_ids = [input_ids[i] for i in masked_positions]
+        labels_masked_token_ids = [labels[i] for i in masked_positions]
+
+        # Compare masked token IDs
+        match = input_masked_token_ids == labels_masked_token_ids
+        print(f"Input masked tokens: {input_masked_token_ids}")
+        print(f"Label masked tokens: {labels_masked_token_ids}")
+        print(f"Matched: {match}")
+
+        break
 
 # model = AutoModelForMaskedLM.from_pretrained(config.model_base)
 # optimizer = AdamW(model.parameters(), lr=5e-5)
@@ -209,24 +179,23 @@ for chunk in batch["input_ids"]:
 
 # progress_bar = tqdm(range(num_training_steps))
 
-# for epoch in range(config.epochs):
+#for epoch in range(config.epochs):
 #     # Training
 #     losses = []
 #     model.train()
 #     for batch in train_dataloader:
 #         outputs = model(**batch)
 #         loss = outputs.loss
-#         losses.append(accelerator.gather(loss.repeat(batch_size)))
-#         accelerator.backward(loss)
+#         # losses.append(accelerator.gather(loss.repeat(config.batch_size)))
+#         losses.append(loss)
+#         loss.backward()
 
 #         optimizer.step()
 #         lr_scheduler.step()
 #         optimizer.zero_grad()
 #         progress_bar.update(1)
 
-#     losses = torch.cat(losses)
-#     losses = losses[: len(lm_datasets["train"])]
-#     loss_train = torch.mean(losses)
+#     loss_train = torch.mean(torch.stack(losses))
 #     try:
 #         perplexity_train = math.exp(torch.mean(losses))
 #     except OverflowError:
@@ -241,11 +210,9 @@ for chunk in batch["input_ids"]:
 #             outputs = model(**batch)
 
 #         loss = outputs.loss
-#         losses.append(accelerator.gather(loss.repeat(batch_size)))
+#         losses.append(loss)
 
-#     losses = torch.cat(losses)
-#     losses = losses[: len(eval_dataset)]
-#     loss_test = torch.mean(losses)
+#     loss_test = torch.mean(torch.stack(losses))
 #     try:
 #         perplexity_test = math.exp(torch.mean(losses))
 #     except OverflowError:
@@ -255,12 +222,7 @@ for chunk in batch["input_ids"]:
 
 #     wandb.log({"Epoch": epoch, "loss_train": loss_train, perplexity_train: perplexity_train, "loss_test": loss_test, perplexity_test: perplexity_test})
     
-#     # Save and upload
-#     accelerator.wait_for_everyone()
-#     unwrapped_model = accelerator.unwrap_model(model)
-#     unwrapped_model.save_pretrained(output_dir, save_function=accelerator.save)
-    
-#     if accelerator.is_main_process:
+#     if epoch == config.epochs - 1:
 #         tokenizer.save_pretrained(output_dir)
         
 #         repo.push_to_hub(

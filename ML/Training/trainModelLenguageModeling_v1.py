@@ -20,54 +20,57 @@ from tqdm.auto import tqdm
 
 def tokenize_function(examples):
     # print(examples)
-    result = tokenizer(examples["full_text"], truncation=True, padding="max_length", max_length=512)
+    # print(type(examples["full_text"]))
+    result = tokenizer(examples["full_text"], padding="max_length" ,truncation = True)
     if tokenizer.is_fast:
         result["word_ids"] = [result.word_ids(i) for i in range(len(result["input_ids"]))]
     return result
 
 def concat_function(examples):
-    txt = ''.join([examples["opening_type"], examples["context"], examples["move_pred"], examples["move_type_pred"]])
-    examples["full_text"] = txt[:512]  # Truncate to a maximum of 512 characters
+    txt = ' '.join([str(examples["opening_type"]), str(examples["context"]), str(examples["move_pred"]), str(examples["move_type_pred"])])
+    #txt = "HELLOOOOO world this is its a test test test"
+    if(len(txt) > 512):
+        examples["full_text"] = txt[0:512]  # Truncate to a maximum of 512 characters
+    else: 
+        examples["full_text"] = txt
     return examples
 
 def group_texts(examples):
-    # Concatenate all texts
-    concatenated_examples = {k:[] for k in examples.keys()}
-    for(key, values) in examples.items():
-        if(type(values[0]) == list):
-            concatenated_examples[key] = sum(values, [])
-            #print(sum(values, []))            
-        elif(type(values[0]) == str):
-            values_arr = []
-            for val in values:
-                values_arr.append(val)
-            concatenated_examples[key] = ''.join(values_arr)
-            #print(values_arr)
-    # Compute length of concatenated texts
+    # Concatenate all texts.
+    concatenated_examples = {k: sum(examples[k], []) for k in examples.keys()}
     total_length = len(concatenated_examples[list(examples.keys())[0]])
-    # We drop the last chunk if it's smaller than chunk_size
+    # We drop the small remainder, we could add padding if the model supported it instead of this drop, you can
+        # customize this part to your needs.
     total_length = (total_length // config.chunk_size) * config.chunk_size
-    # Split by chunks of max_len
+    # Split by chunks of max_len.
     result = {
         k: [t[i : i + config.chunk_size] for i in range(0, total_length, config.chunk_size)]
         for k, t in concatenated_examples.items()
     }
-    # Create a new labels column
-    # print(concatenated_examples)
     result["labels"] = result["input_ids"].copy()
     return result
 
 wwm_probability = 0.2
 
-def insert_random_mask(batch):
+# def insert_random_mask(batch):
+#     features = [dict(zip(batch, t)) for t in zip(*batch.values())]
+#     masked_inputs = whole_word_masking_data_collator(features)
+#     return {"masked_" + k: v.numpy() for k, v in masked_inputs.items()}
+
+def insert_random_mask(batch):  
+    # Convert the padded batch to features
     features = [dict(zip(batch, t)) for t in zip(*batch.values())]
+
+    # Perform masking using the collator
     masked_inputs = whole_word_masking_data_collator(features)
+
     return {"masked_" + k: v.numpy() for k, v in masked_inputs.items()}
+
 
 def whole_word_masking_data_collator(features):
     for feature in features:
         word_ids = feature.pop("word_ids")
-        _ = feature.pop("full_text")
+        # _ = feature.pop("full_text")
         
         # Create a map between words and corresponding token indices
         mapping = collections.defaultdict(list)
@@ -83,7 +86,8 @@ def whole_word_masking_data_collator(features):
         # Randomly mask words
         mask = np.random.binomial(1, wwm_probability, (len(mapping),))
         input_ids = feature["input_ids"]
-        labels = feature["labels"]
+        # print("Input ids before: ",tokenizer.convert_ids_to_tokens(input_ids))
+        labels = feature["input_ids"].copy()
         new_labels = [-100] * len(labels)
         for word_id in np.where(mask)[0]:
             word_id = word_id.item()
@@ -91,57 +95,64 @@ def whole_word_masking_data_collator(features):
                 new_labels[idx] = labels[idx]
                 input_ids[idx] = tokenizer.mask_token_id
         feature["labels"] = new_labels
-
+        # print("Input ids after: ",tokenizer.convert_ids_to_tokens(input_ids))
     return default_data_collator(features)
 
 wandb.init(project="Chess Openings Tutor")
 # wandb.init(project="Chess Openings Tutor")
 config = wandb.config
 
-tokenizer = AutoTokenizer.from_pretrained("distilroberta-base")
 
-cot_small = load_dataset("nelson2424/Chess_openings_dataset", "V1_small")
 
 config.epochs = 5
-config.batch_size = 64  # Adjust as needed
-config.chunk_size = 128
+config.batch_size = 2 # Adjust as needed
+config.chunk_size = 32
 config.approach = 'Masked Language Modeling'
 config.dataset = 'V1_small'
-config.model_base = "distilbert-base-uncased"
-config.model_name = "distilbert-base-uncased-finetuned-cot"
+config.model_base = "distilroberta-base"
+config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
 
-concatenated_cot_small_train = cot_small['train'].select(range(10)).map(
-    concat_function, 
-    remove_columns=["opening_type", "context", "move_pred", "move_type_pred"])
+tokenizer = AutoTokenizer.from_pretrained(config.model_base, use_fast=True)
+cot_small = load_dataset("nelson2424/Chess_openings_dataset", config.dataset)
 
-tokenized_cot_small_train = concatenated_cot_small_train.map(
-    tokenize_function, batched=True
+cot_small_trim = cot_small["train"].train_test_split(
+    train_size=10, test_size=10, seed=42
 )
 
-
-concatenated_cot_small_test = cot_small['test'].select(range(10)).map(
+concatenated_cot_small = cot_small_trim.map(
     concat_function, 
     remove_columns=["opening_type", "context", "move_pred", "move_type_pred"]
+    )
+
+tokenized_cot_small = concatenated_cot_small.map(
+    tokenize_function, 
+    batched=True, 
+    remove_columns=["full_text"]
 )
-tokenized_cot_small_test = concatenated_cot_small_test.map(
-    tokenize_function, batched=True
-)
 
+# lm_datasets = tokenized_cot_small_train.map(
+#     group_texts,
+#     batched=True,
+#     batch_size=10,
+# )
 
-lm_datasets_train = tokenized_cot_small_train.map(group_texts, batched=True)
+# print(lm_datasets)
 
-lm_datasets_test = tokenized_cot_small_test.map(group_texts, batched=True)
+lm_datasets_train = tokenized_cot_small['train'].map(group_texts, batched=True, batch_size=10)
+lm_datasets_test = tokenized_cot_small['test'].map(group_texts, batched=True, batch_size=10)
 
 # print(lm_datasets_test[0])
 
-# data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.15)
+data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.30)
 
-# samples = [lm_datasets_test[0]]
+# samples = [lm_datasets[][0]]
 # batch = whole_word_masking_data_collator(samples)
 # for chunk in batch["input_ids"]:
 #     print(f"\n'>>>>>>> {tokenizer.decode(chunk)}'")
 
+# tokenized_cot_small_train = tokenized_cot_small_train.remove_columns(["full_text", "word_ids"])
+# lm_datasets_test = lm_datasets_test.remove_columns(["word_ids"])
     
 eval_dataset = lm_datasets_test.map(
     insert_random_mask,
@@ -157,9 +168,10 @@ eval_dataset = eval_dataset.rename_columns(
     }
 )
 
+
 train_dataloader = DataLoader(
     lm_datasets_train,
-    shuffle=True,
+    # shuffle=True,
     batch_size= config.batch_size,
     collate_fn= whole_word_masking_data_collator,
 )
@@ -172,12 +184,6 @@ eval_dataloader = DataLoader(
 
 model = AutoModelForMaskedLM.from_pretrained(config.model_base)
 optimizer = AdamW(model.parameters(), lr=5e-5)
-
-accelerator = Accelerator()
-
-model, optimizer, train_dataloader, eval_dataloader = accelerator.prepare(
-    model, optimizer, train_dataloader, eval_dataloader
-)
 
 num_update_steps_per_epoch = len(train_dataloader)
 num_training_steps = config.epochs * num_update_steps_per_epoch
@@ -193,6 +199,45 @@ output_dir = config.model_name
 
 
 progress_bar = tqdm(range(num_training_steps))
+
+# for i, batch in enumerate(eval_dataloader):
+#     #print("input_ids shape", [len(x) for x in batch["input_ids"]])
+#     print("attention_mask", [x for x in batch["attention_mask"]])
+#     if i == 100000:
+#         # print(batch)
+#         max_id = torch.max(batch['labels'])
+#         min_id = torch.min(batch['labels'])
+#         print(f"Max input_id: {max_id}, Min input_id: {min_id}")
+
+#         problematic_indices = torch.where((batch['labels'] < 0) | (batch['labels'] >= tokenizer.vocab_size))
+#         # print(f"Problematic indices: {problematic_indices}")
+#         decoded_tokens = tokenizer.convert_ids_to_tokens(batch['input_ids'][0])
+#         masked_token_ids = [token_id for token_id in batch['labels'][0].tolist() if token_id != -100]
+#         decoded_label_tokens = tokenizer.decode(masked_token_ids)
+            
+#         print("labels: ",batch['labels'][0])
+#         print("inputs_ids: ",batch['input_ids'][0])
+#         print("Decoded tokens: ",decoded_tokens)
+#         print("Decoded label tokens: ",decoded_label_tokens)
+        
+#         input_ids = batch['input_ids'][0].tolist()
+#         labels = batch['labels'][0].tolist()
+
+#         # Identify masked positions
+#         masked_positions = [i for i, token_id in enumerate(labels) if token_id != -100]
+
+#         # Extract masked token IDs
+#         input_masked_token_ids = [input_ids[i] for i in masked_positions]
+#         labels_masked_token_ids = [labels[i] for i in masked_positions]
+
+#         # Compare masked token IDs
+#         match = input_masked_token_ids == labels_masked_token_ids
+#         print(f"Input masked tokens: {input_masked_token_ids}")
+#         print(f"Label masked tokens: {labels_masked_token_ids}")
+#         print(f"Matched: {match}")
+
+#         break
+
 
 for epoch in range(config.epochs):
     # Training
@@ -212,7 +257,7 @@ for epoch in range(config.epochs):
 
     loss_train = torch.mean(torch.stack(losses))
     try:
-        perplexity_train = math.exp(torch.mean(losses))
+        perplexity_train = math.exp(torch.mean(torch.tensor(losses)))
     except OverflowError:
         perplexity_train = float("inf")
     
@@ -229,20 +274,21 @@ for epoch in range(config.epochs):
 
     loss_test = torch.mean(torch.stack(losses))
     try:
-        perplexity_test = math.exp(torch.mean(losses))
+        perplexity_test = math.exp(torch.mean(torch.tensor(losses)))
     except OverflowError:
         perplexity_test = float("inf")
 
+    print(loss_train, perplexity_train, loss_test, perplexity_test)
     print(f">>> Epoch {epoch}: loss_train: {loss_train} perplexity_train: {perplexity_train} loss_test: {loss_test} perplexity_test: {perplexity_test}")
 
-    wandb.log({"Epoch": epoch, "loss_train": loss_train, perplexity_train: perplexity_train, "loss_test": loss_test, perplexity_test: perplexity_test})
+    wandb.log({"Epoch": str(epoch), "loss_train": str(loss_train), "perplexity_train":str(perplexity_train), "loss_test": str(loss_test), "perplexity_test": str(perplexity_test)})
     
-    # if epoch == config.epochs - 1:
-    #     tokenizer.save_pretrained(output_dir)
+#     if epoch == config.epochs - 1:
+#         tokenizer.save_pretrained(output_dir)
         
-    #     repo.push_to_hub(
-    #         commit_message=f"Training in progress epoch {epoch}", blocking=False
-    #     )
+#         repo.push_to_hub(
+#             commit_message=f"Training in progress epoch {epoch}", blocking=False
+#         )
 
 model.save_pretrained(config.repo_name)
 tokenizer.save_pretrained(config.repo_name)
