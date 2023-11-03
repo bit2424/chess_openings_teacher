@@ -50,7 +50,7 @@ def group_texts(examples):
     result["labels"] = result["input_ids"].copy()
     return result
 
-wwm_probability = 0.2
+
 
 # def insert_random_mask(batch):
 #     features = [dict(zip(batch, t)) for t in zip(*batch.values())]
@@ -84,7 +84,7 @@ def whole_word_masking_data_collator(features):
                 mapping[current_word_index].append(idx)
 
         # Randomly mask words
-        mask = np.random.binomial(1, wwm_probability, (len(mapping),))
+        mask = np.random.binomial(1, config.wwm_probability, (len(mapping),))
         input_ids = feature["input_ids"]
         # print("Input ids before: ",tokenizer.convert_ids_to_tokens(input_ids))
         labels = feature["input_ids"].copy()
@@ -105,16 +105,17 @@ config = wandb.config
 
 
 config.epochs = 6
-config.batch_size = 10 # Adjust as needed
-config.chunk_size = 256
-config.lr = 1e-5
+config.batch_size = 4 # Adjust as needed
+config.chunk_size = 512
+config.lr = 2e-5
 config.approach = 'Masked Language Modeling'
 config.dataset = 'V1_small'
 config.model_base = "distilroberta-base"
 config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
-config.train_size = 300
-config.test_size = 300
+config.train_size = 600
+config.test_size = 600
+config.wwm_probability = 0.35
 
 
 
@@ -205,44 +206,6 @@ output_dir = config.model_name
 
 progress_bar = tqdm(range(num_training_steps))
 
-# for i, batch in enumerate(eval_dataloader):
-#     #print("input_ids shape", [len(x) for x in batch["input_ids"]])
-#     print("attention_mask", [x for x in batch["attention_mask"]])
-#     if i == 100000:
-#         # print(batch)
-#         max_id = torch.max(batch['labels'])
-#         min_id = torch.min(batch['labels'])
-#         print(f"Max input_id: {max_id}, Min input_id: {min_id}")
-
-#         problematic_indices = torch.where((batch['labels'] < 0) | (batch['labels'] >= tokenizer.vocab_size))
-#         # print(f"Problematic indices: {problematic_indices}")
-#         decoded_tokens = tokenizer.convert_ids_to_tokens(batch['input_ids'][0])
-#         masked_token_ids = [token_id for token_id in batch['labels'][0].tolist() if token_id != -100]
-#         decoded_label_tokens = tokenizer.decode(masked_token_ids)
-            
-#         print("labels: ",batch['labels'][0])
-#         print("inputs_ids: ",batch['input_ids'][0])
-#         print("Decoded tokens: ",decoded_tokens)
-#         print("Decoded label tokens: ",decoded_label_tokens)
-        
-#         input_ids = batch['input_ids'][0].tolist()
-#         labels = batch['labels'][0].tolist()
-
-#         # Identify masked positions
-#         masked_positions = [i for i, token_id in enumerate(labels) if token_id != -100]
-
-#         # Extract masked token IDs
-#         input_masked_token_ids = [input_ids[i] for i in masked_positions]
-#         labels_masked_token_ids = [labels[i] for i in masked_positions]
-
-#         # Compare masked token IDs
-#         match = input_masked_token_ids == labels_masked_token_ids
-#         print(f"Input masked tokens: {input_masked_token_ids}")
-#         print(f"Label masked tokens: {labels_masked_token_ids}")
-#         print(f"Matched: {match}")
-
-#         break
-
 
 for epoch in range(config.epochs):
     # Training
@@ -268,6 +231,8 @@ for epoch in range(config.epochs):
     
     # Evaluation
     model.eval()
+    total_tokens = 0
+    correct_tokens = 0
     losses = []
     for step, batch in enumerate(eval_dataloader):
         with torch.no_grad():
@@ -275,8 +240,20 @@ for epoch in range(config.epochs):
 
         loss = outputs.loss
         losses.append(loss.item())
+        
+         # Get the predicted tokens
+        predicted_tokens = torch.argmax(outputs.logits, dim=-1)
 
-    print(losses)
+        # Get the actual tokens
+        actual_tokens = batch["labels"]
+
+        # Calculate accuracy for this batch
+        correct_tokens += (predicted_tokens == actual_tokens).sum().item()
+        total_tokens += actual_tokens.numel()
+    
+    accuracy_test = correct_tokens / total_tokens if total_tokens > 0 else 0
+    
+    # print(losses)
     nan_count = 0
     for loss in losses:
         if math.isnan(loss):
@@ -289,17 +266,14 @@ for epoch in range(config.epochs):
     except OverflowError:
         perplexity_test = float("inf")
 
-    print(loss_train, perplexity_train, loss_test, perplexity_test)
-    print(f">>> Epoch {epoch}: loss_train: {loss_train} perplexity_train: {perplexity_train} loss_test: {loss_test} perplexity_test: {perplexity_test}")
+    print(f">>> Epoch {epoch}: loss_train: {loss_train} perplexity_train: {perplexity_train} loss_test: {loss_test} perplexity_test: {perplexity_test} accuracy: {accuracy_test}")
 
-    wandb.log({"Epoch": epoch, "loss_train": loss_train, "perplexity_train":perplexity_train, "loss_test": loss_test, "perplexity_test": perplexity_test})
-    
-#     if epoch == config.epochs - 1:
-#         tokenizer.save_pretrained(output_dir)
-        
-#         repo.push_to_hub(
-#             commit_message=f"Training in progress epoch {epoch}", blocking=False
-#         )
+    wandb.log({"Epoch": epoch,
+               "loss_train": loss_train,
+               "perplexity_train":perplexity_train,
+               "loss_test": loss_test,
+               "perplexity_test": perplexity_test,
+               "accuracy": accuracy_test})
 
 model.save_pretrained(config.repo_name)
 model.push_to_hub(config.repo_name ,commit_message="Trained the first version of the cot_small model")
