@@ -100,7 +100,7 @@ def process_games():
                 for move in pgn.mainline_moves():
                     if move_id >= start_index and move_id < start_index + random_size:
                         move_type = classify_move(board, move)
-                        context += f"{board} {move} {move_type}\n"
+                        context += f"{board}\nm:{move}\nt:{move_type}\n"
                         #print(move,move_type)
                         #print(board)
                     elif move_id >= start_index + random_size:

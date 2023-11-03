@@ -12,7 +12,8 @@ p p . b . p p p
 . . . . . P . .
 . P . . P N . .
 P B P P . . P P
-R N . Q K . . R b5c6 1
+R N . Q K . . R 
+b5c6 1
 r . . q k b . r
 p p . b . p p p
 . . B . p n . .
@@ -20,7 +21,8 @@ p p . b . p p p
 . . . . . P . .
 . P . . P N . .
 P B P P . . P P
-R N . Q K . . R b7c6 1'''
+R N . Q K . . R 
+b7c6 1'''
 
 text_masked = '''Bird Opening, r n b q k b n r
 p p p p p p p p
@@ -29,7 +31,8 @@ p p p p p p p p
 . . . . . . . .
 . . . . . . . .
 P P P P P P P P
-R N B Q K B N R <mask><mask><mask><mask> 1
+R N B Q K B N R 
+<mask><mask><mask><mask> 1
 r . . q k b . r
 p p . b . p p p
 . . B . p n . .
@@ -37,7 +40,8 @@ p p . b . p p p
 . . . . . P . .
 . P . . P N . .
 P B P P . . P P
-R N . Q K . . R <mask><mask><mask><mask> 1'''
+R N . Q K . . R 
+<mask><mask><mask><mask> 1'''
 
 preds = mask_filler(text_masked)
 

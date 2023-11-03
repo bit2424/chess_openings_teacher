@@ -27,7 +27,7 @@ def tokenize_function(examples):
     return result
 
 def concat_function(examples):
-    txt = ' '.join([str(examples["opening_type"]), str(examples["context"]), str(examples["move_pred"]), str(examples["move_type_pred"])])
+    txt = f'{str(examples["opening_type"])} \n {str(examples["context"])}\n m:{str(examples["move_pred"])}\n t:{str(examples["move_type_pred"])}'
     #txt = "HELLOOOOO world this is its a test test test"
     if(len(txt) > 512):
         examples["full_text"] = txt[0:512]  # Truncate to a maximum of 512 characters
@@ -96,6 +96,7 @@ def whole_word_masking_data_collator(features):
                 input_ids[idx] = tokenizer.mask_token_id
         feature["labels"] = new_labels
         # print("Input ids after: ",tokenizer.convert_ids_to_tokens(input_ids))
+    
     return default_data_collator(features)
 
 wandb.init(project="Chess Openings Tutor")
@@ -104,19 +105,18 @@ config = wandb.config
 
 
 
-config.epochs = 6
+config.epochs = 20
 config.batch_size = 4 # Adjust as needed
-config.chunk_size = 512
-config.lr = 2e-5
+config.chunk_size = 256
+config.lr = 2e-4
 config.approach = 'Masked Language Modeling'
 config.dataset = 'V1_small'
 config.model_base = "distilroberta-base"
 config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
-config.train_size = 600
-config.test_size = 600
-config.wwm_probability = 0.35
-
+config.train_size = 1000
+config.test_size = 1000
+config.wwm_probability = 0.30
 
 
 tokenizer = AutoTokenizer.from_pretrained(config.model_base, use_fast=True)
@@ -188,7 +188,13 @@ eval_dataloader = DataLoader(
     collate_fn=default_data_collator
 )
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+print(torch.cuda.get_device_name(0))
+print(device)
+
 model = AutoModelForMaskedLM.from_pretrained(config.model_base)
+model.to(device)
+
 optimizer = AdamW(model.parameters(), lr=config.lr)
 
 num_update_steps_per_epoch = len(train_dataloader)
@@ -197,7 +203,7 @@ num_training_steps = config.epochs * num_update_steps_per_epoch
 lr_scheduler = get_scheduler(
     "linear",
     optimizer=optimizer,
-    num_warmup_steps=int(0.1 * num_training_steps),
+    num_warmup_steps=int(0.01 * num_training_steps),
     num_training_steps=num_training_steps,
 )
 
@@ -212,7 +218,11 @@ for epoch in range(config.epochs):
     losses = []
     model.train()
     for batch in train_dataloader:
-        outputs = model(**batch)
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        labels = batch['labels'].to(device)
+        outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
+        # outputs = model(**batch)
         loss = outputs.loss
         losses.append(loss.item())
         loss.backward()
@@ -236,16 +246,20 @@ for epoch in range(config.epochs):
     losses = []
     for step, batch in enumerate(eval_dataloader):
         with torch.no_grad():
-            outputs = model(**batch)
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['labels'].to(device)
+            outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
+            # outputs = model(**batch)
 
         loss = outputs.loss
         losses.append(loss.item())
         
          # Get the predicted tokens
-        predicted_tokens = torch.argmax(outputs.logits, dim=-1)
+        predicted_tokens = torch.argmax(outputs.logits, dim=-1).to(device)
 
         # Get the actual tokens
-        actual_tokens = batch["labels"]
+        actual_tokens = batch["labels"].to(device)
 
         # Calculate accuracy for this batch
         correct_tokens += (predicted_tokens == actual_tokens).sum().item()
