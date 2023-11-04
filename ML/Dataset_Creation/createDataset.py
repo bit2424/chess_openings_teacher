@@ -51,7 +51,7 @@ def process_games():
     dataset = load_dataset("patrickfrank1/chess-pgn-games")
 
     games_txt = []
-    game_cnt = 10000
+    game_cnt = 60000
     
     
     for game_format_row in dataset["train"]:
@@ -82,7 +82,7 @@ def process_games():
         if pgn.headers.get('BlackElo').isdigit():
             blackElo = int(pgn.headers.get('BlackElo'))
         
-        if pgn.headers.get('Opening')!= None and (whiteElo > 1700 or blackElo > 1700):
+        if pgn.headers.get('Opening')!= None and (whiteElo > 1800 or blackElo > 1800):
             game_id+=1
             game_moves = 0
             for move in pgn.mainline_moves():
@@ -137,7 +137,7 @@ def upload_to_hf():
         repo_id="nelson2424/Chess_openings_dataset",
         path_in_repo="V1_small",
         repo_type="dataset",
-        commit_message="Created V1_small dataset"
+        commit_message="Updated V1_small dataset again"
     )
 
 process_games()

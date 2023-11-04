@@ -5,43 +5,51 @@ mask_filler = pipeline(
     "fill-mask", model="nelson2424/distilroberta-base-finetuned-cot"
 )
 
-text_clean = '''Bird Opening, r . . q k b . r
-p p . b . p p p
-. . n . p n . .
-. B p p . . . .
-. . . . . P . .
-. P . . P N . .
-P B P P . . P P
-R N . Q K . . R 
-b5c6 1
-r . . q k b . r
-p p . b . p p p
-. . B . p n . .
-. . p p . . . .
-. . . . . P . .
-. P . . P N . .
-P B P P . . P P
-R N . Q K . . R 
-b7c6 1'''
+text_clean = '''Queen's Pawn Game: Chigorin Variation
+. . . r k b n r
+p p p . . . p p
+. . n . . . . .
+. . . p p b . .
+. . . . . . . .
+. . . . P N . .
+P P P . . P P P
+R N . Q K B . R
+m:f3h4
+t:0
+. . . r k b n r
+p p p . . . p p
+. . n . . . . .
+. . . p p b . .
+. . . . . . . N
+. . . . P . . .
+P P P . . P P P
+R N . Q K B . R
+m:e5e4
+t:0'''
 
-text_masked = '''Bird Opening, r n b q k b n r
-p p p p p p p p
+text_masked = '''Queen's Pawn Game: Chigorin Variation
+. . . r k b n r
+p p p . . . p p
+. . n . . . . .
+. . . p p b . .
 . . . . . . . .
-. . . . . . . .
-. . . . . . . .
-. . . . . . . .
-P P P P P P P P
-R N B Q K B N R 
-<mask><mask><mask><mask> 1
-r . . q k b . r
-p p . b . p p p
-. . B . p n . .
-. . p p . . . .
-. . . . . P . .
-. P . . P N . .
-P B P P . . P P
-R N . Q K . . R 
-<mask><mask><mask><mask> 1'''
+. . . . P N . .
+P P P . . P P P
+R N . Q K B . R
+m:<mask><mask><mask><mask>
+t:0
+. . . r k b n r
+p p p . . . p p
+. . n . . . . .
+. . . p p b . .
+. . . . . . . N
+. . . . P . . .
+P P P . . P P P
+R N . Q K B . R
+m:e5e4
+t:0
+
+'''
 
 preds = mask_filler(text_masked)
 
