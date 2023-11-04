@@ -76,7 +76,8 @@ def whole_word_masking_restricted_data_collator(features):
                 mapping[current_word_index].append(idx)
 
         # Randomly mask words
-        mask = np.random.binomial(1, config.wwm_probability, (len(mapping),))
+        mask = np.ones(len(mapping))
+        # print("Mask: ",mask)
         input_ids = feature["input_ids"]
         # print("Input ids before: ",tokenizer.convert_ids_to_tokens(input_ids))
         labels = feature["input_ids"].copy()
@@ -94,10 +95,11 @@ def whole_word_masking_restricted_data_collator(features):
                 if  "m:" in prefix[0:2] or "t:" in prefix[0:2]:
                     # print(prefix_tokens)
                     # print(prefix,'\n')
-    
+                    mask = np.random.binomial(1, config.wwm_probability, (4),)
                     for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+6):
-                        new_labels[idx] = labels[idx]
-                        input_ids[idx] = tokenizer.mask_token_id
+                        if(mask[idx-(consecutive_tokens[0]+2)]):
+                            new_labels[idx] = labels[idx]
+                            input_ids[idx] = tokenizer.mask_token_id
 
                     
         feature["labels"] = new_labels
@@ -168,17 +170,17 @@ def training_loop():
     num_update_steps_per_epoch = len(train_dataloader)
     num_training_steps = config.epochs * num_update_steps_per_epoch
 
-    # lr_scheduler = get_scheduler(
-    #     "CosineAnnealingLR",
-    #     optimizer=optimizer,
-    #     num_warmup_steps=int(0.01 * num_training_steps),
-    #     num_training_steps=num_training_steps,
-    # )
+    lr_scheduler = get_scheduler(
+        "linear",
+        optimizer=optimizer,
+        num_warmup_steps=int(0.01 * num_training_steps),
+        num_training_steps=num_training_steps,
+    )
 
-    lr_scheduler = get_polynomial_decay_schedule_with_warmup(optimizer, 
-                                                            num_warmup_steps=int(0.01 * num_training_steps), 
-                                                            num_training_steps=num_training_steps, 
-                                                            lr_end=1e-7, power=8.0)
+    # lr_scheduler = get_polynomial_decay_schedule_with_warmup(optimizer, 
+    #                                                         num_warmup_steps=int(0.1 * num_training_steps), 
+    #                                                         num_training_steps=num_training_steps, 
+    #                                                         lr_end=1e-7, power=10.0)
 
     # Next I want to try a different lr_scheduler 
     # get_polynomial_decay_schedule_with_warmup(optimizer, num_warmup_steps=num_warmup_steps, num_training_steps=num_training_steps, lr_end=0.0)
@@ -210,10 +212,15 @@ def training_loop():
 
             # Get the actual tokens
             actual_tokens = batch["labels"].to(device)
+            
+            # for i in range(len(predicted_tokens)):
+            #     if(actual_tokens[i] != -100):
+            #         correct_tokens += (predicted_tokens[i] == actual_tokens[i]).sum().item()
+            #         total_tokens += actual_tokens[i].numel()
 
             # Calculate accuracy for this batch
             correct_tokens += (predicted_tokens == actual_tokens).sum().item()
-            total_tokens += actual_tokens.numel()
+            total_tokens += actual_tokens.numel() - (actual_tokens == -100).sum().item()
 
             optimizer.step()
             lr_scheduler.step()
@@ -251,7 +258,11 @@ def training_loop():
 
             # Calculate accuracy for this batch
             correct_tokens += (predicted_tokens == actual_tokens).sum().item()
-            total_tokens += actual_tokens.numel()
+            total_tokens += actual_tokens.numel() - (actual_tokens == -100).sum().item()
+            # for i in range(len(predicted_tokens)):
+            #     if(actual_tokens[i] != -100):
+            #         correct_tokens += (predicted_tokens[i] == actual_tokens[i]).sum().item()
+            #         total_tokens += actual_tokens[i].numel()
         
         accuracy_test = correct_tokens / total_tokens if total_tokens > 0 else 0
         
@@ -281,7 +292,8 @@ def training_loop():
     model.save_pretrained(config.repo_name)
     # model.push_to_hub(config.repo_name ,commit_message="Updating the masking function to not masked the boards")
     # model.push_to_hub(config.repo_name ,commit_message="Changed the lr scheduler")
-    model.push_to_hub(config.repo_name ,commit_message="Changed the lr rate")
+    # model.push_to_hub(config.repo_name ,commit_message="Changed the lr rate")
+    model.push_to_hub(config.repo_name ,commit_message="Changed the mask probability")
     # tokenizer.save_pretrained(config.repo_name)
     # tokenizer.push_to_hub(config.repo_name, commit_message="First version of the cot_small")
 
@@ -289,9 +301,9 @@ wandb.init(project="Chess Openings Tutor")
 config = wandb.config
 
 config.epochs = 10
-config.batch_size = 4 # Adjust as needed
-config.chunk_size = 256
-config.lr = 2e-5
+config.batch_size = 2 # Adjust as needed
+config.chunk_size = 512
+config.lr = 1e-4
 config.lr_sch = "polynomial_decay_schedule_with_warmup"
 config.approach = 'Masked Language Modeling'
 config.dataset = 'V1_small'
@@ -299,8 +311,8 @@ config.model_base = "distilroberta-base"
 config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
 config.train_size = 1000
-config.test_size = 1000
-config.wwm_probability = 0.70
+config.test_size = 500
+config.wwm_probability = 0.3
 
 
 tokenizer = AutoTokenizer.from_pretrained(config.model_base, use_fast=True)

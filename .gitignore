@@ -2,3 +2,5 @@ node_modules/
 wandb/
 *.bin
 *.csv
+test.csv
+train.csv
