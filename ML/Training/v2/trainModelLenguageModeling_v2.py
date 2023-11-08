@@ -21,13 +21,13 @@ from tqdm.auto import tqdm
 def tokenize_function(examples):
     # print(examples)
     # print(type(examples["full_text"]))
-    result = tokenizer(examples["full_text"], padding="max_length" ,truncation = True)
+    result = tokenizer(examples["full_text"],truncation = True)
     if tokenizer.is_fast:
         result["word_ids"] = [result.word_ids(i) for i in range(len(result["input_ids"]))]
     return result
 
 def concat_function(examples):
-    txt = f'{str(examples["opening_type"])} \n {str(examples["context"])} m:{str(examples["move_pred"])} t:{str(examples["move_type_pred"])}\n'
+    txt = f'{str(examples["opening_type"])} \n {str(examples["context"])} {str(examples["move_pred"])} {str(examples["move_type_pred"])}\n'
     #txt = "HELLOOOOO world this is its a test test test"
     # if(len(txt) > int(config.chunk_size*(4))):
     #     examples["full_text"] = txt[0:int(config.chunk_size*(4))]  # Truncate to a maximum of 512 characters
@@ -92,11 +92,17 @@ def whole_word_masking_restricted_data_collator(features):
                 prefix_tokens = input_ids[consecutive_tokens[0]:consecutive_tokens[-1]+6]
                 prefix = tokenizer.decode(prefix_tokens)
                 
-                if  "m:" in prefix[0:2] or "t:" in prefix[0:2]:
+                if  "m:" in prefix[0:2]:
                     # print(prefix_tokens)
                     # print(prefix,'\n')
                     mask = np.random.binomial(1, config.wwm_probability, (4),)
-                    for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+6):
+                    for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+5):
+                        if(mask[idx-(consecutive_tokens[0]+2)]):
+                            new_labels[idx] = labels[idx]
+                            input_ids[idx] = tokenizer.mask_token_id
+                if "t:" in prefix[0:2]:
+                    mask = np.random.binomial(1, config.wwm_probability, (4),)
+                    for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+5):
                         if(mask[idx-(consecutive_tokens[0]+2)]):
                             new_labels[idx] = labels[idx]
                             input_ids[idx] = tokenizer.mask_token_id
@@ -154,6 +160,14 @@ def whole_word_masking_complete_data_collator(features):
     return default_data_collator(features)
 
 
+def upload_model(model):
+    model.save_pretrained(config.repo_name)
+    # model.push_to_hub(config.repo_name ,commit_message="Updating the masking function to not masked the boards")
+    # model.push_to_hub(config.repo_name ,commit_message="Changed the lr scheduler")
+    # model.push_to_hub(config.repo_name ,commit_message="Changed the lr rate")
+    model.push_to_hub(config.repo_name ,commit_message="Starting training of v2 version",revision="v2")
+    tokenizer.save_pretrained(config.repo_name)
+    tokenizer.push_to_hub(config.repo_name, commit_message="First version of the v2 version",revision="v2")
 
 
 def training_loop():
@@ -178,9 +192,9 @@ def training_loop():
     )
 
     # lr_scheduler = get_polynomial_decay_schedule_with_warmup(optimizer, 
-    #                                                         num_warmup_steps=int(0.1 * num_training_steps), 
+    #                                                         num_warmup_steps=int(0.15 * num_training_steps), 
     #                                                         num_training_steps=num_training_steps, 
-    #                                                         lr_end=1e-7, power=10.0)
+    #                                                         lr_end=1e-6, power=7.0)
 
     # Next I want to try a different lr_scheduler 
     # get_polynomial_decay_schedule_with_warmup(optimizer, num_warmup_steps=num_warmup_steps, num_training_steps=num_training_steps, lr_end=0.0)
@@ -288,35 +302,31 @@ def training_loop():
                 "loss_test": loss_test,
                 "perplexity_test": perplexity_test,
                 "accuracy_test": accuracy_test})
+        # if(epoch%3 == 0):
+            # upload_model(model)
         
-    model.save_pretrained(config.repo_name)
-    # model.push_to_hub(config.repo_name ,commit_message="Updating the masking function to not masked the boards")
-    # model.push_to_hub(config.repo_name ,commit_message="Changed the lr scheduler")
-    # model.push_to_hub(config.repo_name ,commit_message="Changed the lr rate")
-    model.push_to_hub(config.repo_name ,commit_message="Changed the mask probability")
-    # tokenizer.save_pretrained(config.repo_name)
-    # tokenizer.push_to_hub(config.repo_name, commit_message="First version of the cot_small")
+    upload_model(model)
 
 wandb.init(project="Chess Openings Tutor")
 config = wandb.config
 
-config.epochs = 10
+config.epochs = 4
 config.batch_size = 2 # Adjust as needed
 config.chunk_size = 512
 config.lr = 1e-4
-config.lr_sch = "polynomial_decay_schedule_with_warmup"
+config.lr_sch = "linear"
 config.approach = 'Masked Language Modeling'
-config.dataset = 'V1_small'
+config.dataset = 'V2_small'
 config.model_base = "distilroberta-base"
 config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
-config.train_size = 1000
+config.train_size = 5000
 config.test_size = 500
-config.wwm_probability = 0.3
+config.wwm_probability = 0.35
 
 
 tokenizer = AutoTokenizer.from_pretrained(config.model_base, use_fast=True)
-cot_small = load_dataset("nelson2424/Chess_openings_dataset")
+cot_small = load_dataset("nelson2424/Chess_openings_dataset",config.dataset)
 
 cot_small_trim = cot_small["train"].train_test_split(
     train_size=config.train_size, test_size=config.test_size, seed=42
