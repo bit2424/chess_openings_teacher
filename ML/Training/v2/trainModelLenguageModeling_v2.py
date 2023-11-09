@@ -27,7 +27,7 @@ def tokenize_function(examples):
     return result
 
 def concat_function(examples):
-    txt = f'{str(examples["opening_type"])} \n {str(examples["context"])} {str(examples["move_pred"])} {str(examples["move_type_pred"])}\n'
+    txt = f'{str(examples["opening_type"])} \n {str(examples["context"])} \n {str(examples["move_pred"])} \n {str(examples["move_type_pred"])}\n'
     #txt = "HELLOOOOO world this is its a test test test"
     # if(len(txt) > int(config.chunk_size*(4))):
     #     examples["full_text"] = txt[0:int(config.chunk_size*(4))]  # Truncate to a maximum of 512 characters
@@ -62,7 +62,6 @@ def insert_random_mask(batch):
 def whole_word_masking_restricted_data_collator(features):
     for feature in features:
         word_ids = feature.pop("word_ids")
-        # _ = feature.pop("full_text")
         
         # Create a map between words and corresponding token indices
         mapping = collections.defaultdict(list)
@@ -87,20 +86,19 @@ def whole_word_masking_restricted_data_collator(features):
             consecutive_tokens = [idx for idx in mapping[word_id]]
             
             # Check if the consecutive tokens represent the prefix "m:" or "t:"
-            
             if(consecutive_tokens[-1]+6<=len(input_ids)):
+                #print("LOL")
                 prefix_tokens = input_ids[consecutive_tokens[0]:consecutive_tokens[-1]+6]
                 prefix = tokenizer.decode(prefix_tokens)
+                #print(prefix)
                 
-                if  "m:" in prefix[0:2]:
-                    # print(prefix_tokens)
-                    # print(prefix,'\n')
+                if  "m:" in prefix[0:3]:
                     mask = np.random.binomial(1, config.wwm_probability, (4),)
                     for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+5):
                         if(mask[idx-(consecutive_tokens[0]+2)]):
                             new_labels[idx] = labels[idx]
                             input_ids[idx] = tokenizer.mask_token_id
-                if "t:" in prefix[0:2]:
+                if "t:" in prefix[0:3]:
                     mask = np.random.binomial(1, config.wwm_probability, (4),)
                     for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+5):
                         if(mask[idx-(consecutive_tokens[0]+2)]):
@@ -137,21 +135,13 @@ def whole_word_masking_complete_data_collator(features):
         new_labels = [-100] * len(labels)
         for word_id in np.where(mask)[0]:
             word_id = word_id.item()
+            
             consecutive_tokens = [idx for idx in mapping[word_id]]
             
-            # Check if the consecutive tokens represent the prefix "m:" or "t:"
-            
-            if(consecutive_tokens[-1]+6<=len(input_ids)):
-                prefix_tokens = input_ids[consecutive_tokens[0]:consecutive_tokens[-1]+6]
-                prefix = tokenizer.decode(prefix_tokens)
-                
-                if  "m:" in prefix[0:2] or "t:" in prefix[0:2]:
-                    # print(prefix_tokens)
-                    # print(prefix,'\n')
-    
-                    for idx in range(consecutive_tokens[0],consecutive_tokens[-1]+6):
-                        new_labels[idx] = labels[idx]
-                        input_ids[idx] = tokenizer.mask_token_id
+            for idx in consecutive_tokens:
+                new_labels[idx] = labels[idx]
+                input_ids[idx] = tokenizer.mask_token_id
+                    
 
                     
         feature["labels"] = new_labels
@@ -165,9 +155,9 @@ def upload_model(model):
     # model.push_to_hub(config.repo_name ,commit_message="Updating the masking function to not masked the boards")
     # model.push_to_hub(config.repo_name ,commit_message="Changed the lr scheduler")
     # model.push_to_hub(config.repo_name ,commit_message="Changed the lr rate")
-    model.push_to_hub(config.repo_name ,commit_message="Starting training of v2 version",revision="v2")
-    tokenizer.save_pretrained(config.repo_name)
-    tokenizer.push_to_hub(config.repo_name, commit_message="First version of the v2 version",revision="v2")
+    model.push_to_hub(config.repo_name ,commit_message="Masking text everywhere",revision="v2")
+    # tokenizer.save_pretrained(config.repo_name)
+    # tokenizer.push_to_hub(config.repo_name, commit_message="First version of the v2 version",revision="v2")
 
 
 def training_loop():
@@ -216,7 +206,6 @@ def training_loop():
             attention_mask = batch['attention_mask'].to(device)
             labels = batch['labels'].to(device)
             outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
-            # outputs = model(**batch)
             loss = outputs.loss
             losses.append(loss.item())
             loss.backward()
@@ -226,11 +215,6 @@ def training_loop():
 
             # Get the actual tokens
             actual_tokens = batch["labels"].to(device)
-            
-            # for i in range(len(predicted_tokens)):
-            #     if(actual_tokens[i] != -100):
-            #         correct_tokens += (predicted_tokens[i] == actual_tokens[i]).sum().item()
-            #         total_tokens += actual_tokens[i].numel()
 
             # Calculate accuracy for this batch
             correct_tokens += (predicted_tokens == actual_tokens).sum().item()
@@ -259,7 +243,6 @@ def training_loop():
                 attention_mask = batch['attention_mask'].to(device)
                 labels = batch['labels'].to(device)
                 outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
-                # outputs = model(**batch)
 
             loss = outputs.loss
             losses.append(loss.item())
@@ -273,10 +256,6 @@ def training_loop():
             # Calculate accuracy for this batch
             correct_tokens += (predicted_tokens == actual_tokens).sum().item()
             total_tokens += actual_tokens.numel() - (actual_tokens == -100).sum().item()
-            # for i in range(len(predicted_tokens)):
-            #     if(actual_tokens[i] != -100):
-            #         correct_tokens += (predicted_tokens[i] == actual_tokens[i]).sum().item()
-            #         total_tokens += actual_tokens[i].numel()
         
         accuracy_test = correct_tokens / total_tokens if total_tokens > 0 else 0
         
@@ -310,23 +289,27 @@ def training_loop():
 wandb.init(project="Chess Openings Tutor")
 config = wandb.config
 
-config.epochs = 4
+config.epochs = 14
 config.batch_size = 2 # Adjust as needed
 config.chunk_size = 512
 config.lr = 1e-4
 config.lr_sch = "linear"
 config.approach = 'Masked Language Modeling'
+# config.masking_approach = "Only moves and move_types"
+config.masking_approach = "all"
 config.dataset = 'V2_small'
 config.model_base = "distilroberta-base"
 config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
-config.train_size = 5000
-config.test_size = 500
+config.train_size = 10000
+config.test_size = 1000
 config.wwm_probability = 0.35
 
 
 tokenizer = AutoTokenizer.from_pretrained(config.model_base, use_fast=True)
-cot_small = load_dataset("nelson2424/Chess_openings_dataset",config.dataset)
+cot_small = load_dataset("nelson2424/Chess_openings_dataset",data_dir = config.dataset)
+
+print(cot_small)
 
 cot_small_trim = cot_small["train"].train_test_split(
     train_size=config.train_size, test_size=config.test_size, seed=42
@@ -353,12 +336,12 @@ tokenized_cot_small = concatenated_cot_small.map(
 #     batch_size=10,
 # )
 
-# print(lm_datasets)
+#print(lm_datasets)
 
-lm_datasets_train = tokenized_cot_small['train'].map(group_texts, batched=True, batch_size=10)
-lm_datasets_test = tokenized_cot_small['test'].map(group_texts, batched=True, batch_size=10)
+lm_datasets_train = tokenized_cot_small['train'].map(group_texts, batched=True, batch_size=100)
+lm_datasets_test = tokenized_cot_small['test'].map(group_texts, batched=True, batch_size=100)
 
-# print(lm_datasets_test[0])
+print(lm_datasets_train[0])
 
 data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.30)
 
@@ -397,7 +380,6 @@ eval_dataloader = DataLoader(
     batch_size=config.batch_size,
     collate_fn=default_data_collator
 )
-
 
 training_loop()
 
