@@ -93,13 +93,13 @@ def whole_word_masking_restricted_data_collator(features):
                 #print(prefix)
                 
                 if  "m:" in prefix[0:3]:
-                    mask = np.random.binomial(1, config.wwm_probability, (4),)
-                    for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+5):
+                    mask = np.random.binomial(1, config.wwm_probability, (6),)
+                    for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+6):
                         if(mask[idx-(consecutive_tokens[0]+2)]):
                             new_labels[idx] = labels[idx]
                             input_ids[idx] = tokenizer.mask_token_id
                 if "t:" in prefix[0:3]:
-                    mask = np.random.binomial(1, config.wwm_probability, (4),)
+                    mask = np.random.binomial(1, config.wwm_probability, (5),)
                     for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+5):
                         if(mask[idx-(consecutive_tokens[0]+2)]):
                             new_labels[idx] = labels[idx]
@@ -155,7 +155,7 @@ def upload_model(model):
     # model.push_to_hub(config.repo_name ,commit_message="Updating the masking function to not masked the boards")
     # model.push_to_hub(config.repo_name ,commit_message="Changed the lr scheduler")
     # model.push_to_hub(config.repo_name ,commit_message="Changed the lr rate")
-    model.push_to_hub(config.repo_name ,commit_message="Masking text everywhere",revision="v2")
+    model.push_to_hub(config.repo_name ,commit_message="Testing new version of the V2_small dataset",revision="v2")
     # tokenizer.save_pretrained(config.repo_name)
     # tokenizer.push_to_hub(config.repo_name, commit_message="First version of the v2 version",revision="v2")
 
@@ -289,7 +289,7 @@ def training_loop():
 wandb.init(project="Chess Openings Tutor")
 config = wandb.config
 
-config.epochs = 14
+config.epochs = 3
 config.batch_size = 2 # Adjust as needed
 config.chunk_size = 512
 config.lr = 1e-4
@@ -301,8 +301,8 @@ config.dataset = 'V2_small'
 config.model_base = "distilroberta-base"
 config.model_name = "distilroberta-base-finetuned-cot"
 config.repo_name = get_full_repo_name(config.model_name)
-config.train_size = 10000
-config.test_size = 1000
+config.train_size = 1000
+config.test_size = 100
 config.wwm_probability = 0.35
 
 

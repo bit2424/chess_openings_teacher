@@ -95,7 +95,7 @@ def process_games():
                 move_type = move_type.ljust(4, '_')
                 move_str = board.san(move)
                 move_str = move_str.ljust(7, '_')
-                context = f"{pgn_history_string}\nm:{board.san(move)}\nt:{move_type}\n"
+                context = f"{pgn_history_string}\nm:{move_str}\nt:{move_type}\n"
                 
                 pgn_history.append(board.san(move))
                 move_history.append(context)
@@ -156,7 +156,7 @@ def upload_to_hf():
         repo_id="nelson2424/Chess_openings_dataset",
         path_in_repo="V2_small",
         repo_type="dataset",
-        commit_message="Added a padding to the move and move_type strings for better prediction"
+        commit_message="Added a padding to the move and move_type strings for better prediction, with correction"
     )
 
 process_games()

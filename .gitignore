@@ -4,3 +4,8 @@ wandb/
 *.csv
 test.csv
 train.csv
+ML/Training/v2/cache
+ML/Training/v2/distilroberta-base-finetuned-cot
+ML/Dataset_Creation/V1_small
+ML/Dataset_Creation/V2_small
+*.csv

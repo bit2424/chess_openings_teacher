@@ -2,7 +2,7 @@ from transformers import pipeline
 from itertools import zip_longest
 
 mask_filler = pipeline(
-    "fill-mask", model="nelson2424/distilroberta-base-finetuned-cot",revision = "v2"
+    "fill-mask", model="distilroberta-base-finetuned-cot", revision="v2"
 )
 
 text_clean = '''
@@ -20,7 +20,7 @@ t:<mask><mask><mask><mask>
 text_masked_1 = '''
 Four Knights Game: Scotch Variation Accepted
 e4 Nc6 Nf3 e5 Nc3 Nf6 d4
-m:<mask><mask><mask><mask>
+m:<mask><mask><mask><mask><mask>
 '''
 
 preds = mask_filler(text_masked_1)

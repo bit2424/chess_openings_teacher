@@ -16,7 +16,7 @@ from torch.optim import AdamW
 from tqdm.auto import tqdm
 
 def concat_function(examples):
-    txt = f'{str(examples["opening_type"])} \n {str(examples["context"])} {str(examples["move_pred"])} {str(examples["move_type_pred"])}\n'
+    txt = f'{str(examples["opening_type"])} \n {str(examples["context"])} {str(examples["move_pred"])}\n'
     examples["full_text"] = txt
     return examples
 
@@ -77,19 +77,13 @@ def whole_word_masking_restricted_data_collator(features):
             consecutive_tokens = [idx for idx in mapping[word_id]]
             
             # Check if the consecutive tokens represent the prefix "m:" or "t:"
-            if(consecutive_tokens[-1]+6<=len(input_ids)):
-                prefix_tokens = input_ids[consecutive_tokens[0]:consecutive_tokens[-1]+6]
+            if(consecutive_tokens[-1]+7<=len(input_ids)):
+                prefix_tokens = input_ids[consecutive_tokens[0]:consecutive_tokens[-1]+7]
                 prefix = tokenizer.decode(prefix_tokens)
                 
                 if  "m:" in prefix[0:2]:
-                    mask = np.random.binomial(1, config.wwm_probability, (4),)
-                    for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+5):
-                        if(mask[idx-(consecutive_tokens[0]+2)]):
-                            new_labels[idx] = labels[idx]
-                            input_ids[idx] = tokenizer.mask_token_id
-                if "t:" in prefix[0:2]:
-                    mask = np.random.binomial(1, config.wwm_probability, (4),)
-                    for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+5):
+                    mask = np.random.binomial(1, config.wwm_probability, (7),)
+                    for idx in range(consecutive_tokens[0]+2,consecutive_tokens[-1]+7):
                         if(mask[idx-(consecutive_tokens[0]+2)]):
                             new_labels[idx] = labels[idx]
                             input_ids[idx] = tokenizer.mask_token_id
@@ -151,7 +145,7 @@ class Config:
         self.model_base = "distilroberta-base"
         self.model_name = "distilroberta-base-finetuned-cot"
         self.repo_name = get_full_repo_name(self.model_name)
-        self.train_size = 23000
+        self.train_size = 1000
         self.test_size = 100
         self.wwm_probability = 0.35
         
