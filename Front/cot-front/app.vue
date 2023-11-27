@@ -2,6 +2,7 @@
   <div>
     <Chessboard />
   </div>
+  <NuxtPage />
 </template>
 
 <script>

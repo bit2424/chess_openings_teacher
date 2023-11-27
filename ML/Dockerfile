@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 RUN nvcc --version
 
 # RUN conda activate pytorch
-RUN pip3 install torch torchvision torchaudio -f https://download.pytorch.org/whl/cu113/torch_stable.html
+RUN pip3 install torch -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
 WORKDIR /app
 COPY . .
