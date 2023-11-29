@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Body, Path, Query, status, HTTPException
+from fastapi import Depends,FastAPI, Body, Path, Query, status, HTTPException
 from fastapi.responses import HTMLResponse,JSONResponse
 import uuid
 import chess
@@ -6,7 +6,11 @@ import sys
 from typing import List
 
 sys.path.append('chess_openings_teacher\BE\Model') 
+sys.path.append('chess_openings_teacher\BE\Utils') 
 from Model.game import Game,Game_DTO
+from Model.user import User_DTO
+from Utils.jwt_manager import create_token
+from Utils.jwt_bearer import JWTBearer
 
 
 games = [
@@ -21,7 +25,13 @@ app.version = "0.0.1"
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/games", tags=["game"], response_model=List[Game_DTO])
+@app.post("/login", tags=["auth"])
+def login(user: User_DTO):
+    if user.email == "admin@gmail.com" and user.password == "admin":
+        token:str = create_token({"email": user.email}, "secret")
+        return JSONResponse(status_code=200,content={"token": token})
+
+@app.get("/games", tags=["game"], response_model=List[Game_DTO], dependencies=[Depends(JWTBearer())])
 def get_games():
     return [x.to_json() for x in games]
 
