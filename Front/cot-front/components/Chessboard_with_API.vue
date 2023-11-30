@@ -59,7 +59,7 @@
     data() {
     return {
       col_ids:['a','b','c','d','e','f','g','h','i'],
-      row_ids:[1,2,3,4,5,6,7,8,9],
+      row_ids:[8,7,6,5,4,3,2,1],
     };
   },
   methods: {

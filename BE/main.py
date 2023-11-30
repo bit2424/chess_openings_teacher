@@ -49,6 +49,14 @@ def get_game_board(game_id: str = Path(default="", title="Game id")):
         raise HTTPException(status_code=404, detail="Invalid game id")
     return str(board[0].board)
 
+@app.get("/games/{game_id}/get_moves_for_position/{position}", tags=["game"])
+def get_moves_for_position(game_id: str = Path(default="", title="Game id"),position: int = Path(default=0, title="Game id")):
+    game = [x for x in filter(lambda x: x.game_id == game_id, games)]
+    if len(game) == 0:
+        raise HTTPException(status_code=404, detail="Invalid game id")
+    moves = game[0].get_moves_for_position(position)
+    return moves
+
 @app.get("/games/{game_id}/get_game_element/{game_element}", tags=["game"], response_model=str)
 def get_game_element(game_id: str, game_element: str):
     game_with_id = [x for x in filter(lambda x: x.game_id == game_id, games)]

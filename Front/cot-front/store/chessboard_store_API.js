@@ -73,6 +73,25 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           console.error('Fetch error:', error);
         }
       },
+      async getMovesFromSelectedTile(row,col){
+        try {
+          const url = `http://localhost:8000/games/${this.game_id}/get_moves_for_position/${this.getIntegerPositionFromTile(row,col)}`;
+          console.log(url);
+          const response = await fetch(url, 
+          { method: 'GET'},
+          {mode: 'no-cors'},
+          );
+          const data = await response.json();
+          console.log(data);
+          this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
+          for (let i = 0; i < data.length; i++) {
+            const to_squares = this.getRowColFromInteger(data[i].to_square);
+            this.chessboard_piece_projection[to_squares[0]][to_squares[1]] = 'm';
+          }
+        } catch (error) {
+          console.error('Fetch error:', error);
+        }
+      },
       async initialize(){
         this.whiteTurn = true;
         this.chessboard = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
@@ -80,41 +99,8 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         await this.initializeGame();
         await this.getBoard();
 
-        console.log(this.chessboard[0][0]);
-
-        // for (let i = 0; i < 8; i++) {
-        //     this.chessboard[1][i] = 'P-w';
-        //     this.chessboard[6][i] = 'P-b';
-        // }
-        // this.chessboard[0][0] = "R-w"; 
-        // this.chessboard[0][7] = "R-w"; 
-        
-        // this.chessboard[7][0] = "R-b";
-        // this.chessboard[7][7] = "R-b";
-    
-        // this.chessboard[0][1] = "N-w"; 
-        // this.chessboard[0][6] = "N-w"; 
-        
-        // this.chessboard[7][1] = "N-b";
-        // this.chessboard[7][6] = "N-b";
-    
-        // this.chessboard[0][2] = "N-w"; 
-        // this.chessboard[0][5] = "N-w"; 
-        
-        // this.chessboard[7][2] = "B-b";
-        // this.chessboard[7][5] = "B-b";
-    
-        // this.chessboard[0][2] = "B-w"; 
-        // this.chessboard[0][5] = "B-w"; 
-        
-        // this.chessboard[0][3] = "Q-w"; 
-        // this.chessboard[0][4] = "K-w";
-    
-        // this.chessboard[7][3] = "Q-b";
-        // this.chessboard[7][4] = "K-b"; 
-        console.log("Here we are::::: ",this.chessboard);
       },
-      handlePieceMove() {
+      async handlePieceMove() {
         // Logic to handle turns
         if(this.whiteTurn && this.lastSelectedType.includes('b')) return
         if(!this.whiteTurn && this.lastSelectedType.includes('w')) return
@@ -165,6 +151,25 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           this.whiteTurn = !this.whiteTurn;
         }
         return true;
+      },
+      getIntegerPositionFromTile(row,col){
+        if (this.isRotated) {
+          return (7 - row) * 8 + (col);
+        } else {
+          return (row) * 8 + (col);
+        }
+      },
+      getRowColFromInteger(tilePos) {
+        let row, col;
+        if (this.isRotated) {
+          row = 7 - Math.floor(tilePos / 8);
+          col = tilePos % 8;
+        } else {
+          row = Math.floor(tilePos / 8); 
+          col = tilePos % 8;
+        }
+      
+        return [row, col];
       },
       checkOrMate(color){
         let isTheOpponentChecked = this.isCheck(this.selectedTile[0]-1,this.selectedTile[1]-1,this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color=='w'?'b':'w');
@@ -703,24 +708,20 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
       
         return projected_squares;    
       },
-      highlightPossibleMoves(row,col){
+      async highlightPossibleMoves(row,col){
+        
+        
         this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
         if(this.whiteTurn){
           if(this.chessboard[row][col].includes('w')){
-            let projected_squares = this.projectSinglePieceMove(row,col,'w');
-            for(let i = 0;i<projected_squares.length;i++){
-              this.chessboard_piece_projection[projected_squares[i][0]][projected_squares[i][1]] = 'm';
-            }
+            await this.getMovesFromSelectedTile(row,col);
           }
         }else{
           if(this.chessboard[row][col].includes('b')){
-            let projected_squares = this.projectSinglePieceMove(row,col,'b');
-            for(let i = 0;i<projected_squares.length;i++){
-              this.chessboard_piece_projection[projected_squares[i][0]][projected_squares[i][1]] = 'm';
-            }
+            await this.getMovesFromSelectedTile(row,col);
           }
         }
-        this.printMatrix(this.chessboard_piece_projection);
+        this.printMatrix("Piece projection: ",this.chessboard_piece_projection);
       }
     }
   }
