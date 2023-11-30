@@ -1,5 +1,6 @@
 from fastapi import Depends,FastAPI, Body, Path, Query, status, HTTPException
 from fastapi.responses import HTMLResponse,JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import uuid
 import chess
 import sys
@@ -18,6 +19,15 @@ app = FastAPI()
 app.title = "Chess Openings teacher API"
 app.version = "0.0.1"
 
+# Allow all origins for development purposes, replace "*" with the specific frontend URL in production.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Add your frontend URL here
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/", tags=["root"])
 def read_root():
     return {"Hello": "World"}
@@ -32,12 +42,12 @@ def login(user: User_DTO):
 def get_games():
     return [x.to_json() for x in games]
 
-@app.get("/games/{game_id}/get_game_board", tags=["game"], response_model=str)
-def get_game_board(game_id: str = Path(default="",min_length=36,max_length=36, title="Game id")):
+@app.get("/games/{game_id}/get_game_board", tags=["game"])
+def get_game_board(game_id: str = Path(default="", title="Game id")):
     board = [x for x in filter(lambda x: x.game_id == game_id, games)]
     if len(board) == 0:
         raise HTTPException(status_code=404, detail="Invalid game id")
-    return board[0]
+    return str(board[0].board)
 
 @app.get("/games/{game_id}/get_game_element/{game_element}", tags=["game"], response_model=str)
 def get_game_element(game_id: str, game_element: str):

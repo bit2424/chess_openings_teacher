@@ -44,13 +44,13 @@
       ChessPiece,
       PromotionMenu,
     },
-    setup(){
+    async setup(){
       const chessboardStore = useChessBoardStoreAPI();
       const historyStore = useHistoryStore();
       const { chessboard,chessboard_piece_projection ,selectedTile,prevSelectedTile,lastSelectedPiece,isRotated,whiteTurn,promoting,inCheck,inCheckMate } = storeToRefs(chessboardStore);
       const { initialize, handlePieceMove, highlightPossibleMoves} = (chessboardStore);
       const { addMove,initialize_history } = (historyStore);
-      initialize();
+      await initialize();
       initialize_history();
       //chessboardStore.initialize();
       return{ chessboard, chessboard_piece_projection, selectedTile,prevSelectedTile,lastSelectedPiece,isRotated,whiteTurn,promoting,inCheck,inCheckMate,

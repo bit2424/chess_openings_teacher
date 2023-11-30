@@ -1,7 +1,7 @@
 <template>
-  <div class="board-div">
+  <!-- <div class="board-div">
     <Chessboard />
-  </div>
+  </div> -->
   <div class="board-div">
     <Chessboard_with_API />
   </div>

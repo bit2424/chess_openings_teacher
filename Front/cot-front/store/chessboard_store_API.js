@@ -18,69 +18,101 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         promoting: false,
         inCheck: 'n',
         inCheckMate: 'n',
+        game_data: '',
     }),
   
     actions: {
       async initializeGame(){
-
         try {
-          const response = await fetch('http://localhost:8000/games/create_empty_game', {
-            method: 'POST' 
-          });
-          // console.log(response);
+          const response = await fetch('http://localhost:8000/games/create_empty_game', 
+          { method: 'POST'},
+          {mode: 'no-cors'},
+          );
           const data = await response.json();
           console.log(data.game_id);
-          return data
+          this.game_id = data.game_id;
         } catch (error) {
           console.error('Fetch error:', error);
         }
-        return None
       },
-      getBoardState() {
-        // Make API request to get current board state
-        return fetch('localhost:8080/board')
-          .then(response => response.json())
-          .then(data => {
-            // Update local component state with board data
-            this.chessboard = data.board; 
-          })
+      async getBoard(){
+        try {
+          const url = `http://localhost:8000/games/${this.game_id}/get_game_board`;
+          console.log(url);
+          const response = await fetch(url, 
+          { method: 'GET'},
+          {mode: 'no-cors'},
+          );
+          const data = await response.json();
+          const data_split = data.split('\n');
+
+          for (let i = 0; i < data_split.length; i++) {
+            const line = data_split[i];
+            const chars = line.split(" ");
+          
+            for (let j = 0; j < chars.length; j++) {
+              let char = chars[j];
+              const upperChar = char.toUpperCase();
+              if (char != '.') {
+                let color = 'w';
+                if (char != upperChar) {
+                  color = 'b';
+                  char = upperChar;
+                }
+
+                this.chessboard[i][j] = char+"-"+color;
+              }
+              else {
+                this.chessboard[i][j] = 't';
+              }
+            }
+          }
+          console.log(this.chessboard);
+
+        } catch (error) {
+          console.error('Fetch error:', error);
+        }
       },
-      initialize(){
+      async initialize(){
         this.whiteTurn = true;
         this.chessboard = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
 
-        this.initializeGame();
+        await this.initializeGame();
+        await this.getBoard();
 
-        for (let i = 0; i < 8; i++) {
-            this.chessboard[1][i] = 'P-w';
-            this.chessboard[6][i] = 'P-b';
-        }
-        this.chessboard[0][0] = "R-w"; 
-        this.chessboard[0][7] = "R-w"; 
+        console.log(this.chessboard[0][0]);
+
+        // for (let i = 0; i < 8; i++) {
+        //     this.chessboard[1][i] = 'P-w';
+        //     this.chessboard[6][i] = 'P-b';
+        // }
+        // this.chessboard[0][0] = "R-w"; 
+        // this.chessboard[0][7] = "R-w"; 
         
-        this.chessboard[7][0] = "R-b";
-        this.chessboard[7][7] = "R-b";
+        // this.chessboard[7][0] = "R-b";
+        // this.chessboard[7][7] = "R-b";
     
-        this.chessboard[0][1] = "N-w"; 
-        this.chessboard[0][6] = "N-w"; 
+        // this.chessboard[0][1] = "N-w"; 
+        // this.chessboard[0][6] = "N-w"; 
         
-        this.chessboard[7][1] = "N-b";
-        this.chessboard[7][6] = "N-b";
+        // this.chessboard[7][1] = "N-b";
+        // this.chessboard[7][6] = "N-b";
     
-        this.chessboard[0][2] = "N-w"; 
-        this.chessboard[0][5] = "N-w"; 
+        // this.chessboard[0][2] = "N-w"; 
+        // this.chessboard[0][5] = "N-w"; 
         
-        this.chessboard[7][2] = "B-b";
-        this.chessboard[7][5] = "B-b";
+        // this.chessboard[7][2] = "B-b";
+        // this.chessboard[7][5] = "B-b";
     
-        this.chessboard[0][2] = "B-w"; 
-        this.chessboard[0][5] = "B-w"; 
+        // this.chessboard[0][2] = "B-w"; 
+        // this.chessboard[0][5] = "B-w"; 
         
-        this.chessboard[0][3] = "Q-w"; 
-        this.chessboard[0][4] = "K-w";
+        // this.chessboard[0][3] = "Q-w"; 
+        // this.chessboard[0][4] = "K-w";
     
-        this.chessboard[7][3] = "Q-b";
-        this.chessboard[7][4] = "K-b"; 
+        // this.chessboard[7][3] = "Q-b";
+        // this.chessboard[7][4] = "K-b"; 
+        console.log("Here we are::::: ",this.chessboard);
       },
       handlePieceMove() {
         // Logic to handle turns
