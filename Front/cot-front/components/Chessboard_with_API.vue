@@ -64,7 +64,7 @@
   },
   methods: {
 
-    handleTileClick(row, col) {
+    async handleTileClick(row, col) {
       // Toggle selected tile on click
         if(this.chessboard[row-1][col-1]!='t'){
           this.highlightPossibleMoves(row-1,col-1);
@@ -87,7 +87,7 @@
           this.selectedTile = [row,col];
           
           if(this.lastSelectedPiece != 't'){
-             const moved = this.handlePieceMove();
+             const moved = await this.handlePieceMove();
              if(moved){
               // 
               this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));

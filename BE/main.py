@@ -49,13 +49,21 @@ def get_game_board(game_id: str = Path(default="", title="Game id")):
         raise HTTPException(status_code=404, detail="Invalid game id")
     return str(board[0].board)
 
-@app.get("/games/{game_id}/get_moves_for_position/{position}", tags=["game"])
-def get_moves_for_position(game_id: str = Path(default="", title="Game id"),position: int = Path(default=0, title="Game id")):
+@app.get("/games/{game_id}/get_moves_for_position/{init_square}", tags=["game"])
+def get_moves_for_position(game_id: str = Path(default="", title="Game id"),init_square: int = Path(default=0, title="Initial Square")):
     game = [x for x in filter(lambda x: x.game_id == game_id, games)]
     if len(game) == 0:
         raise HTTPException(status_code=404, detail="Invalid game id")
-    moves = game[0].get_moves_for_position(position)
+    moves = game[0].get_moves_for_position(init_square)
     return moves
+
+@app.post("/games/{game_id}/process_move/{init_square}/{end_square}", tags=["game"])
+def process_move(game_id: str = Path(default="", title="Game id"),init_square: int = Path(default=0, title="Initial Square"),end_square: int = Path(default=0, title="End Square")):
+    game = [x for x in filter(lambda x: x.game_id == game_id, games)]
+    if len(game) == 0:
+        raise HTTPException(status_code=404, detail="Invalid game id")
+    state = game[0].process_move(init_square, end_square)
+    return state
 
 @app.get("/games/{game_id}/get_game_element/{game_element}", tags=["game"], response_model=str)
 def get_game_element(game_id: str, game_element: str):
