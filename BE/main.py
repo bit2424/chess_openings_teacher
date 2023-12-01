@@ -57,12 +57,12 @@ def get_moves_for_position(game_id: str = Path(default="", title="Game id"),init
     moves = game[0].get_moves_for_position(init_square)
     return moves
 
-@app.post("/games/{game_id}/process_move/{init_square}/{end_square}", tags=["game"])
-def process_move(game_id: str = Path(default="", title="Game id"),init_square: int = Path(default=0, title="Initial Square"),end_square: int = Path(default=0, title="End Square")):
+@app.post("/games/{game_id}/process_move/{init_square}/{end_square}/{promotion_piece}", tags=["game"])
+def process_move(game_id: str = Path(default="", title="Game id"),init_square: int = Path(default=0, title="Initial Square"),end_square: int = Path(default=0, title="End Square"), promotion_piece: str = Path(default="", title="Promotion piece")):
     game = [x for x in filter(lambda x: x.game_id == game_id, games)]
     if len(game) == 0:
         raise HTTPException(status_code=404, detail="Invalid game id")
-    state = game[0].process_move(init_square, end_square)
+    state = game[0].process_move(init_square, end_square, promotion_piece)
     return state
 
 @app.get("/games/{game_id}/get_game_element/{game_element}", tags=["game"], response_model=str)

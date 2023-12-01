@@ -88,11 +88,11 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           console.error('Fetch error:', error);
         }
       },
-      async processMove(prev_row,prev_col,row,col){
+      async processMove(prev_row,prev_col,row,col,promotion_piece){
         try {
           const initial_square = this.getIntegerPositionFromTile(prev_row,prev_col);
           const final_square = this.getIntegerPositionFromTile(row,col);
-          const url = `http://localhost:8000/games/${this.game_id}/process_move/${initial_square}/${final_square}`;
+          const url = `http://localhost:8000/games/${this.game_id}/process_move/${initial_square}/${final_square}/${promotion_piece}`;
           console.log(url);
           const response = await fetch(url, 
           { method: 'POST'},
@@ -117,37 +117,26 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         if(this.whiteTurn && this.lastSelectedPiece.includes('b')) return
         if(!this.whiteTurn && this.lastSelectedPiece.includes('w')) return
         
-        let color = this.lastSelectedPiece.split('-')[1];
-        let pieceType = this.lastSelectedPiece.split('-')[0];
-        const move_info = await this.processMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1, this.selectedTile[0]-1, this.selectedTile[1]-1);
-        console.log(move_info);
+        // let color = this.lastSelectedPiece.split('-')[1];
+        // let pieceType = this.lastSelectedPiece.split('-')[0];
+        
+        const move_info = await this.processMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1, this.selectedTile[0]-1, this.selectedTile[1]-1, "t");
+        
+        console.log("MOVE INFO",move_info);
 
         if(move_info.isValid == false) return false;
 
-        const move_types = move_info.moveTypes;
-
-        console.log("MOVE TYPES: ",move_types.includes("check"));
-        console.log("MOVE TYPES: ",move_types);
-
-        //Implement logic to handle promotion
-        if(move_info.moveType == 'promotion'){
-          this.checkPromotion(color,pieceType);
-        }
+        const game_info = move_info.gameInfo;
         
         await this.getBoard();
         
-        this.isCheckOrMate(move_types.includes("check"), move_types.includes("checkmate"));
-        
         this.printMatrix(this.chessboard);
+        
+        this.updateGameState(game_info);
         
         this.whiteTurn = !this.whiteTurn;
 
         return true;
-        // for(let i = 0; i < projected_squares.length; i++){
-        //   if(projected_squares[i][0]+1 == this.selectedTile[0] && projected_squares[i][1]+1 ==  this.selectedTile[1]){
-        //     return this.movePiece(color,pieceType);
-        //   }
-        // }
       },
       getIntegerPositionFromTile(row,col){
         if (this.isRotated) {
@@ -168,7 +157,17 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
       
         return [row, col];
       },
-      isCheckOrMate(checked,checkedMate){
+      updateGameState(game_info){
+        const checked = game_info.includes("check");
+        const checkedMate = game_info.includes("checkmate");
+        let draw = false;
+        for(let i = 0; i < game_info.length; i++){
+          if(game_info[i].includes('draw')){
+            draw = true;
+            break;
+          }
+        }
+
         if(checked){
           console.log("Opponent is checked");
           this.inCheck = `K-${this.whiteTurn?'b':'w'}`;
@@ -176,7 +175,12 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
             this.inCheckMate = `K-${this.whiteTurn?'b':'w'}`;
             console.log("Opponent is Checkmate!!!!");
           }
-        }else{
+        }else if(draw){
+          console.log("DRAW!!!!");
+          this.inCheck = `K-${this.whiteTurn?'b':'w'}`;
+          
+        }
+        else{
           this.inCheck = 'n';
           this.inCheckMate = 'n';
         }
@@ -216,6 +220,7 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
 
         return checkmate;
       },
+
       checkPromotion(color,pieceType){
         if(color == 'w'){
           if(this.selectedTile[0] == 8){
@@ -232,8 +237,8 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
       promote(row,col,new_piece){
         this.chessboard[row][col] = new_piece;
         let color = this.chessboard[row][col].split('-')[1];
-        this.checkOrMate(color);
       },
+
       printMatrix(matrix) {
         let str = '';
         for (let i = 0; i < matrix.length; i++) {

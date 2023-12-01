@@ -33,14 +33,13 @@ class Game():
 
         return piece_moves
     
-    def process_move(self, init_square, end_square):
+    def process_move(self, init_square, end_square, promotion_piece):
             
         init_pos = chess.square_name(init_square)
         end_pos = chess.square_name(end_square)
+        promotion_piece = "" if promotion_piece == "t" else promotion_piece
         
-        print("HOLLAAAA ",init_pos + end_pos)
-        
-        if self.board.is_legal(chess.Move.from_uci(init_pos + end_pos)):
+        if self.board.is_legal(chess.Move.from_uci(init_pos + end_pos + promotion_piece)):
                 
             move = chess.Move.from_uci(init_pos + end_pos)
 
@@ -64,14 +63,43 @@ class Game():
             
             if self.board.is_check():
                 move_type.append("check")
-                
-            if self.board.is_checkmate():
-                move_type.append("checkmate")
+            
+            move_type.extend(self.check_game_state())
+            
 
             
-            return {"isValid":True,"moveTypes":move_type}
+            return {"isValid":True,"gameInfo":move_type}
         else:
-            return {"isValid":False,"moveTypes":None}
+            return {"isValid":False,"gameInfo":None}
+    
+    def check_game_state(self):
+        """
+        Checks if the game is over and returns the result.
+        """
+        game_state = []
+        
+        # Check for checkmate
+        if self.board.is_checkmate():
+            game_state.append("checkmate")
+
+        # Check for stalemate  
+        if self.board.is_stalemate():
+            game_state.append("draw-stalemate")
+
+        # Check for insufficient material
+        if self.board.is_insufficient_material():
+            game_state.append("draw-insufficient material")
+
+        # Check for 75 move rule
+        if self.board.is_seventyfive_moves():
+            game_state.append("draw-75 move rule")
+
+        # Check for 5-fold repetition
+        if self.board.is_fivefold_repetition():
+            game_state.append("draw-5-fold repetition")
+
+        # Game is still in progress
+        return game_state
         
     def index_to_chess_pos(index):
         rows = "87654321" 
