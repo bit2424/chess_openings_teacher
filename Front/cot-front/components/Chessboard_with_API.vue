@@ -67,7 +67,7 @@
     async handleTileClick(row, col) {
       // Toggle selected tile on click
         if(this.chessboard[row-1][col-1]!='t'){
-          this.highlightPossibleMoves(row-1,col-1);
+          await this.highlightPossibleMoves(row-1,col-1);
         }
 
         if(this.selectedTile.join('-') == `${row}-${col}` && !this.promoting){
@@ -78,18 +78,19 @@
         }
         else{
 
+          
           if(this.selectedTile[0] < 0){
             this.lastSelectedPiece = 't';
           }else{
             this.lastSelectedPiece = this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1];
           }
+
           this.prevSelectedTile = this.selectedTile;
           this.selectedTile = [row,col];
           
           if(this.lastSelectedPiece != 't'){
              const moved = await this.handlePieceMove();
              if(moved){
-              // 
               this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
              }
           }

@@ -12,7 +12,7 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         chessboard_piece_projection: Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't')),
         selectedTile: [-1,-1], // Keep track of selected tile
         prevSelectedTile: [-2,-2],
-        lastSelectedType: "t",
+        lastSelectedPiece: "t",
         isRotated: true,
         whiteTurn: true,
         promoting: false,
@@ -118,13 +118,11 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
       },
       async handlePieceMove() {
         // Logic to handle turns
-        console.log("BROOOOOOO");
-        if(this.whiteTurn && this.lastSelectedType.includes('b')) return
-        if(!this.whiteTurn && this.lastSelectedType.includes('w')) return
+        if(this.whiteTurn && this.lastSelectedPiece.includes('b')) return
+        if(!this.whiteTurn && this.lastSelectedPiece.includes('w')) return
         
-        let color = this.lastSelectedType.split('-')[1];
-        let pieceType = this.lastSelectedType.split('-')[0];
-        // let projected_squares = this.projectSinglePieceMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1,color);
+        let color = this.lastSelectedPiece.split('-')[1];
+        let pieceType = this.lastSelectedPiece.split('-')[0];
         const move_info = await this.processMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1, this.selectedTile[0]-1, this.selectedTile[1]-1);
         console.log(move_info);
 
@@ -142,7 +140,11 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         if(move_info.moveType == 'promotion'){
           this.checkPromotion(color,pieceType);
         }
+        
         this.movePiece(color,pieceType);
+
+        this.printMatrix(this.chessboard);
+
         return true;
         // for(let i = 0; i < projected_squares.length; i++){
         //   if(projected_squares[i][0]+1 == this.selectedTile[0] && projected_squares[i][1]+1 ==  this.selectedTile[1]){
@@ -151,12 +153,10 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         // }
       },
       movePiece(color, pieceType) {
-        const historyStore = useHistoryStore();
-        let prev_val = this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1];
-        
+        const prev_val = this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1];
         //Make the move
         this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1] = 't';
-        this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = `${pieceType}-${color}`;
+        this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1] = prev_val;
         // this.checkOrMate(color);
         this.whiteTurn = !this.whiteTurn;
         
@@ -391,8 +391,8 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
             await this.getMovesFromSelectedTile(row,col);
           }
         }
-        console.log("Piece projection: ");
-        this.printMatrix(this.chessboard_piece_projection);
+        // console.log("Piece projection: ");
+        // this.printMatrix(this.chessboard_piece_projection);
       }
     }
   }
