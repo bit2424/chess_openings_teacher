@@ -44,27 +44,34 @@ class Game():
                 
             move = chess.Move.from_uci(init_pos + end_pos)
 
-            # Check move type
+            move_type = []
+
             if self.board.is_castling(move):
-                move_type = "castling"
-            elif self.board.is_en_passant(move):
-                move_type = "en passant"
+                move_type.append("castling")
             elif self.board.is_capture(move):
-                move_type = "capture"
-            elif self.board.piece_at(init_square).piece_type == chess.PAWN:
-                if int(end_pos[-1]) in [0, 7]:
-                    move_type = "promotion"
-                else:
-                    move_type = "pawn move"
+                move_type.append("capture")
             else:
-                move_type = "quiet move"
+                move_type.append("quiet move")
+            
+            if self.board.piece_at(init_square).piece_type == chess.PAWN:
+                if int(end_pos[-1]) in [0, 7]:
+                    move_type.append("promotion")
+                else:
+                    move_type.append("pawn move")
 
             # Make the move
             self.board.push(move)
             
-            return {"isValid":True,"moveType":move_type}
+            if self.board.is_check():
+                move_type.append("check")
+                
+            if self.board.is_checkmate():
+                move_type.append("checkmate")
+
+            
+            return {"isValid":True,"moveTypes":move_type}
         else:
-            return {"isValid":False,"moveType":None}
+            return {"isValid":False,"moveTypes":None}
         
     def index_to_chess_pos(index):
         rows = "87654321" 
