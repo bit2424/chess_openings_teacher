@@ -22,7 +22,7 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
     }),
   
     actions: {
-      async initializeGame(){
+      async initializeGameFromAPI(){
         try {
           const response = await fetch('http://localhost:8000/games/create_empty_game', 
           { method: 'POST'},
@@ -35,7 +35,7 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           console.error('Fetch error:', error);
         }
       },
-      async getBoard(){
+      async getBoardFromAPI(){
         try {
           const url = `http://localhost:8000/games/${this.game_id}/get_game_board`;
           const response = await fetch(url, 
@@ -71,7 +71,7 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           console.error('Fetch error:', error);
         }
       },
-      async getMovesFromSelectedTile(row,col){
+      async getMovesFromSelectedTileFromAPI(row,col){
         try {
           const url = `http://localhost:8000/games/${this.game_id}/get_moves_for_position/${this.getIntegerPositionFromTile(row,col)}`;
           const response = await fetch(url, 
@@ -88,14 +88,13 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           console.error('Fetch error:', error);
         }
       },
-      async processMove(prev_row,prev_col,row,col,promotion_piece){
+      async processMoveFromAPI(prev_row,prev_col,row,col,promotion_piece){
         try {
           const initial_square = this.getIntegerPositionFromTile(prev_row,prev_col);
           const final_square = this.getIntegerPositionFromTile(row,col);
           const url = `http://localhost:8000/games/${this.game_id}/process_move/${initial_square}/${final_square}/${promotion_piece}`;
-          console.log(url);
           const response = await fetch(url, 
-          { method: 'POST'},
+            { method: 'POST'},
           );
           const data = await response.json();
           console.log(data);
@@ -108,35 +107,41 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         this.whiteTurn = true;
         this.chessboard = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
 
-        await this.initializeGame();
-        await this.getBoard();
+        await this.initializeGameFromAPI();
+        await this.getBoardFromAPI();
 
       },
       async handlePieceMove() {
         // Logic to handle turns
-        if(this.whiteTurn && this.lastSelectedPiece.includes('b')) return
-        if(!this.whiteTurn && this.lastSelectedPiece.includes('w')) return
-        
-        // let color = this.lastSelectedPiece.split('-')[1];
-        // let pieceType = this.lastSelectedPiece.split('-')[0];
-        
-        const move_info = await this.processMove(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1, this.selectedTile[0]-1, this.selectedTile[1]-1, "t");
-        
-        console.log("MOVE INFO",move_info);
+        if(this.whiteTurn && this.lastSelectedPiece.includes('b')) return false
+        if(!this.whiteTurn && this.lastSelectedPiece.includes('w')) return false
 
-        if(move_info.isValid == false) return false;
-
-        const game_info = move_info.gameInfo;
+        await this.isPawnPromotable(this.selectedTile[0]-1,this.selectedTile[1]-1);
         
-        await this.getBoard();
-        
-        this.printMatrix(this.chessboard);
-        
-        this.updateGameState(game_info);
-        
-        this.whiteTurn = !this.whiteTurn;
-
-        return true;
+        if(!this.promoting){
+          const pieceMoved = await  this.processMove();
+          return pieceMoved;
+        }
+        return false;
+      },
+      async processMove(promotion_piece = "t"){
+          const move_info = await this.processMoveFromAPI(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1, this.selectedTile[0]-1, this.selectedTile[1]-1, promotion_piece);
+          
+          console.log("MOVE INFO",move_info);
+  
+          if(move_info.isValid == false) return false;
+  
+          const game_info = move_info.gameInfo;
+          
+          await this.getBoardFromAPI();
+          
+          this.printMatrix(this.chessboard);
+          
+          this.updateGameState(game_info);
+          
+          this.whiteTurn = !this.whiteTurn;
+  
+          return true;
       },
       getIntegerPositionFromTile(row,col){
         if (this.isRotated) {
@@ -185,58 +190,19 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           this.inCheckMate = 'n';
         }
       },
-      isCheck(row,col,prevRow,prevCol,color){
-        let check = true;
-        let opposing_color = 'w';
+
+      async isPawnPromotable(row,col){
+        let condition = (row == 7 || row == 0);
+        condition &= this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1].includes('P');
         
-        return check;
-      },
+        const temp_chessboard_piece_projection = this.chessboard_piece_projection;
 
-      isCheckmate(color){
-        let checkmate = true;
+        await this.getMovesFromSelectedTileFromAPI(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1);
+        condition &= this.chessboard_piece_projection[row][col] == 'm';
 
-        for (let i = 0; i < 8; i++) {
-          for (let j = 0; j < 8; j++) {
-            if(this.chessboard[i][j].includes(color)){
-
-              let moves_to_try = this.projectSinglePieceMove(i,j,color);
-              for(let k = 0; k<moves_to_try.length; k++){
-                let next_prev_val = this.chessboard[moves_to_try[k][0]][moves_to_try[k][1]];
-                let curr_prev_val = this.chessboard[i][j];
-                let pieceType = curr_prev_val.split('-')[0];
-                let pieceColor = curr_prev_val.split('-')[1];
-                //Make the move
-                this.chessboard[i][j] = 't';
-                this.chessboard[moves_to_try[k][0]][moves_to_try[k][1]] = `${pieceType}-${pieceColor}`;
-                if(!this.isCheck(moves_to_try[k][0],moves_to_try[k][1],i,j,pieceColor)){
-                  checkmate = false;
-                }
-                this.chessboard[i][j] = curr_prev_val;
-                this.chessboard[moves_to_try[k][0]][moves_to_try[k][1]] = next_prev_val;
-              }
-            }
-          }
-        }
-
-        return checkmate;
-      },
-
-      checkPromotion(color,pieceType){
-        if(color == 'w'){
-          if(this.selectedTile[0] == 8){
-            this.promoting = true;
-          }
-        }else{
-          if(this.selectedTile[0] == 1){
-            this.promoting = true;
-          }
-        }
-        console.log("Promoting? ",color,this.selectedTile[0],this.promoting);
-      },
-      
-      promote(row,col,new_piece){
-        this.chessboard[row][col] = new_piece;
-        let color = this.chessboard[row][col].split('-')[1];
+        this.chessboard_piece_projection = temp_chessboard_piece_projection;
+        
+        this.promoting = condition;
       },
 
       printMatrix(matrix) {
@@ -254,11 +220,11 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
         if(this.whiteTurn){
           if(this.chessboard[row][col].includes('w')){
-            await this.getMovesFromSelectedTile(row,col);
+            await this.getMovesFromSelectedTileFromAPI(row,col);
           }
         }else{
           if(this.chessboard[row][col].includes('b')){
-            await this.getMovesFromSelectedTile(row,col);
+            await this.getMovesFromSelectedTileFromAPI(row,col);
           }
         }
       }

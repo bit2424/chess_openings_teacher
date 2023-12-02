@@ -22,14 +22,14 @@
                    <ChessPiece :class="`piece ${getHighlightedClass(row,col,'piece')} ${getCheckedInfo(row,col)}`" :icon="chessboard[row-1][col-1]" />
                 </div>
 
-                <div v-if="promoting && isPromotedPawn(row,col)"><PromotionMenu/></div>
+                <div v-if="promoting && isThisCellPromoted(row,col)"><PromotionMenu/></div>
             </div>
         </div>
 
     </div>
   </template>
   
-  <script>
+<script>
   import ChessPiece from '../components/ChessPiece.vue';
   import PromotionMenu from '../components/PromotionMenu.vue';
   import { useChessBoardStoreAPI } from '@/store/chessboard_store_API';
@@ -48,13 +48,13 @@
       const chessboardStore = useChessBoardStoreAPI();
       const historyStore = useHistoryStore();
       const { chessboard,chessboard_piece_projection ,selectedTile,prevSelectedTile,lastSelectedPiece,isRotated,whiteTurn,promoting,inCheck,inCheckMate } = storeToRefs(chessboardStore);
-      const { initialize, handlePieceMove, highlightPossibleMoves} = (chessboardStore);
+      const { initialize, handlePieceMove, highlightPossibleMoves,printMatrix} = (chessboardStore);
       const { addMove,initialize_history } = (historyStore);
       await initialize();
       initialize_history();
       //chessboardStore.initialize();
       return{ chessboard, chessboard_piece_projection, selectedTile,prevSelectedTile,lastSelectedPiece,isRotated,whiteTurn,promoting,inCheck,inCheckMate,
-              initialize,handlePieceMove,highlightPossibleMoves};
+              initialize,handlePieceMove,highlightPossibleMoves,printMatrix};
     },
     data() {
     return {
@@ -70,15 +70,14 @@
           await this.highlightPossibleMoves(row-1,col-1);
         }
 
-        if(this.selectedTile.join('-') == `${row}-${col}` && !this.promoting){
+        if(this.selectedTile.join('-') == `${row}-${col}`){
+          console.log("LOOOOOOOOOOOOL");
           this.selectedTile = [-1,-1];
           this.prevSelectedTile = [-2,-2];
-          // 
           this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
         }
         else{
 
-          
           if(this.selectedTile[0] < 0){
             this.lastSelectedPiece = 't';
           }else{
@@ -121,6 +120,12 @@
         return '';
       }
     },
+    isThisCellPromoted(row,col){
+      if((row == 8 || row == 1) && this.selectedTile.join('-') === `${row}-${col}`){
+        console.log("LOOOOOOL");
+        return true;
+      }
+    },
     getCheckedInfo(row,col){
       
       if(this.inCheckMate == this.chessboard[row-1][col-1]){
@@ -133,12 +138,7 @@
       }
 
       return '';
-    },
-    isPromotedPawn(row,col){
-      if((row == 8 || row == 1) && this.chessboard[row-1][col-1].includes('P')){
-        return true;
-      }
-    }    
+    }
 
   },
 

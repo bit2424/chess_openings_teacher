@@ -20,7 +20,7 @@
   
   <script>
   import ChessPiece from '../components/ChessPiece.vue';
-  import { useChessBoardStore } from '@/store/chessboard_store';
+  import { useChessBoardStoreAPI } from '@/store/chessboard_store_API';
   import { useHistoryStore } from '@/store/history_store';
   import { storeToRefs } from 'pinia';
 
@@ -32,11 +32,11 @@
       ChessPiece,
     },
     setup(){
-      const chessboardStore = useChessBoardStore();
-      const { selectedTile,whiteTurn,chessboard,promoting } = storeToRefs(chessboardStore);
-      const { promote} = (chessboardStore);
+      const chessboardStore = useChessBoardStoreAPI();
+      const { prevSelectedTile,selectedTile,whiteTurn,chessboard,promoting } = storeToRefs(chessboardStore);
+      const { processMove} = (chessboardStore);
       //chessboardStore.initialize();
-      return{selectedTile,whiteTurn,chessboard,promote,promoting};
+      return{selectedTile,prevSelectedTile,whiteTurn,chessboard,processMove,promoting};
     },
     data() {
     return {
@@ -49,9 +49,8 @@
         if(row == 1) piece += "Q";
         if(row == 2) piece += "N";
         if(row == 3) piece += "R";
-        if(row == 4) piece += "B"; 
-        console.log(this.selectedTile[0],this.selectedTile[1]);
-        if(this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1].includes('w')){
+        if(row == 4) piece += "B";
+        if(this.whiteTurn){
             piece+="-w";
         }else{
             piece+="-b";
@@ -60,19 +59,15 @@
         return piece;
     },
 
-    handleTileClick(row, col) {
-        console.log("promoting beach", row, col);
+    async handleTileClick(row, col) {
+        console.log("promotingggg", row, col);
         let piece = '';
-        if(row == 1) piece += "Q";
-        if(row == 2) piece += "N";
-        if(row == 3) piece += "R";
-        if(row == 4) piece += "B";
-        if(this.chessboard[this.selectedTile[0]-1][this.selectedTile[1]-1].includes('w')){
-            piece+="-w";
-        }else{
-            piece+="-b";
-        }
-        this.promote(this.selectedTile[0]-1,this.selectedTile[1]-1,piece);
+        if(row == 1) piece += "q";
+        if(row == 2) piece += "n";
+        if(row == 3) piece += "r";
+        if(row == 4) piece += "b";
+        
+        await this.processMove(piece);
         this.promoting = false;
     }
   },

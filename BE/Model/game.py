@@ -8,6 +8,7 @@ class Game():
         self.game_id = str(uuid.uuid4())
         self.board = chess.Board()
         self.move_list = move_list
+        self.game_history = []
         for move in self.move_list:
             if move is str:
                 self.board.push(chess.Move.from_uci(move))
@@ -18,18 +19,35 @@ class Game():
             "game_id": self.game_id,
             "board": self.board, 
             "move_list": self.move_list,
-            "result": self.result
+            "result": self.result,
+            "history": self.game_history
         }
     
     def get_moves_for_position(self, start_square):
         # Get list of legal moves for the piece
-        legal_moves = list(self.board.legal_moves)
+        legal_moves = self.board.generate_legal_moves()
 
         # Filter to only moves by the given piece
         piece_moves = []
+        
+        moves_matrix = [[0 for _ in range(8)] for _ in range(8)]
+        
         for move in legal_moves:
+            
+            row = move.from_square // 8
+            col = move.from_square % 8
+        
+            moves_matrix[row][col] = 1
             if move.from_square == start_square:
                 piece_moves.append(move)
+                moves_matrix[row][col] += 1
+                piece_moves.append(move)
+        
+            
+        for row in range(8):
+            for col in range(8):
+                print(moves_matrix[row][col], end=" ")
+            print()
 
         return piece_moves
     
@@ -53,13 +71,21 @@ class Game():
                 move_type.append("quiet move")
             
             if self.board.piece_at(init_square).piece_type == chess.PAWN:
-                if int(end_pos[-1]) in [0, 7]:
+                if promotion_piece!= "":
                     move_type.append("promotion")
                 else:
                     move_type.append("pawn move")
 
+            promotion_color = self.board.turn
             # Make the move
             self.board.push(move)
+            print("BOARD: \n",self.board)
+            if promotion_piece!= "":
+                if(promotion_piece == "q"): new_piece = chess.Piece(chess.QUEEN, promotion_color)
+                if(promotion_piece == "r"): new_piece = chess.Piece(chess.ROOK, promotion_color)
+                if(promotion_piece == "b"): new_piece = chess.Piece(chess.BISHOP, promotion_color)
+                if(promotion_piece == "n"): new_piece = chess.Piece(chess.KNIGHT, promotion_color)
+                self.board.set_piece_at(end_square, new_piece)
             
             if self.board.is_check():
                 move_type.append("check")
