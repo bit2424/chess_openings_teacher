@@ -1,46 +1,53 @@
 <!-- components/Chessboard.vue -->
 <template>
+
+    <div class="chessboard-container">
+
+      <div class="buttons-container">
+        <button @click="resetGame()" class="opt-button" >
+          <font-awesome-icon class="opt-button-content" :icon="['fas', 'trash-arrow-up']" />
+        </button>
     
-    <button @click="resetGame()" class="opt-button" >
-      <font-awesome-icon :icon="['fas', 'trash-arrow-up']" />
-    </button>
+        <button @click="undoLastMove()" class="opt-button" >
+          <font-awesome-icon class="opt-button-content" :icon="['fas', 'rotate-left']" />
+        </button>
+      </div>
 
-    <button @click="undoLastMove()" class="opt-button" >
-      <font-awesome-icon :icon="['fas', 'rotate-left']" />
-    </button>
-
-    <!-- <button @click="invertBo()" class="opt-button" >
-      <font-awesome-icon :icon="['fas', 'rotate-left']" />
-    </button> -->
-
-
-    <div :class="`chessboard ${ isRotated ? '':'rotated-component' }`">
-        <div
-            v-for="col in 8"
-            :key="`col-${col}`"
-            class="chessboard-col"
-            >
-            <div
-                v-for="row in 8"
-                :key="`row-${row}`"
-                :class="`tile ${((row + col) % 2 === 0) ? 'light' : 'dark'} ${getSelectedState(row,col)} row-${row} col-${col}`"
-                @click="handleTileClick(row, col)"
-            >
-                <div v-if="row == 8" :class=" `col_ids ${((row + col) % 2 === 0) ? `light_txt` : `dark_txt`} ` ">{{ col_ids[col-1] }}</div>
-                
-                <div v-if="col == 1" :class="`row_ids ${((row + col) % 2 === 0) ? `light_txt` : `dark_txt`}`">{{ row_ids[row-1] }}</div>
-
-                <div v-if="chessboard[row-1][col-1] == 't' && chessboard_piece_projection[row-1][col-1] === 'm'" :class="`${getHighlightedClass(row,col,'tile')}`" ></div>
-
-                <div v-if="chessboard[row-1][col-1] != 't'">
-                   <ChessPiece :class="`piece ${getHighlightedClass(row,col,'piece')} ${getCheckedInfo(row,col)}`" :icon="chessboard[row-1][col-1]" />
-                </div>
-
-                <div v-if="promoting && isThisCellPromoted(row,col)"><PromotionMenu/></div>
-            </div>
-        </div>
-
+  
+      <!-- <button @click="invertBo()" class="opt-button" >
+        <font-awesome-icon :icon="['fas', 'rotate-left']" />
+      </button> -->
+  
+  
+      <div :class="`chessboard ${ isRotated ? '':'rotated-component' }`">
+          <div
+              v-for="col in 8"
+              :key="`col-${col}`"
+              class="chessboard-col"
+              >
+              <div
+                  v-for="row in 8"
+                  :key="`row-${row}`"
+                  :class="`tile ${((row + col) % 2 === 0) ? 'light' : 'dark'} ${getSelectedState(row,col)} row-${row} col-${col}`"
+                  @click="handleTileClick(row, col)"
+              >
+                  <div v-if="row == 8" :class=" `col_ids ${((row + col) % 2 === 0) ? `light_txt` : `dark_txt`} ` ">{{ col_ids[col-1] }}</div>
+                  
+                  <div v-if="col == 1" :class="`row_ids ${((row + col) % 2 === 0) ? `light_txt` : `dark_txt`}`">{{ row_ids[row-1] }}</div>
+  
+                  <div v-if="chessboard[row-1][col-1] == 't' && chessboard_piece_projection[row-1][col-1] === 'm'" :class="`${getHighlightedClass(row,col,'tile')}`" ></div>
+  
+                  <div v-if="chessboard[row-1][col-1] != 't'">
+                     <ChessPiece :class="`piece ${getHighlightedClass(row,col,'piece')} ${getCheckedInfo(row,col)}`" :icon="chessboard[row-1][col-1]" />
+                  </div>
+  
+                  <div v-if="promoting && isThisCellPromoted(row,col)"><PromotionMenu/></div>
+              </div>
+          </div>
+  
+      </div>
     </div>
+
   </template>
   
 <script>
@@ -62,7 +69,7 @@
     components: {
       ChessPiece,
       PromotionMenu,
-      FontAwesomeIcon
+      FontAwesomeIcon,
     },
     async setup(){
       const chessboardStore = useChessBoardStoreAPI();
@@ -160,7 +167,6 @@
     },
     resetGame(){
       this.initialize();
-      this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
     }
 
   },
@@ -170,23 +176,45 @@
   </script>
   
   <style scoped>
-  
+
+    :root {
+      --tile-size: 4vw;
+      --piece-size: 2vw;
+    }
+    
+    .chessboard-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      /* margin: 2vw; */
+    }
+
+    .buttons-container {
+      display: flex;
+      /* height: 54vh; */
+      flex-direction: column;
+      align-items: center;
+      margin: 2vw;
+    }
     .chessboard {
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(8, 1fr);
-        width: 400px; /* Adjust the width as needed */
-        height: 400px; /* Adjust the height as needed */
+      display: grid;
+      grid-template-columns: repeat(8, 5vw);
+      grid-template-rows: repeat(8, 5vw);
+      /* width: 20vw; Adjust the width as a percentage of the viewport width */
+      /* height: 20vw; Adjust the height as a percentage of the viewport width */
+      /* max-width: 400px; Set a maximum width if needed */
+      /* max-height: 400px; Set a maximum height if needed */
+      margin: 2vw; /* Adjust the margin as a percentage of the viewport width */
     }
 
     .tile {
-        position: relative;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border:2px solid transparent;
+      position: relative;
+      width: 5vw; /* Take up the full width of the parent container */
+      height: 5vw; /* Take up the full height of the parent container */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* border: 0.5vw solid transparent; */
     }
 
     .light {
@@ -200,12 +228,14 @@
     .light_txt {
         /* background-color: #f0d9b5; Set a light color */
         color: #b58863;
-        font-size: 100%;
+        font-size: 1.5vw;
+        margin:0.15vw;
     }
 
     .dark_txt {
         color: #f0d9b5; /* Set a dark color */
-        font-size: 100%;
+        font-size: 1.5vw;
+        margin:0.15vw;
     }
 
     .row_ids {
@@ -226,15 +256,15 @@
     }
 
     .checked {
-      width: 25px;
-      height: 25px;
+      width: 2vw;
+      height: 2vw;
       border-radius: 100%;
       background-color: #99B2DD;
     }
 
     .checkMated {
-      width: 25px;
-      height: 25px;
+      width: 2vw;
+      height: 2vw;
       border-radius: 100%;
       background-color: #573280;
     }
@@ -245,8 +275,8 @@
 
     .highlight {
       /* position: absolute; */
-      width: 10px;
-      height: 10px;
+      width: 0.9vw;
+      height: 0.9vw;
       border-radius: 100%;
       /* background: rgba(141,128,173,0.8); */
       background: rgba(153,178,221,0.8);
@@ -254,33 +284,40 @@
 
     .piece{
       position: relative;
-      /* top: 50%; 
-      left: 50%; */
-      width: 25px;
-      height: 25px;
-      border: 3px;
-      padding: 5px;
+      width: 2.5vw;
+      height: 2.5vw;
+      border: 1vw;
+      padding: 1vw;
     }
 
     .highlight-piece{
       /* position:absolute; */
-      width: 25px;
-      height: 25px;
+      width: 2vw;
+      height: 2vw;
       border-radius: 100%;
       border: 3px solid #99B2DD;
       background: none;
     }
 
     .opt-button{
-      /* position: absolute; */
-      padding: 5px;
-      margin-bottom: 10px;
-      margin-right: 10px;
-      border: 3px solid #99B2DD;
+      
+      /* width: 3vw;
+      height: 3vw; */
+      padding: 1vw; /* Adjust the padding as a percentage of the viewport width*/
+      margin-bottom: 1vw; 
+
+      border: 0.3vw solid #99B2DD;
       background: none;
       color: #99B2DD;
       font-size: 100%;
       transition: background-color 0.2s;
+    }
+
+    .opt-button-content{
+      /* position: absolute; */
+      padding:1px;
+      width: 1.5vw;
+      height: 1.5vw;
     }
 
     .opt-button:hover {
