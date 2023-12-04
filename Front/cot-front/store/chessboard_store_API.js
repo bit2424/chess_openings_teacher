@@ -66,6 +66,8 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
               }
             }
           }
+          
+          this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
 
         } catch (error) {
           console.error('Fetch error:', error);
@@ -93,6 +95,19 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           const initial_square = this.getIntegerPositionFromTile(prev_row,prev_col);
           const final_square = this.getIntegerPositionFromTile(row,col);
           const url = `http://localhost:8000/games/${this.game_id}/process_move/${initial_square}/${final_square}/${promotion_piece}`;
+          const response = await fetch(url, 
+            { method: 'POST'},
+          );
+          const data = await response.json();
+          console.log(data);
+          return data;
+        } catch (error) {
+          console.error('Fetch error:', error);
+        }
+      },
+      async undoMoveFromAPI(){
+        try {
+          const url = `http://localhost:8000/games/${this.game_id}/undo_last_move`;
           const response = await fetch(url, 
             { method: 'POST'},
           );
@@ -143,6 +158,26 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
   
           return true;
       },
+      async undoMove(){
+        const move_info = await this.undoMoveFromAPI();
+          
+        console.log("MOVE INFO",move_info);
+
+        if(move_info.isValid == false) return false;
+
+        const game_info = move_info.gameInfo;
+        
+        await this.getBoardFromAPI();
+        
+        this.printMatrix(this.chessboard);
+        
+        this.updateGameState(game_info);
+        
+        this.whiteTurn = !this.whiteTurn;
+
+        return true;
+      },
+
       getIntegerPositionFromTile(row,col){
         if (this.isRotated) {
           return (7 - row) * 8 + (col);

@@ -59,7 +59,7 @@ class Game():
         
         if self.board.is_legal(chess.Move.from_uci(init_pos + end_pos + promotion_piece)):
                 
-            move = chess.Move.from_uci(init_pos + end_pos)
+            move = chess.Move.from_uci(init_pos + end_pos + promotion_piece)
 
             move_type = []
 
@@ -76,23 +76,31 @@ class Game():
                 else:
                     move_type.append("pawn move")
 
-            promotion_color = self.board.turn
-            # Make the move
             self.board.push(move)
             print("BOARD: \n",self.board)
-            if promotion_piece!= "":
-                if(promotion_piece == "q"): new_piece = chess.Piece(chess.QUEEN, promotion_color)
-                if(promotion_piece == "r"): new_piece = chess.Piece(chess.ROOK, promotion_color)
-                if(promotion_piece == "b"): new_piece = chess.Piece(chess.BISHOP, promotion_color)
-                if(promotion_piece == "n"): new_piece = chess.Piece(chess.KNIGHT, promotion_color)
-                self.board.set_piece_at(end_square, new_piece)
             
             if self.board.is_check():
                 move_type.append("check")
             
             move_type.extend(self.check_game_state())
             
+            return {"isValid":True,"gameInfo":move_type}
+        else:
+            return {"isValid":False,"gameInfo":None}
+        
 
+    def undo_move(self):
+        
+        if len(self.board.move_stack) != 0:
+            self.board.pop()
+            move_type = []
+            
+            print("BOARD: \n",self.board)
+            
+            if self.board.is_check():
+                move_type.append("check")
+            
+            move_type.extend(self.check_game_state())
             
             return {"isValid":True,"gameInfo":move_type}
         else:

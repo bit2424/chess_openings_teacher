@@ -1,5 +1,19 @@
 <!-- components/Chessboard.vue -->
 <template>
+    
+    <button @click="resetGame()" class="opt-button" >
+      <font-awesome-icon :icon="['fas', 'trash-arrow-up']" />
+    </button>
+
+    <button @click="undoLastMove()" class="opt-button" >
+      <font-awesome-icon :icon="['fas', 'rotate-left']" />
+    </button>
+
+    <!-- <button @click="invertBo()" class="opt-button" >
+      <font-awesome-icon :icon="['fas', 'rotate-left']" />
+    </button> -->
+
+
     <div :class="`chessboard ${ isRotated ? '':'rotated-component' }`">
         <div
             v-for="col in 8"
@@ -35,6 +49,11 @@
   import { useChessBoardStoreAPI } from '@/store/chessboard_store_API';
   import { useHistoryStore } from '@/store/history_store';
   import { storeToRefs } from 'pinia';
+  import { icon, library } from '@fortawesome/fontawesome-svg-core';
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+  import {faRotateLeft,faTrashArrowUp} from '@fortawesome/free-solid-svg-icons';
+
+  library.add(faRotateLeft,faTrashArrowUp);
 
   
   
@@ -43,18 +62,16 @@
     components: {
       ChessPiece,
       PromotionMenu,
+      FontAwesomeIcon
     },
     async setup(){
       const chessboardStore = useChessBoardStoreAPI();
-      const historyStore = useHistoryStore();
       const { chessboard,chessboard_piece_projection ,selectedTile,prevSelectedTile,lastSelectedPiece,isRotated,whiteTurn,promoting,inCheck,inCheckMate } = storeToRefs(chessboardStore);
-      const { initialize, handlePieceMove, highlightPossibleMoves,printMatrix} = (chessboardStore);
-      const { addMove,initialize_history } = (historyStore);
+      const { initialize, handlePieceMove, highlightPossibleMoves,printMatrix,undoMove} = (chessboardStore);
       await initialize();
-      initialize_history();
       //chessboardStore.initialize();
       return{ chessboard, chessboard_piece_projection, selectedTile,prevSelectedTile,lastSelectedPiece,isRotated,whiteTurn,promoting,inCheck,inCheckMate,
-              initialize,handlePieceMove,highlightPossibleMoves,printMatrix};
+              initialize,handlePieceMove,highlightPossibleMoves,printMatrix,undoMove};
     },
     data() {
     return {
@@ -71,7 +88,6 @@
         }
 
         if(this.selectedTile.join('-') == `${row}-${col}`){
-          console.log("LOOOOOOOOOOOOL");
           this.selectedTile = [-1,-1];
           this.prevSelectedTile = [-2,-2];
           this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
@@ -138,6 +154,13 @@
       }
 
       return '';
+    },
+    undoLastMove(){
+      this.undoMove();
+    },
+    resetGame(){
+      this.initialize();
+      this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
     }
 
   },
@@ -246,6 +269,31 @@
       border-radius: 100%;
       border: 3px solid #99B2DD;
       background: none;
+    }
+
+    .opt-button{
+      /* position: absolute; */
+      padding: 5px;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      border: 3px solid #99B2DD;
+      background: none;
+      color: #99B2DD;
+      font-size: 100%;
+      transition: background-color 0.2s;
+    }
+
+    .opt-button:hover {
+      background-color: #99B2DD;
+      color: white;
+    }
+
+    .opt-button:active {
+      background-color: #667d99;
+    }
+
+    .opt-button:hover, .opt-button:active {
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
     }
 
   </style>
