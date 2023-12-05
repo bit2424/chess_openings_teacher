@@ -9,7 +9,9 @@ from typing import List
 sys.path.append('chess_openings_teacher\BE\Model')
 from Model.game import Game,Game_DTO
 from Model.user import User_DTO
+from Model.chess_engine import ChessEngine
 
+chess_engine = ChessEngine()
 
 games = [
     Game(move_list=[]),
@@ -49,7 +51,7 @@ def get_game_board(game_id: str = Path(default="", title="Game id")):
         raise HTTPException(status_code=404, detail="Invalid game id")
     return str(board[0].board)
 
-@app.get("/games/{game_id}/get_moves_for_position/{init_square}", tags=["game"])
+@app.get("/games/{game_id}/get_moves_for_position/{init_square}", tags=["game","moves"])
 def get_moves_for_position(game_id: str = Path(default="", title="Game id"),init_square: int = Path(default=0, title="Initial Square")):
     game = [x for x in filter(lambda x: x.game_id == game_id, games)]
     if len(game) == 0:
@@ -57,7 +59,15 @@ def get_moves_for_position(game_id: str = Path(default="", title="Game id"),init
     moves = game[0].get_moves_for_position(init_square)
     return moves
 
-@app.post("/games/{game_id}/process_move/{init_square}/{end_square}/{promotion_piece}", tags=["game"])
+@app.get("/games/{game_id}/get_best_moves_for_position/{init_square}", tags=["game","moves"])
+def get_best_moves_for_position(game_id: str = Path(default="", title="Game id"),init_square: int = Path(default=0, title="Initial Square")):
+    game = [x for x in filter(lambda x: x.game_id == game_id, games)]
+    if len(game) == 0:
+        raise HTTPException(status_code=404, detail="Invalid game id")
+    moves = chess_engine.get_best_moves_for_piece(game[0].board, init_square)
+    return moves
+
+@app.post("/games/{game_id}/process_move/{init_square}/{end_square}/{promotion_piece}", tags=["game","moves"])
 def process_move(game_id: str = Path(default="", title="Game id"),init_square: int = Path(default=0, title="Initial Square"),end_square: int = Path(default=0, title="End Square"), promotion_piece: str = Path(default="", title="Promotion piece")):
     game = [x for x in filter(lambda x: x.game_id == game_id, games)]
     if len(game) == 0:

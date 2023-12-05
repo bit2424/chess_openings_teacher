@@ -35,7 +35,7 @@
                   
                   <div v-if="col == 1" :class="`row_ids ${((row + col) % 2 === 0) ? `light_txt` : `dark_txt`}`">{{ row_ids[row-1] }}</div>
   
-                  <div v-if="chessboard[row-1][col-1] == 't' && chessboard_piece_projection[row-1][col-1] === 'm'" :class="`${getHighlightedClass(row,col,'tile')}`" ></div>
+                  <div v-if="chessboard[row-1][col-1] == 't' && chessboard_piece_projection[row-1][col-1].includes('m')" :class="`${getHighlightedClass(row,col,'tile')}`" ></div>
   
                   <div v-if="chessboard[row-1][col-1] != 't'">
                      <ChessPiece :class="`piece ${getHighlightedClass(row,col,'piece')} ${getCheckedInfo(row,col)}`" :icon="chessboard[row-1][col-1]" />
@@ -133,11 +133,19 @@
       return '';
     },
     getHighlightedClass(row,col,type){
-      if(this.chessboard_piece_projection[row-1][col-1] == 'm'){
+      if(this.chessboard_piece_projection[row-1][col-1].includes('m')){
         if(type == 'piece'){
-          return 'highlight-piece';
+          if(this.chessboard_piece_projection[row-1][col-1] == 'bm'){
+            return 'highlight-best-piece';
+          }else{
+            return 'highlight-piece';
+          }
         }else{
-          return 'highlight';
+          if(this.chessboard_piece_projection[row-1][col-1] == 'bm'){
+            return 'best-move-highlight';
+          }else{
+            return 'move-highlight';
+          }
         }
       }else{
         return '';
@@ -273,13 +281,29 @@
       transform: rotate(180deg);
     }
 
-    .highlight {
+    .move-highlight {
       /* position: absolute; */
       width: 0.9vw;
       height: 0.9vw;
       border-radius: 100%;
       /* background: rgba(141,128,173,0.8); */
       background: rgba(153,178,221,0.8);
+    }
+
+    .best-move-highlight {
+      /* position: absolute; */
+      width: 0.9vw;
+      height: 0.9vw;
+      border-radius: 100%;
+      /* background: rgba(141,128,173,0.8); */
+      background: rgba(167, 221, 153, 0.8);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
     }
 
     .piece{
@@ -297,6 +321,16 @@
       border-radius: 100%;
       border: 3px solid #99B2DD;
       background: none;
+    }
+
+    .highlight-best-piece{
+      /* position:absolute; */
+      width: 2vw;
+      height: 2vw;
+      border-radius: 100%;
+      border: 3px solid  rgba(167, 221, 153, 0.8);
+      background: none;
+      animation: blink 1.5s ease-in-out infinite;
     }
 
     .opt-button{

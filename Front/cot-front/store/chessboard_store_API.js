@@ -81,11 +81,21 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           {mode: 'no-cors'},
           );
           const data = await response.json();
-          this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
-          for (let i = 0; i < data.length; i++) {
-            const to_squares = this.getRowColFromInteger(data[i].to_square);
-            this.chessboard_piece_projection[to_squares[0]][to_squares[1]] = 'm';
-          }
+          // this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
+          return data;
+        } catch (error) {
+          console.error('Fetch error:', error);
+        }
+      },
+      async getBestMovesFromSelectedTileFromAPI(row,col){
+        try {
+          const url = `http://localhost:8000/games/${this.game_id}/get_best_moves_for_position/${this.getIntegerPositionFromTile(row,col)}`;
+          const response = await fetch(url, 
+          { method: 'GET'},
+          {mode: 'no-cors'},
+          );
+          const data = await response.json();
+          return data;
         } catch (error) {
           console.error('Fetch error:', error);
         }
@@ -230,12 +240,17 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         let condition = (row == 7 || row == 0);
         condition &= this.chessboard[this.prevSelectedTile[0]-1][this.prevSelectedTile[1]-1].includes('P');
         
-        const temp_chessboard_piece_projection = this.chessboard_piece_projection;
+        const possible_moves =  await this.getMovesFromSelectedTileFromAPI(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1);
 
-        await this.getMovesFromSelectedTileFromAPI(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1);
-        condition &= this.chessboard_piece_projection[row][col] == 'm';
-
-        this.chessboard_piece_projection = temp_chessboard_piece_projection;
+        let isPossible = false;
+        for (let i = 0; i < possible_moves.length; i++) {
+          const to_squares = this.getRowColFromInteger(possible_moves[i].to_square);
+          if(row == to_squares[0] && col == to_squares[1]){
+            break;
+          }
+        }
+        
+        condition &= isPossible;
         
         this.promoting = condition;
       },
@@ -251,18 +266,32 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         console.log(str);
       },
       async highlightPossibleMoves(row,col){
-        
+        console.log("HIGHLIGHT POSSIBLE MOVES");
         this.chessboard_piece_projection = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
-        if(this.whiteTurn){
-          if(this.chessboard[row][col].includes('w')){
-            await this.getMovesFromSelectedTileFromAPI(row,col);
+        
+        if( (this.whiteTurn && this.chessboard[row][col].includes('w'))
+
+        || (!this.whiteTurn && this.chessboard[row][col].includes('b'))
+        
+        ){
+          
+          const possible_moves = await this.getMovesFromSelectedTileFromAPI(row,col);
+          const possible_best_moves = await this.getBestMovesFromSelectedTileFromAPI(row,col);
+
+          for (let i = 0; i < possible_moves.length; i++) {
+            const to_squares = this.getRowColFromInteger(possible_moves[i].to_square);
+            this.chessboard_piece_projection[to_squares[0]][to_squares[1]] = 'm';
           }
-        }else{
-          if(this.chessboard[row][col].includes('b')){
-            await this.getMovesFromSelectedTileFromAPI(row,col);
+          for (let i = 0; i < possible_best_moves.length; i++) {
+            const to_squares = this.getRowColFromInteger(possible_best_moves[i].to_square);
+            this.chessboard_piece_projection[to_squares[0]][to_squares[1]] = 'bm';
           }
+
+          this.printMatrix(this.chessboard_piece_projection);
+
         }
       }
     }
   }
+  
   )
