@@ -260,21 +260,21 @@
 
     .selected {
         /* border: 4px solid #99B2DD; Add a border to indicate selection */
-        background-color: #99B2DD;
+        background-color: #246EB9;
     }
 
     .checked {
       width: 2vw;
       height: 2vw;
       border-radius: 100%;
-      background-color: #99B2DD;
+      background-color: #931F1D;
     }
 
     .checkMated {
       width: 2vw;
       height: 2vw;
       border-radius: 100%;
-      background-color: #573280;
+      background-color: #931F1D;
     }
 
     .rotated-component {
@@ -283,20 +283,22 @@
 
     .move-highlight {
       /* position: absolute; */
-      width: 0.9vw;
-      height: 0.9vw;
-      border-radius: 100%;
+      /* width: 0.9vw;
+      height: 0.9vw; */
+      /* border-radius: 100%; */
       /* background: rgba(141,128,173,0.8); */
-      background: rgba(153,178,221,0.8);
+      border: #246EB9 0.5vw solid;
+      /* background: rgba(153,178,221,0.8); */
     }
 
     .best-move-highlight {
       /* position: absolute; */
-      width: 0.9vw;
-      height: 0.9vw;
-      border-radius: 100%;
+      /* width: 0.9vw; */
+      /* height: 0.9vw; */
+      /* border-radius: 100%; */
       /* background: rgba(141,128,173,0.8); */
-      background: rgba(167, 221, 153, 0.8);
+      /* background: rgba(167, 221, 153, 0.8); */
+      border: #246EB9 0.5vw solid;
       animation: blink 1.5s ease-in-out infinite;
     }
 
@@ -318,8 +320,8 @@
       /* position:absolute; */
       width: 2vw;
       height: 2vw;
-      border-radius: 100%;
-      border: 3px solid #99B2DD;
+      /* border-radius: 100%; */
+      border: 3px solid #246EB9;
       background: none;
     }
 
@@ -327,8 +329,8 @@
       /* position:absolute; */
       width: 2vw;
       height: 2vw;
-      border-radius: 100%;
-      border: 3px solid  rgba(167, 221, 153, 0.8);
+      /* border-radius: 100%; */
+      border: 3px solid  #246EB9;
       background: none;
       animation: blink 1.5s ease-in-out infinite;
     }
@@ -340,9 +342,9 @@
       padding: 1vw; /* Adjust the padding as a percentage of the viewport width*/
       margin-bottom: 1vw; 
 
-      border: 0.3vw solid #99B2DD;
+      border: 0.3vw solid #246EB9;
       background: none;
-      color: #99B2DD;
+      color: #246EB9;
       font-size: 100%;
       transition: background-color 0.2s;
     }
@@ -355,7 +357,7 @@
     }
 
     .opt-button:hover {
-      background-color: #99B2DD;
+      background-color: #246EB9;
       color: white;
     }
 
