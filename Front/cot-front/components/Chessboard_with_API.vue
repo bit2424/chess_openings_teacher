@@ -3,6 +3,8 @@
 
     <div class="chessboard-container">
 
+      
+
       <div class="buttons-container">
         <button @click="resetGame()" class="opt-button" >
           <font-awesome-icon class="opt-button-content" :icon="['fas', 'trash-arrow-up']" />
@@ -13,6 +15,9 @@
         </button>
       </div>
 
+      <div class="evaluation-container">
+        <ChessEvaluationBar :evaluation="evalBar" />
+      </div>
   
       <!-- <button @click="invertBo()" class="opt-button" >
         <font-awesome-icon :icon="['fas', 'rotate-left']" />
@@ -53,6 +58,7 @@
 <script>
   import ChessPiece from '../components/ChessPiece.vue';
   import PromotionMenu from '../components/PromotionMenu.vue';
+  import ChessEvaluationBar from "@/components/ChessEvaluationBar.vue";
   import { useChessBoardStoreAPI } from '@/store/chessboard_store_API';
   import { useHistoryStore } from '@/store/history_store';
   import { storeToRefs } from 'pinia';
@@ -70,6 +76,7 @@
       ChessPiece,
       PromotionMenu,
       FontAwesomeIcon,
+      ChessEvaluationBar
     },
     async setup(){
       const chessboardStore = useChessBoardStoreAPI();
@@ -84,6 +91,7 @@
     return {
       col_ids:['a','b','c','d','e','f','g','h','i'],
       row_ids:[8,7,6,5,4,3,2,1],
+      evalBar:3,
     };
   },
   methods: {
