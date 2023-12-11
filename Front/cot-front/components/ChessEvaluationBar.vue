@@ -1,80 +1,94 @@
 <template>
-    <div class="vertical-chess-evaluation-bar">
-      
-      <div class="bar" :style="{ height: negativeHeight, backgroundColor: negativeColor }">
-        <div class="evaluation-number" :class="{ 'top': evaluation >= 0, 'bottom': evaluation < 0 }">
-          {{ evaluation }}
-        </div>
-      </div>
-
+  <div class="evaluation-bar-container">
+    <div v-if="boardOrientation == 0">
+      <div class="evaluation-bar" :style="positiveBarStyle"> <div class="up-text"> {{ positiveText }}</div></div>
+      <div class="evaluation-bar" :style="negativeBarStyle"> <div class="bottom-text">{{ negativeText }}</div></div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    props: {
-      evaluation: {
-        type: Number,
-        required: true,
-      },
-      maxHeight: {
-        type: Number,
-        default: 200, // Adjust the default max height as needed
-      },
-      positiveColor: {
-        type: String,
-        default: "#4caf50", // Adjust the positive color as needed
-      },
-      negativeColor: {
-        type: String,
-        default: "#f44336", // Adjust the negative color as needed
-      },
+    <div v-if="boardOrientation == 1">
+      <div class="evaluation-bar" :style="negativeBarStyle"> <div class="up-text">{{ negativeText }}</div></div>
+      <div class="evaluation-bar" :style="positiveBarStyle"> <div class="bottom-text"> {{ positiveText }}</div></div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ChessEvaluationBar',
+  props: {
+    score: {
+      type: Number,
+      required: true
     },
-    computed: {
-      positiveHeight() {
-        return this.evaluation >= 0 ? `${(this.evaluation / this.maxHeight) * 100}%` : "0";
-      },
-      negativeHeight() {
-        return this.evaluation < 0 ? `${(Math.abs(this.evaluation) / this.maxHeight) * 100}%` : "0";
-      },
+    maxScore: {
+      type: Number,
+      default: 10
     },
-  };
-  </script>
-  
-  <style scoped>
-  .vertical-chess-evaluation-bar {
-    width: 20px; /* Adjust the width as needed */
-    height: 20vw; /* Adjust the height as needed */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 0.1vw solid black;
+    boardOrientation: {
+      type: Number,
+      default: 1
+    }
+  },
+  computed: {
+    positiveText(){
+      if(this.score>=0)return this.score;
+      return "";
+    },
+    negativeText(){
+      if(this.score<0)return Math.abs(this.score);
+      return "";
+    },
+    positiveBarStyle() {
+      const positiveHeight = this.score >= 0 ? 50 + ((this.score / this.maxScore) * 50): 52 - ((Math.abs(this.score) / this.maxScore) * 50);
+      // console.log("POSITIVE HEIGHT:::: ",positiveHeight);
+      return {
+        height: `${positiveHeight}%`,
+        backgroundColor: '#FFFFFF',
+        color: '#000000',
+      };
+    },
+    negativeBarStyle() {
+      const negativeHeight = this.score < 0 ? 50 + ((Math.abs(this.score) / this.maxScore) * 50): 52 - ((Math.abs(this.score) / this.maxScore) * 50);
+      return {
+        height: `${negativeHeight}%`,
+        backgroundColor: '#777',
+        color: '#FFFFFF',
+        
+      };
+    }
   }
-  
-  .bar {
-    width: 100%;
-    flex-grow: 1;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-  }
-  
-  .evaluation-number {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    font-size: 12px; /* Adjust the font size as needed */
-    font-weight: bold;
-  }
-  
-  .top {
-    
-    top: 0;
-  }
-  
-  .bottom {
-    bottom: 0;
-  }
-  </style>
-  
+}
+</script>
+
+<style scoped>
+.evaluation-bar-container {
+  width: 2vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 38vw; 
+  border:#000000 solid 1px;
+}
+
+.evaluation-bar {
+  /* height: 100%; */
+  width: 100%;
+  transition: height 0.3s ease-in-out;
+  font-family: Arial, sans-serif;
+  font-size: 1.5vw;
+  position:relative;
+}
+
+.up-text {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.bottom-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+</style>
