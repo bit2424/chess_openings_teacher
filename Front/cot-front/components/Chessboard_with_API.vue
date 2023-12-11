@@ -91,7 +91,7 @@
     return {
       col_ids:['a','b','c','d','e','f','g','h','i'],
       row_ids:[8,7,6,5,4,3,2,1],
-      evalBar:10,
+      evalBar:5,
     };
   },
   methods: {

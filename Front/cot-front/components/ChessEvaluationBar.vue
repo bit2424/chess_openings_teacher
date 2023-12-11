@@ -1,14 +1,15 @@
 <template>
-  <div class="evaluation-bar-container">
-    <div v-if="boardOrientation == 0">
-      <div class="evaluation-bar" :style="positiveBarStyle"> <div class="up-text"> {{ positiveText }}</div></div>
-      <div class="evaluation-bar" :style="negativeBarStyle"> <div class="bottom-text">{{ negativeText }}</div></div>
-    </div>
-    <div v-if="boardOrientation == 1">
-      <div class="evaluation-bar" :style="negativeBarStyle"> <div class="up-text">{{ negativeText }}</div></div>
-      <div class="evaluation-bar" :style="positiveBarStyle"> <div class="bottom-text"> {{ positiveText }}</div></div>
-    </div>
+  <div class="evaluation-bar-container" v-if="boardOrientation == 0">
+    <div class="evaluation-bar" :style="positiveBarStyle"> <div class="up-text"> {{ positiveText }}</div></div>
+    <div class="evaluation-bar" :style="negativeBarStyle"> <div class="bottom-text">{{ negativeText }}</div></div>
   </div>
+  
+  
+  <div class="evaluation-bar-container" v-if="boardOrientation == 1">
+    <div class="evaluation-bar" :style="negativeBarStyle"> <div class="up-text">{{ negativeText }}</div></div>
+    <div class="evaluation-bar" :style="positiveBarStyle"> <div class="bottom-text"> {{ positiveText }}</div></div>
+  </div>
+
 </template>
 
 <script>
@@ -38,7 +39,7 @@ export default {
       return "";
     },
     positiveBarStyle() {
-      const positiveHeight = this.score >= 0 ? 50 + ((this.score / this.maxScore) * 50): 52 - ((Math.abs(this.score) / this.maxScore) * 50);
+      const positiveHeight = this.score >= 0 ? 50 + Math.min((this.score / this.maxScore) * 50, 50): 52 - Math.min((Math.abs(this.score) / this.maxScore) * 50, 50);
       // console.log("POSITIVE HEIGHT:::: ",positiveHeight);
       return {
         height: `${positiveHeight}%`,
@@ -47,7 +48,7 @@ export default {
       };
     },
     negativeBarStyle() {
-      const negativeHeight = this.score < 0 ? 50 + ((Math.abs(this.score) / this.maxScore) * 50): 52 - ((Math.abs(this.score) / this.maxScore) * 50);
+      const negativeHeight = this.score < 0 ? 50 + Math.min(((Math.abs(this.score) / this.maxScore) * 50), 50): 52 - Math.min((Math.abs(this.score) / this.maxScore) * 50, 50);
       return {
         height: `${negativeHeight}%`,
         backgroundColor: '#777',
