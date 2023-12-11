@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   devtools: { enabled: true },
+  pages:true,
   vite: {
     server: {
       watch: {

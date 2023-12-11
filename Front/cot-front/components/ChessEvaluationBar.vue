@@ -40,7 +40,6 @@ export default {
     },
     positiveBarStyle() {
       const positiveHeight = this.score >= 0 ? 50 + Math.min((this.score / this.maxScore) * 50, 50): 52 - Math.min((Math.abs(this.score) / this.maxScore) * 50, 50);
-      // console.log("POSITIVE HEIGHT:::: ",positiveHeight);
       return {
         height: `${positiveHeight}%`,
         backgroundColor: '#FFFFFF',
