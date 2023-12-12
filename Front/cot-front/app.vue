@@ -25,8 +25,9 @@ export default {
 <style>
 .content-container {
   display: flex;
+  flex-direction: column; /* Aligns children vertically */
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   width:100%;
   height: 100%;
 }
@@ -34,7 +35,8 @@ export default {
 .main-container {
   display: flex;
   flex-direction: row;
-  align-items: center; 
+  align-items: center;
+  height: 100vh;
 }
 
 </style>

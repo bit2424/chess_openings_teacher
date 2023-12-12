@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <div class="center-container">
-          <div class="container">
-            <div class="board-div">
-              <Chessboard_with_API />
-            </div>
-            <div class="chat-div">
-              <ChatInterface />
-            </div>
+    
+      <div class="game-center-container">
+        <div class="container">
+          <div class="board-div">
+            <Chessboard_with_API />
+          </div>
+          <div class="chat-div">
+            <ChatInterface />
           </div>
         </div>
-    </div>
+      </div>
+
   </template>
   
   <script >
@@ -28,12 +28,12 @@
   </script>
   
   <style>
-  .center-container {
+  .game-center-container {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     /* height: 100vh; Set the container to 100% of the viewport height */
-    width:100vw;
+    /* width:90vw; */
   }
   
   .container {
@@ -44,14 +44,15 @@
   }
   
   .board-div{
-    margin: 3vw;
+    /* margin: 3vw; */
     width: 100%;
     height: 100%;
     /* border: 1px solid red; */
   }
   
   .chat-div {
-    margin: 3vw;
+    width: 100%;
+    height: 100%;
   }
   
   

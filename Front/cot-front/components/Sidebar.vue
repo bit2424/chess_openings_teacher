@@ -30,11 +30,11 @@
   
   <style scoped>
   .sidebar {
-    width: 200px;
+    width: 10vw;
     height: 100vh;
-    background-color: #333;
-    color: white;
+    background-color: #1f2833;
     padding: 1rem;
+    font-size: 1.2vw;
   }
   
   .nav-list {
@@ -43,20 +43,32 @@
   }
   
   .nav-item {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
+    background-color: #2c3e50;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+
+  .nav-item:hover {
+    background-color: #f5f5f5;
+  }
+
+  .nav-item:hover .text{
+    color: #2c3e50;
   }
   
+  
   .nav-item a {
-    color: white;
     text-decoration: none;
     display: flex;
     align-items: center;
+    color:#f5f5f5;
   }
   
   .icon {
-    margin-right: 1rem;
+    margin-right: 0.5vw;
+    color: #99aab5;
   }
   
   .text {
