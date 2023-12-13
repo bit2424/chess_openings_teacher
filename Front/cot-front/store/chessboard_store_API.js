@@ -246,6 +246,7 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         for (let i = 0; i < possible_moves.length; i++) {
           const to_squares = this.getRowColFromInteger(possible_moves[i].to_square);
           if(row == to_squares[0] && col == to_squares[1]){
+            isPossible = true;
             break;
           }
         }
