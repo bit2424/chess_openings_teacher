@@ -24,19 +24,21 @@ export default {
 
 <style>
 .content-container {
-  display: flex;
-  flex-direction: column; /* Aligns children vertically */
+  /* display: flex;
+  flex-direction: column; Aligns children vertically */
   justify-content: center;
   align-items: center;
+  padding:1vw;
   width:100%;
   height: 100%;
+  overflow-y: scroll;
 }
 
 .main-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100vh;
+  height: 102vh;
 }
 
 </style>

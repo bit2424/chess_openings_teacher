@@ -4,15 +4,13 @@ const route = useRoute()
 
 <template>
   <div class="landing-page">
-
-    
     <main>
       <div>
         <img src="your-image.png" alt="Project hero image" />
-        <h1>Mini Chess Engine: Play & Learn with AI</h1>
+        <h2>Mini Chess Engine: Play & Learn with AI</h2>
         <p>Practice your openings, explore LLM technology, and hone your Vue.js skills.</p>
       </div>
-      <h2>Features & Benefits</h2>
+      <h3>Features & Benefits</h3>
       <ul>
         <li>Play against a fully functional chess engine.</li>
         <li>Get move recommendations from a powerful language model.</li>
@@ -20,7 +18,7 @@ const route = useRoute()
         <li>Experience the power of AI in action.</li>
       </ul>
 
-      <h2>How it Works</h2>
+      <h3>How it Works</h3>
       <p>Simply start playing, and the LLM will analyze the board and suggest moves based on its knowledge and your playing style.</p>
       <ul>
         <li>Click on a piece to move it.</li>
@@ -28,7 +26,7 @@ const route = useRoute()
         <li>You can choose to follow the recommendation or play your own move.</li>
       </ul>
 
-      <h2>Your Learning Journey</h2>
+      <h3>Your Learning Journey</h3>
       <p>This project is not just about playing chess, it's about learning and growing.</p>
       <ul>
         <li>Experiment with different strategies and see how the LLM reacts.</li>
@@ -36,7 +34,7 @@ const route = useRoute()
         <li>Discover how AI can enhance your chess skills.</li>
       </ul>
 
-      <h2>Start Playing Now!</h2>
+      <h3>Start Playing Now!</h3>
       <!-- <button @click="playGame">Play Chess & Learn with AI</button> -->
 
       <a href="/learn-more">Learn More About the LLM Technology</a>
@@ -52,11 +50,14 @@ const route = useRoute()
 
 
 <style>
+  /* main{
+    height: 100%;
+  } */
   .landing-page{
     /* display: flex; */
     justify-content: center;
-    width:96w;
-    height:100vh;
-    margin:3vw;
+    /* width:96w; */
+    height:102vh;
+    margin:2vw;
   }
 </style>
