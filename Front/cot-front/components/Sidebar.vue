@@ -43,18 +43,14 @@
   }
   
   .nav-item {
-    background-color: #2c3e50;
+    background-color: #1f2833;
     border-radius: 4px;
-    padding: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
     margin-bottom: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   }
 
-  .nav-item:hover {
-    background-color: #f5f5f5;
-  }
 
-  .nav-item:hover .text{
+  .nav-item a:hover .text{
     color: #2c3e50;
   }
   
@@ -62,8 +58,14 @@
   .nav-item a {
     text-decoration: none;
     display: flex;
-    align-items: center;
+    
+    /* align-items: center; */
     color:#f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-item a:hover {
+    background-color: #f5f5f5;
   }
   
   .icon {
