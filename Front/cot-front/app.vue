@@ -2,7 +2,7 @@
   <div class="main-container">
     <Sidebar />
     <div class="content-container">
-      <NuxtLoadingIndicator />
+      <!-- <NuxtLoadingIndicator /> -->
       <NuxtPage />
     </div>
   </div>
@@ -27,18 +27,16 @@ export default {
   /* display: flex;
   flex-direction: column; Aligns children vertically */
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   padding:1vw;
   width:100%;
-  height: 100%;
-  overflow-y: scroll;
+  /* height: 100%;
+  overflow-y: scroll; */
 }
 
 .main-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  height: 102vh;
 }
 
 </style>

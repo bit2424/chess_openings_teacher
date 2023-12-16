@@ -83,6 +83,14 @@ def undo_last_move(game_id: str = Path(default="", title="Game id")):
     state = game[0].undo_move()
     return state
 
+@app.post("/games/{game_id}/redo_last_move", tags=["game"])
+def redo_last_move(game_id: str = Path(default="", title="Game id")):
+    game = [x for x in filter(lambda x: x.game_id == game_id, games)]
+    if len(game) == 0:
+        raise HTTPException(status_code=404, detail="Invalid game id")
+    state = game[0].redo_move()
+    return state
+
 @app.get("/games/{game_id}/get_game_element/{game_element}", tags=["game"], response_model=str)
 def get_game_element(game_id: str, game_element: str):
     game_with_id = [x for x in filter(lambda x: x.game_id == game_id, games)]

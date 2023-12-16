@@ -98,7 +98,6 @@
     .landing-page {
       justify-content: center;
       width:96w;
-      height:102vh;
       margin:2vw;
     }
 
@@ -120,13 +119,6 @@
       background-color: rgba(255, 255, 255, 0.1);
     }
 
-    .landing-page{
-      justify-content: center;
-      width:96w;
-      height:102vh;
-      margin:2vw;
-    }
-
     .features-section {
       padding: 1rem;
       border-bottom: 1px solid #ddd;
@@ -136,8 +128,12 @@
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
     }
+    .how-it-works-section li {
+      margin-left: 1rem;
+      list-style: decimal;
+      margin-bottom: 0.5rem;
+    }
 
-    .how-it-works-section ul li,
     .tech-stack-section ul li,
     .features-section ul li {
       list-style: inside;
@@ -158,6 +154,14 @@
       /* display: flex; */
       flex-wrap: nowrap; /* Single horizontal row */
       justify-content: flex-start; /* Align cards to left */
+    }
+
+    .how-it-works-section ul,
+    .features-section ul{
+      margin-right: 1rem; /* Spacing between cards */
+      padding: 1rem;
+      border-radius: 5px; /* Rounded corners */
+      background-color: #46617b; /* Slightly different background */
     }
 
     .tech-stack-section li {

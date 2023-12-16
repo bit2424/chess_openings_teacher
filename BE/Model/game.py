@@ -9,6 +9,8 @@ class Game():
         self.board = chess.Board()
         self.move_list = move_list
         self.game_history = []
+        self.redo_stack = []
+        
         for move in self.move_list:
             if move is str:
                 self.board.push(chess.Move.from_uci(move))
@@ -57,9 +59,16 @@ class Game():
         end_pos = chess.square_name(end_square)
         promotion_piece = "" if promotion_piece == "t" else promotion_piece
         
-        if self.board.is_legal(chess.Move.from_uci(init_pos + end_pos + promotion_piece)):
-                
-            move = chess.Move.from_uci(init_pos + end_pos + promotion_piece)
+        move = chess.Move.from_uci(init_pos + end_pos + promotion_piece)
+        
+        self.game_history.append([init_pos, end_pos, promotion_piece])
+        
+        if self.board.is_legal(move):
+            
+            if(len(self.redo_stack)>0 and move  == self.redo_stack[-1]):
+                self.redo_stack.pop()
+            else:
+                self.redo_stack = []
 
             move_type = []
 
@@ -90,21 +99,35 @@ class Game():
         
 
     def undo_move(self):
-        
-        if len(self.board.move_stack) != 0:
-            self.board.pop()
+        if len(self.board.move_stack) > 0:
             move_type = []
+            last_move = self.board.pop()
             
-            print("BOARD: \n",self.board)
+            self.redo_stack.append(last_move)
             
             if self.board.is_check():
                 move_type.append("check")
-            
+
             move_type.extend(self.check_game_state())
-            
-            return {"isValid":True,"gameInfo":move_type}
+
+            return {"isValid": True, "gameInfo": move_type}
         else:
-            return {"isValid":False,"gameInfo":None}
+            return {"isValid": False, "gameInfo": None}
+
+    def redo_move(self):
+        if len(self.redo_stack) > 0:
+            move_type = []
+
+            self.board.push(self.redo_stack.pop())
+
+            if self.board.is_check():
+                move_type.append("check")
+
+            move_type.extend(self.check_game_state())
+
+            return {"isValid": True, "gameInfo": move_type}
+        else:
+            return {"isValid": False, "gameInfo": None}
     
     def check_game_state(self):
         """

@@ -128,6 +128,19 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           console.error('Fetch error:', error);
         }
       },
+      async redoMoveFromAPI(){
+        try {
+          const url = `http://localhost:8000/games/${this.game_id}/redo_last_move`;
+          const response = await fetch(url, 
+            { method: 'POST'},
+          );
+          const data = await response.json();
+          console.log(data);
+          return data;
+        } catch (error) {
+          console.error('Fetch error:', error);
+        }
+      },
       async initialize(){
         this.whiteTurn = true;
         this.chessboard = Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => 't'));
@@ -149,9 +162,8 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
         }
         return false;
       },
-      async processMove(promotion_piece = "t"){
-          const move_info = await this.processMoveFromAPI(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1, this.selectedTile[0]-1, this.selectedTile[1]-1, promotion_piece);
-          
+
+      async updateBoardPositions(move_info){
           console.log("MOVE INFO",move_info);
   
           if(move_info.isValid == false) return false;
@@ -168,8 +180,33 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
   
           return true;
       },
+
+      async processMove(promotion_piece = "t"){
+          const move_info = await this.processMoveFromAPI(this.prevSelectedTile[0]-1,this.prevSelectedTile[1]-1, this.selectedTile[0]-1, this.selectedTile[1]-1, promotion_piece);
+          return await this.updateBoardPositions(move_info);
+      },
       async undoMove(){
         const move_info = await this.undoMoveFromAPI();
+          
+        console.log("MOVE INFO",move_info);
+
+        if(move_info.isValid == false) return false;
+
+        const game_info = move_info.gameInfo;
+        
+        await this.getBoardFromAPI();
+        
+        this.printMatrix(this.chessboard);
+        
+        this.updateGameState(game_info);
+        
+        this.whiteTurn = !this.whiteTurn;
+
+        return true;
+      },
+
+      async redoMove(){
+        const move_info = await this.redoMoveFromAPI();
           
         console.log("MOVE INFO",move_info);
 
@@ -195,6 +232,7 @@ export const useChessBoardStoreAPI = defineStore('chessBoardStoreAPI', {
           return (row) * 8 + (col);
         }
       },
+
       getRowColFromInteger(tilePos) {
         let row, col;
         if (this.isRotated) {

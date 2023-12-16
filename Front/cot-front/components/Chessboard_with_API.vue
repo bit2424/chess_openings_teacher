@@ -9,10 +9,16 @@
         <button @click="resetGame()" class="opt-button" >
           <font-awesome-icon class="opt-button-content" :icon="['fas', 'trash-arrow-up']" />
         </button>
-    
+        
+        <button @click="redoLastMove()" class="opt-button" >
+          <font-awesome-icon class="opt-button-content" :icon="['fas', 'rotate-right']" />
+        </button>
+
         <button @click="undoLastMove()" class="opt-button" >
           <font-awesome-icon class="opt-button-content" :icon="['fas', 'rotate-left']" />
         </button>
+
+
       </div>
 
       <div class="evaluation-container">
@@ -60,13 +66,12 @@
   import PromotionMenu from '../components/PromotionMenu.vue';
   import ChessEvaluationBar from "@/components/ChessEvaluationBar.vue";
   import { useChessBoardStoreAPI } from '@/store/chessboard_store_API';
-  import { useHistoryStore } from '@/store/history_store';
   import { storeToRefs } from 'pinia';
   import { icon, library } from '@fortawesome/fontawesome-svg-core';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-  import {faRotateLeft,faTrashArrowUp} from '@fortawesome/free-solid-svg-icons';
+  import {faRotateLeft,faRotateRight,faTrashArrowUp} from '@fortawesome/free-solid-svg-icons';
 
-  library.add(faRotateLeft,faTrashArrowUp);
+  library.add(faRotateLeft,faRotateRight,faTrashArrowUp);
 
   
   
@@ -81,11 +86,11 @@
     async setup(){
       const chessboardStore = useChessBoardStoreAPI();
       const { chessboard,chessboard_piece_projection ,selectedTile,prevSelectedTile,lastSelectedPiece,isRotated,whiteTurn,promoting,inCheck,inCheckMate } = storeToRefs(chessboardStore);
-      const { initialize, handlePieceMove, highlightPossibleMoves,printMatrix,undoMove} = (chessboardStore);
+      const { initialize, handlePieceMove, highlightPossibleMoves,printMatrix,undoMove,redoMove} = (chessboardStore);
       await initialize();
       //chessboardStore.initialize();
       return{ chessboard, chessboard_piece_projection, selectedTile,prevSelectedTile,lastSelectedPiece,isRotated,whiteTurn,promoting,inCheck,inCheckMate,
-              initialize,handlePieceMove,highlightPossibleMoves,printMatrix,undoMove};
+              initialize,handlePieceMove,highlightPossibleMoves,printMatrix,undoMove,redoMove};
     },
     data() {
     return {
@@ -180,6 +185,9 @@
     },
     undoLastMove(){
       this.undoMove();
+    },
+    redoLastMove(){
+      this.redoMove();
     },
     resetGame(){
       this.initialize();
@@ -350,9 +358,9 @@
       padding: 1vw; /* Adjust the padding as a percentage of the viewport width*/
       margin-bottom: 1vw; 
 
-      border: 0.3vw solid #246EB9;
+      border: 0.3vw solid #ddd;
       background: none;
-      color: #246EB9;
+      color: #ddd;
       font-size: 100%;
       transition: background-color 0.2s;
     }
@@ -365,8 +373,8 @@
     }
 
     .opt-button:hover {
-      background-color: #246EB9;
-      color: white;
+      background-color: #ddd;
+      color: #246EB9;
     }
 
     .opt-button:active {

@@ -31,10 +31,12 @@
   <style scoped>
   .sidebar {
     width: 10vw;
-    height: 100vh;
+    height: 94.5vh;
     background-color: #1f2833;
     padding: 1rem;
     font-size: 1.2vw;
+    position: sticky;
+    top: 0;
   }
   
   .nav-list {
